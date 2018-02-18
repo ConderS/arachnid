@@ -1,4 +1,5 @@
 # ReactReduxBoilerplate
 My custom react redux boilerplate
 
-Pull into empty `src` folder
+- Replace `src` folder
+- Boilerplate package.json file included
