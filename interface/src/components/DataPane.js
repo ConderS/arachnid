@@ -10,9 +10,11 @@ export class DataPane extends Component {
         super(props);
 
         this.state = {
-            vis: null
+            vis: null,
+            datum: ''
         };
 
+        this.renderDatum = this.renderDatum.bind(this);
 
     }
 
@@ -27,8 +29,9 @@ export class DataPane extends Component {
         .initialize(document.querySelector('#view'))
         .hover()
         .insert('table', DATA)
-        .addEventListener("drag", function(event, item) {
-            console.log("Drag: ", event, item);
+        .addEventListener("click", (event, item) => {
+            console.log("Click: ", event, item.datum.Name.toString());
+            this.setState({ datum: item.datum.Name });
         })
         .addEventListener("dragstart", function(event) {
             console.log("Dragstart: ", event);
@@ -36,9 +39,24 @@ export class DataPane extends Component {
         .run();
     }
 
-    render() {
+    renderDatum() {
+
+      const { datum } = this.state;
+
+      console.log("DATUM: ", datum);
+
+      if (!datum) { return; }
+
+      return (
+        <h1 className="data-text">{datum}</h1>
+        )
+    }
+
+    render() {        
+
         return (
             <div>
+                <div className="data-text-container">{this.renderDatum()}</div>
                 <div id="view"></div>
             </div>
             )

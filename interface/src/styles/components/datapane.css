@@ -1,4 +1,14 @@
 #view {
     text-align: center;
-    margin-top: 15em;
+    margin-top: 13em;
+}
+
+.data-text-container {
+    height: 100px;
+    width: auto;
+    text-align: center;
+}
+
+.data-text {
+    margin: 2em;
 }
