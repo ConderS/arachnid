@@ -5,9 +5,9 @@ import logo from '../assets/logo.svg';
 
 function Header(props) {
     return (
-        <div className="App">
+      <div className="App">
         <header className="header">
-          <img src={logo} className="logo" alt="logo" />
+          <h1>Arachnid</h1>
         </header>
       </div>
       );

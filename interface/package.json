@@ -2,7 +2,7 @@
   "name": "ReactRedux",
   "version": "0.1.0",
   "private": true,
-  "dependencies": { 
+  "dependencies": {
     "express": "^4.15.4",
     "node-fetch": "^1.7.2",
     "react": "^15.6.1",
@@ -12,6 +12,7 @@
     "react-scripts": "1.0.11",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "vega": "^3.1.0",
     "whatwg-fetch": "^2.0.3"
   },
   "scripts": {
@@ -24,5 +25,3 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0"
   }
 }
-
-
