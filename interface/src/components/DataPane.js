@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import '../styles/components/datapane.css';
 import * as vega from 'vega';
 
+const DATA = require('../examples/cars.json');
+
 export class DataPane extends Component {
     constructor(props) {
         super(props);
@@ -24,6 +26,7 @@ export class DataPane extends Component {
         .logLevel(vega.Debug)
         .initialize(document.querySelector('#view'))
         .hover()
+        .insert('table', DATA)
         .run();
     }
 
@@ -43,8 +46,7 @@ export class DataPane extends Component {
 
           "data": [
             {
-              "name": "table",
-              "values": "../examples/cars.json"
+              "name": "table"
             }
           ],
 
