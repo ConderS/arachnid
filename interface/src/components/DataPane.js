@@ -23,10 +23,16 @@ export class DataPane extends Component {
         var runtime = vega.parse(spec);
 
         var view = new vega.View(runtime)
-        .logLevel(vega.Debug)
+        .logLevel(vega.Info)
         .initialize(document.querySelector('#view'))
         .hover()
         .insert('table', DATA)
+        .addEventListener("drag", function(event, item) {
+            console.log("Drag: ", event, item);
+        })
+        .addEventListener("dragstart", function(event) {
+            console.log("Dragstart: ", event);
+        })
         .run();
     }
 
@@ -54,9 +60,9 @@ export class DataPane extends Component {
             {
               "name": "xscale",
               "type": "band",
-              "domain": {"data": "table", "field": "Name"},
+              "domain": {"data": "table", "field": "Origin"},
               "range": "width",
-              "padding": 0.05,
+              "padding": 0.50,
               "round": true
             },
             {
@@ -72,7 +78,7 @@ export class DataPane extends Component {
               "scale": "xscale",
               "orient": "bottom",
               "labelOverlap": true,
-              "title": "Name",
+              "title": "Origin",
               "zindex": 1,
               "encode": {
                 "labels": {
@@ -113,7 +119,7 @@ export class DataPane extends Component {
               "from": {"data":"table"},
               "encode": {
                 "enter": {
-                  "x": {"scale": "xscale", "field": "Name"},
+                  "x": {"scale": "xscale", "field": "Origin"},
                   "width": {"scale": "xscale", "band": 1},
                   "y": {"scale": "yscale", "field": "Weight_in_lbs"},
                   "y2": {"scale": "yscale", "value": 0}
