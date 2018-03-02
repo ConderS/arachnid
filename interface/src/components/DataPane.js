@@ -18,7 +18,7 @@ export class DataPane extends Component {
 
         const spec = this._spec();
 
-        const runtime = vega.parse(spec);
+        var runtime = vega.parse(spec);
 
         var view = new vega.View(runtime)
         .logLevel(vega.Debug)
@@ -29,8 +29,8 @@ export class DataPane extends Component {
 
     render() {
         return (
-            <div id="view">
-
+            <div>
+                <div id="view"></div>
             </div>
             )
     }
@@ -44,7 +44,7 @@ export class DataPane extends Component {
           "data": [
             {
               "name": "table",
-              "values": "../examples/cars.csv"
+              "values": "../examples/cars.json"
             }
           ],
 
