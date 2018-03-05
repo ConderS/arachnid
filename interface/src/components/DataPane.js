@@ -40,7 +40,7 @@ export class DataPane extends Component {
       const { spec, data } = this.state;
 
       console.log("Re-rendering Vega...");
-      
+
       var runtime = vega.parse(spec);
 
       var view = new vega.View(runtime)
@@ -71,7 +71,10 @@ export class DataPane extends Component {
        const city = item.datum.city;
        var { datum } = this.state;
 
-       if (!datum.includes(city)) {
+       if (datum.includes(city)) {
+         const index = datum.indexOf(city);
+         datum.splice(index, 1);
+       } else {
          datum.push(city);
        }
 
