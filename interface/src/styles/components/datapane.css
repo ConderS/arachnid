@@ -1,14 +1,25 @@
 #view {
     text-align: center;
     margin-top: 13em;
+    width: 70%;
+    float: left;
 }
 
-.data-text-container {
-    height: 100px;
-    width: auto;
+.variablesMenu {
+    width: 30%;
+    float: left;
     text-align: center;
+    margin-top: 5em;
 }
 
-.data-text {
-    margin: 2em;
+.variablesMenuHeader {
+    margin-bottom: 20px;
+}
+
+.datum-text {
+    
+}
+
+.data-btn {
+    margin-top: 7em;
 }

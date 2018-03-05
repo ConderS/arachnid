@@ -2,61 +2,135 @@ import React, { Component } from 'react';
 
 import '../styles/components/datapane.css';
 import * as vega from 'vega';
+import { ProcessData } from '../utils/processData';
 
-const DATA = require('../examples/cars.json');
+const DATA = require('../examples/yelp.json');
 
 export class DataPane extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            vis: null,
-            datum: ''
+            view: null,
+            spec: this._spec(),
+            datum: [],
+            allowDedup: false,
+            selectedField: '',
+            data: DATA
         };
 
         this.renderDatum = this.renderDatum.bind(this);
-
+        this.addToVariablesList = this.addToVariablesList.bind(this);
+        this.shiftClickHandler = this.shiftClickHandler.bind(this);
+        this.showDedupButton = this.showDedupButton.bind(this);
+        this.handleDedupButton = this.handleDedupButton.bind(this);
+        this.addSelectedField = this.addSelectedField.bind(this);
+        this.setupView = this.setupView.bind(this);
     }
 
     componentDidMount() {
-
-        const spec = this._spec();
-
-        var runtime = vega.parse(spec);
-
-        var view = new vega.View(runtime)
-        .logLevel(vega.Info)
-        .initialize(document.querySelector('#view'))
-        .hover()
-        .insert('table', DATA)
-        .addEventListener("click", (event, item) => {
-            console.log("Click: ", event, item.datum.Name.toString());
-            this.setState({ datum: item.datum.Name });
-        })
-        .addEventListener("dragstart", function(event) {
-            console.log("Dragstart: ", event);
-        })
-        .run();
+      this.setupView();
     }
+
+    componentDidUpdate() {
+
+    }
+
+    setupView() {
+      const { spec, data } = this.state;
+
+      console.log("Re-rendering Vega...");
+      
+      var runtime = vega.parse(spec);
+
+      var view = new vega.View(runtime)
+      .logLevel(vega.Info)
+      .initialize(document.querySelector('#view'))
+      .hover()
+      .insert('table', data)
+      .addEventListener("click", this.shiftClickHandler)
+      .run();
+
+      this.setState({ spec, view });
+    }
+
+    shiftClickHandler(event, item) {
+      if (event.shiftKey) {
+        console.log('Shift-Click: ', event, item);
+        console.log("SelectBar: ", this.state.view.signal("selectBar"));
+
+        if (!item) { return; }
+
+        this.addToVariablesList(item);
+        this.addSelectedField(item);
+        this.showDedupButton();
+      }
+    }
+
+    addToVariablesList(item) {
+       const city = item.datum.city;
+       var { datum } = this.state;
+
+       if (!datum.includes(city)) {
+         datum.push(city);
+       }
+
+       this.setState({ datum });
+    }
+
+    addSelectedField(item) {
+       this.setState({ selectedField: 'city' });
+    }
+
+    showDedupButton() {
+      const { datum } = this.state;
+
+      if (datum.length > 0) {
+        this.setState({ allowDedup: true });
+      }
+    }
+
+    renderDedupButton() {
+      const { allowDedup } = this.state;
+
+      if (allowDedup) {
+        return (<button className="data-btn btn btn-primary" onClick={this.handleDedupButton}>Deduplicate</button>);
+      }
+    }
+
+    handleDedupButton() {
+      const { data, selectedField, datum } = this.state;
+
+      const newData = ProcessData(data, selectedField, datum);
+
+      console.log("new Data: ", newData);
+      this.setState({ datum: [] });
+      this.setState({ data: newData });
+      this.setupView();
+    }
+
 
     renderDatum() {
 
       const { datum } = this.state;
 
-      console.log("DATUM: ", datum);
-
       if (!datum) { return; }
 
-      return (
-        <h1 className="data-text">{datum}</h1>
-        )
+      return datum.map((item, index) => {
+          
+          return <p key={index} className="datum-text">{item}</p>
+        });
     }
 
     render() {        
 
         return (
             <div>
-                <div className="data-text-container">{this.renderDatum()}</div>
+                <div className="variablesMenu">
+                  <h1 className="variablesMenuHeader">Attributes</h1>
+                  {this.renderDatum()}
+                  {this.renderDedupButton()}
+                </div>
                 <div id="view"></div>
             </div>
             )
@@ -67,25 +141,43 @@ export class DataPane extends Component {
           "width": 800,
           "height": 500,
           "padding": 5,
-
+          "mark": "bar",
           "data": [
             {
-              "name": "table"
+              "name": "table",
+              "transform": [
+                {
+                  "type": "aggregate",
+                  "groupby": ["city"],
+                  "ops": ["average"],
+                  "fields": ["review_count"],
+                  "as": ["average_reviews"]
+                }
+              ]
             }
           ],
-
+          "signals": [
+            {
+              "name": "selectBar",
+              "description": "color of bar changes on selection",
+              "value": "steelBlue",
+              "on": [
+     
+              ]
+            }
+          ],
           "scales": [
             {
               "name": "xscale",
               "type": "band",
-              "domain": {"data": "table", "field": "Origin"},
+              "domain": {"data": "table", "field": "city"},
               "range": "width",
               "padding": 0.50,
               "round": true
             },
             {
               "name": "yscale",
-              "domain": {"data": "table", "field": "Weight_in_lbs"},
+              "domain": {"data": "table", "field": "average_reviews"},
               "nice": true,
               "range": "height"
             }
@@ -96,7 +188,7 @@ export class DataPane extends Component {
               "scale": "xscale",
               "orient": "bottom",
               "labelOverlap": true,
-              "title": "Origin",
+              "title": "City",
               "zindex": 1,
               "encode": {
                 "labels": {
@@ -113,7 +205,7 @@ export class DataPane extends Component {
               "orient": "left",
               "labelOverlap": true,
               "tickCount": {"signal": "ceil(height/40)"},
-              "title": "Weight_in_lbs",
+              "title": "Average Reviews",
               "zindex": 1
             },
             {
@@ -137,13 +229,14 @@ export class DataPane extends Component {
               "from": {"data":"table"},
               "encode": {
                 "enter": {
-                  "x": {"scale": "xscale", "field": "Origin"},
+                  "x": {"scale": "xscale", "field": "city"},
                   "width": {"scale": "xscale", "band": 1},
-                  "y": {"scale": "yscale", "field": "Weight_in_lbs"},
+                  "y": {"scale": "yscale", "field": "average_reviews"},
                   "y2": {"scale": "yscale", "value": 0}
                 },
                 "update": {
-                  "fill": {"value": "steelblue"}
+                  "fill": {"signal": "selectBar"}
+
                 }
               }
             }
