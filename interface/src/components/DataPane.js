@@ -22,7 +22,7 @@ export class DataPane extends Component {
         this.renderDatum = this.renderDatum.bind(this);
         this.addToVariablesList = this.addToVariablesList.bind(this);
         this.shiftClickHandler = this.shiftClickHandler.bind(this);
-        this.showDedupButton = this.showDedupButton.bind(this);
+        this.hideOrShowDedupButton = this.hideOrShowDedupButton.bind(this);
         this.handleDedupButton = this.handleDedupButton.bind(this);
         this.addSelectedField = this.addSelectedField.bind(this);
         this.setupView = this.setupView.bind(this);
@@ -63,7 +63,7 @@ export class DataPane extends Component {
 
         this.addToVariablesList(item);
         this.addSelectedField(item);
-        this.showDedupButton();
+        this.hideOrShowDedupButton();
       }
     }
 
@@ -85,12 +85,12 @@ export class DataPane extends Component {
        this.setState({ selectedField: 'city' });
     }
 
-    showDedupButton() {
+    hideOrShowDedupButton() {
       const { datum } = this.state;
 
       if (datum.length > 0) {
         this.setState({ allowDedup: true });
-      }
+      } 
     }
 
     renderDedupButton() {
@@ -107,8 +107,7 @@ export class DataPane extends Component {
       const newData = ProcessData(data, selectedField, datum);
 
       console.log("new Data: ", newData);
-      this.setState({ datum: [] });
-      this.setState({ data: newData });
+      this.setState({ datum: [], data: newData, allowDedup: false });
       this.setupView();
     }
 
