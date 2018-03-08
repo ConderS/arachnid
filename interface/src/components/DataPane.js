@@ -93,7 +93,7 @@ export class DataPane extends Component {
                   {/*{this.renderDatum()}
                   {this.renderDedupButton()}*/}
                 </div>
-                <BarChart />
+                <BarChart {...this.props} />
             </div>
         )
     }
