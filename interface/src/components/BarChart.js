@@ -159,7 +159,7 @@ class BarChart extends Component {
     handleDown(d) {
         var bar = select(this);
 
-        bar.style('fill', 'steelblue');
+        bar.style('fill', 'red');
     }
 
     handleUp(d) {
@@ -202,7 +202,7 @@ class BarChart extends Component {
                     .filter(function(_d, i) {
                         return (d.business_id === _d.business_id);
                     })
-                    .style('fill', 'red');
+                    .style('fill', '#27ae60');
         }
     }
 

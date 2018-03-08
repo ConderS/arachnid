@@ -32,7 +32,6 @@ export function ProcessYelpData(JSONString, field, categories){
       }
       if(JSONObject[key][field] === category.id){
         console.log("EL: ", JSONObject[key][field]);
-        console.log(JSONObject[key]["review_count"], categories[1].count)
         JSONObject[key]["review_count"] = categories[1].count;
       }
     }
