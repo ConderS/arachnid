@@ -5,13 +5,15 @@ const screenHeight = (window.innerHeight - 120) / 2;
 
 const initialState = {
     chartData: yelpData,
-    size: [screenWidth, screenHeight]
+    size: [screenWidth, screenHeight],
+    update: 0
 };
 
 export default function(state = initialState, action) {
+    var count = state.update;
     switch(action.type) {
         case "UPDATE_DATA":
-            return Object.assign({}, state, { chartData: action.data});
+            return Object.assign({}, state, { chartData: action.data, update: count+1 });
         default:
             return state;
     }

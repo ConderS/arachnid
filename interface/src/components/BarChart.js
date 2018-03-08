@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { scaleLinear } from 'd3-scale';
 import { max, sum, mean } from 'd3-array';
-import { select, event as currentEvent } from 'd3-selection';
+import { select, selectAll, event as currentEvent } from 'd3-selection';
 import { legendColor } from 'd3-svg-legend';
 import { transition } from 'd3-transition';
 import { axisBottom, axisRight} from 'd3-axis';
 import { drag } from 'd3-drag';
+
+import { ProcessYelpData } from '../utils/processData';
 // import * as d3 from 'd3';
 
 import '../styles/components/barchart.css';
@@ -17,13 +19,16 @@ class BarChart extends Component {
         this.state = {
             currentDatum: [],
             mouseover: false,
-            dragStart: false
+            dragging: false,
+            totalBarSpace: 0
         }
+
         this.createBarChart = this.createBarChart.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleDragEnd = this.handleDragEnd.bind(this);
         this.handleDragStart = this.handleDragStart.bind(this);
+        this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +42,13 @@ class BarChart extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         const { mouseover, currentDatum, dragStart } = this.state;
+
+        console.log(nextProps.update, this.props.update);
+        if (nextProps.update !== this.props.update) {
+            return true; 
+        }
+        //Will have specific conditions for returning true when necessary
+        return false;
 
         if (mouseover !== nextState.mouseover || currentDatum || !currentDatum || dragStart !== nextState.dragStart) {
             return false;
@@ -52,6 +64,9 @@ class BarChart extends Component {
         const barWidth = size[0] / chartData.length + 10;
         const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
 
+        const totalBarSpace = barWidth + 20; 
+
+        this.setState({ totalBarSpace });
 
         // Need to fix this axis stuff
         const xScale = scaleLinear().domain([0, chartData.length]);
@@ -67,6 +82,7 @@ class BarChart extends Component {
         var dragAction = drag()
                             .on('start', this.handleDragStart)
                             .on('drag', this.handleDragging)
+                            .on('drag.track', this.triggerDragBoundary)
                             .on('end', this.handleDragEnd)
 
         select(node)
@@ -85,7 +101,7 @@ class BarChart extends Component {
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
-                .attr('x', (d, i) => i * (barWidth + 20))
+                .attr('x', (d, i) => i * (totalBarSpace))
                 .attr('y', d => size[1] - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
@@ -93,16 +109,21 @@ class BarChart extends Component {
                 .style('stroke', 'black')
                 .on('mouseover', this.handleMouseOver)
                 .on('mouseout', this.handleMouseOut)
-                .on('mousedown', this.handleDown)
                 .on('mouseup', this.handleUp)
+                .on('mousedown', this.handleDown)
                 .call(dragAction);
 
     }
 
     handleDragStart(d) {
-        this.setState({ currentDatum: [d], dragStart: true });
+        this.setState({ currentDatum: [d], originalX: d.x, originalY: d.y });
     }
 
+    // handleDraggingContainer(d) {
+    //     handleDragging(d);
+
+    // }
+    
     handleDragging(d) {
         var bar = select(this);
 
@@ -111,14 +132,34 @@ class BarChart extends Component {
         bar.attr('x', d.x = currentEvent.x)
             .attr('y', d.y = currentEvent.y)
             .classed('bc-active-bar', true);
+    }
 
+    triggerDragBoundary(d) {
+        // const { originalX, totalBarSpace } = this.state;
+
+        // const upperLimit = originalX + totalBarSpace;
+        // const lowerLimit = originalX - totalBarSpace;
+
+       
+        // if (d.x > upperLimit) {
+        //     console.log("LIMIT")
+        //     select(this.node)
+        //         .selectAll('rect.bc-bar')
+        //             .filter(function(_d, i) {
+        //                 const overlapBarSpace = i * totalBarSpace;
+        //                 return (d.business_id !== _d.business_id) && (overlapBarSpace >= (upperLimit - 10) && overlapBarSpace <= (upperLimit + 10));
+        //             })
+        //             .style('fill', 'red');
+
+        // } else if (d.x)
 
     }
+
 
     handleDown(d) {
         var bar = select(this);
 
-        bar.style('fill', 'red');
+        bar.style('fill', 'steelblue');
     }
 
     handleUp(d) {
@@ -135,7 +176,12 @@ class BarChart extends Component {
         if (mouseover && currentDatum.length > 1) {
             console.log("DEDUP");
 
-            //Do Dedup and send in currentDatum
+            var arrayIDs = [];
+            currentDatum.map(datum => {
+                arrayIDs.push({id: datum.business_id, count: datum.review_count});
+            });
+            const newData = ProcessYelpData(this.props.chartData, 'business_id', arrayIDs);
+            this.props.updateData(newData);
         }
 
         this.setState({ currentDatum: [] });
@@ -147,7 +193,7 @@ class BarChart extends Component {
         // if (currentDatum.length == 0) { return; }
 
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
-            console.log("Hovering Different Element");
+            console.log("Hovering Different Element", d);
             var newDatum = currentDatum;
             newDatum.push(d);
             this.setState({ mouseover: true, currentDatum: newDatum });

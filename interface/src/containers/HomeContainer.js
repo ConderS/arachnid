@@ -24,11 +24,12 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps({ dataPane }) {
 
-    const { chartData, size } = dataPane;
+    const { chartData, size, update } = dataPane;
 
     return {
         chartData,
-        size
+        size,
+        update
     };
 }
 
