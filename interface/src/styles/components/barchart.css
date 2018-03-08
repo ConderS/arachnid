@@ -1,0 +1,11 @@
+
+/* Make sure to append class names in each component with 'bc'
+    All stylesheets still apply GLOBALLY to the whole app, so this is our way of modularizing it */
+
+.bc-something {
+
+}
+
+.bc-something-else {
+    
+}
