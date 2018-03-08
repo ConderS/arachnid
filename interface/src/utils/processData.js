@@ -7,7 +7,7 @@ export function ProcessData(JSONString, field, categories){
 
     for(var i = 0; i < len; i++){
       var category = categories[i];
-      if(i == len - 1){
+      if(i === len - 1){
         break;
       }
       if(JSONObject[key][field] === category){
