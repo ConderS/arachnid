@@ -197,6 +197,12 @@ class BarChart extends Component {
             var newDatum = currentDatum;
             newDatum.push(d);
             this.setState({ mouseover: true, currentDatum: newDatum });
+            select(this.node)
+                .selectAll('rect.bc-bar')
+                    .filter(function(_d, i) {
+                        return (d.business_id === _d.business_id);
+                    })
+                    .style('fill', 'red');
         }
     }
 
@@ -210,6 +216,12 @@ class BarChart extends Component {
             var newDatum = currentDatum;
             newDatum.pop(d);
             this.setState({ mouseover: false, currentDatum: newDatum });
+            select(this.node)
+                .selectAll('rect.bc-bar')
+                    .filter(function(_d, i) {
+                        return (d.business_id === _d.business_id);
+                    })
+                    .style('fill', 'blue');
         }
     }
 
