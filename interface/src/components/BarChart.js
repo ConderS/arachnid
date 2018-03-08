@@ -31,23 +31,23 @@ class BarChart extends Component {
         const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]])
 
         select(node)
-            .selectAll('rect.bar')
+            .selectAll('rect.bc-bar')
             .data(chartData)
             .enter()
             .append('rect')
-                .attr('class', 'bar')
+                .attr('class', 'bc-bar')
                 //add .on drag
         
         select(node)
-            .selectAll('rect.bar')
+            .selectAll('rect.bc-bar')
             .data(chartData)
             .exit()
                 .remove()
 
         select(node)
-            .selectAll('rect.bar')
+            .selectAll('rect.bc-bar')
             .data(chartData)
-                .attr('x', (d, i) => i * barWidth)
+                .attr('x', (d, i) => i * barWidth + 50)
                 .attr('y', d => size[1] - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
@@ -58,7 +58,7 @@ class BarChart extends Component {
     render() {
         const { size } = this.props;
 
-        return <svg className="barChart" ref={node => this.node = node} width={size[0]} height={size[1]}> </svg>
+        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0]} height={size[1]}> </svg>
     }
 }
 
