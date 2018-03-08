@@ -17,3 +17,13 @@
 .bc-barChart {
     margin-top: 100px;
 }
+
+.rect {
+    pointer-events: all;
+}
+
+.bc-active-bar {
+    z-index: -1;
+    position: relatve;
+    color: red;
+}
