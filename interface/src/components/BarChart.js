@@ -36,14 +36,13 @@ class BarChart extends Component {
     }
 
     componentDidUpdate() {
-        console.log("UPDATE: ");
+        console.log("UPDATING VIZ...");
         this.createBarChart();
     }
 
     shouldComponentUpdate(nextProps, nextState) {
         const { mouseover, currentDatum, dragStart } = this.state;
 
-        console.log(nextProps.update, this.props.update);
         if (nextProps.update !== this.props.update) {
             return true; 
         }
