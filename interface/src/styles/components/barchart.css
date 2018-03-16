@@ -23,7 +23,5 @@
 }
 
 .bc-active-bar {
-    z-index: -1;
-    position: relatve;
     color: red;
 }

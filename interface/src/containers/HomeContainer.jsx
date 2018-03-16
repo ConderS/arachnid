@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 
-import { updateData } from '../actions/index';
-import DataPane from '../components/DataPane.js';
+import { updateData, updateDimensions, updateCurrentDatum } from '../actions/index';
+import DataPane from '../components/DataPane';
 
 export class HomeContainer extends Component {
     render() {
@@ -17,18 +17,21 @@ export class HomeContainer extends Component {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({ 
-        updateData
+        updateData,
+        updateDimensions,
+        updateCurrentDatum
     }, dispatch);
 }
 
 
 function mapStateToProps({ dataPane }) {
 
-    const { chartData, size, update } = dataPane;
+    const { chartData, size, currentDatum, update } = dataPane;
 
     return {
         chartData,
         size,
+        currentDatum,
         update
     };
 }

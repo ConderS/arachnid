@@ -31,8 +31,8 @@ export function ProcessYelpData(JSONString, field, categories){
         break;
       }
       if(JSONObject[key][field] === category.id){
-        console.log("EL: ", JSONObject[key][field]);
-        JSONObject[key]["review_count"] = categories[1].count;
+        console.log("Found ID of dragged bar: ", JSONObject[key][field]);
+        JSONObject[key]["review_count"] = categories[len-1].count;
       }
     }
   }

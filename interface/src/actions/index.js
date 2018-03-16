@@ -1,5 +1,7 @@
-import { updateData } from './dataPane';
+import { updateData, updateDimensions, updateCurrentDatum } from './dataPane';
 
 export {
-    updateData
+    updateData,
+    updateDimensions,
+    updateCurrentDatum
 };

@@ -20,8 +20,11 @@ class BarChart extends Component {
             currentDatum: [],
             mouseover: false,
             dragging: false,
-            totalBarSpace: 0
+            totalBarSpace: 0,
+            updateDimensions: false
         }
+
+        this._updateDimensions = this._updateDimensions.bind(this);
 
         this.createBarChart = this.createBarChart.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
@@ -31,8 +34,27 @@ class BarChart extends Component {
         this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
     }
 
+    _updateDimensions() {
+
+        console.log("Updating dimensions...");
+
+        const { updateDimensions } = this.props;
+        const screenWidth = window.innerWidth / 2;
+        const screenHeight = (window.innerHeight - 120) / 2;
+
+        updateDimensions(screenWidth, screenHeight);
+    }
+    componentWillMount() {
+        this._updateDimensions();
+    }
+
     componentDidMount() {
         this.createBarChart();
+        window.addEventListener("resize", this._updateDimensions);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this._updateDimensions);
     }
 
     componentDidUpdate() {
@@ -41,18 +63,12 @@ class BarChart extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        const { mouseover, currentDatum, dragStart } = this.state;
 
         if (nextProps.update !== this.props.update) {
             return true; 
         }
-        //Will have specific conditions for returning true when necessary
-        return false;
 
-        if (mouseover !== nextState.mouseover || currentDatum || !currentDatum || dragStart !== nextState.dragStart) {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     createBarChart() {
@@ -60,12 +76,12 @@ class BarChart extends Component {
 
         const node = this.node;
         const dataMax = max(chartData.map(d => mean(d.review_count)));
-        const barWidth = size[0] / chartData.length + 10;
+        const barWidth = (size[0] - 20) / chartData.length + 10;
         const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
 
-        const totalBarSpace = barWidth + 20; 
+        // const totalBarSpace = barWidth + 20; 
 
-        this.setState({ totalBarSpace });
+        // this.setState({ totalBarSpace });
 
         // Need to fix this axis stuff
         const xScale = scaleLinear().domain([0, chartData.length]);
@@ -76,12 +92,11 @@ class BarChart extends Component {
         select(node).append('svg').append('g').attr('id', 'BC-xAxis').attr('transform', 'translate(0, ' + size[1] + ')').call(xAxis);
 
         select(node).append('svg').append('g').attr('id', 'BC-yAxis').call(yAxis);
-        //
         
+        //Drag Action for Bar
         var dragAction = drag()
                             .on('start', this.handleDragStart)
                             .on('drag', this.handleDragging)
-                            .on('drag.track', this.triggerDragBoundary)
                             .on('end', this.handleDragEnd)
 
         select(node)
@@ -100,8 +115,8 @@ class BarChart extends Component {
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
-                .attr('x', (d, i) => i * (totalBarSpace))
-                .attr('y', d => size[1] - yScale(mean(d.review_count)))
+                .attr('x', (d, i) => i * (barWidth))
+                .attr('y', d => (size[1] + 100) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -115,7 +130,8 @@ class BarChart extends Component {
     }
 
     handleDragStart(d) {
-        this.setState({ currentDatum: [d], originalX: d.x, originalY: d.y });
+        const { updateCurrentDatum } = this.props;
+        updateCurrentDatum([d]);
     }
 
     // handleDraggingContainer(d) {
@@ -170,11 +186,12 @@ class BarChart extends Component {
 
 
     handleDragEnd(d) {
-        const { mouseover, currentDatum } = this.state;
+        const { mouseover } = this.state;
+        const { updateCurrentDatum, currentDatum } = this.props;
 
-        if (mouseover && currentDatum.length > 1) {
+        if (mouseover && currentDatum.length >= 1) {
             console.log("DEDUP");
-
+        
             var arrayIDs = [];
             currentDatum.map(datum => {
                 arrayIDs.push({id: datum.business_id, count: datum.review_count});
@@ -183,11 +200,18 @@ class BarChart extends Component {
             this.props.updateData(newData);
         }
 
-        this.setState({ currentDatum: [] });
+        updateCurrentDatum([]);
+
+        select(this.node)
+                .selectAll('rect.bc-bar')
+                    .filter(function(_d, i) {
+                        return (d.business_id === _d.business_id);
+                    })
+                    .style('fill', 'blue');
     }
 
     handleMouseOver(d) {
-        const { currentDatum } = this.state;
+        const { updateCurrentDatum, currentDatum } = this.props;
 
         // if (currentDatum.length == 0) { return; }
 
@@ -195,7 +219,10 @@ class BarChart extends Component {
             console.log("Hovering Different Element", d);
             var newDatum = currentDatum;
             newDatum.push(d);
-            this.setState({ mouseover: true, currentDatum: newDatum });
+
+            this.setState({ mouseover: true });
+            updateCurrentDatum(newDatum);
+
             select(this.node)
                 .selectAll('rect.bc-bar')
                     .filter(function(_d, i) {
@@ -206,7 +233,7 @@ class BarChart extends Component {
     }
 
     handleMouseOut(d) {
-        const { currentDatum } = this.state;
+        const { updateCurrentDatum, currentDatum } = this.props;
 
         // if (currentDatum.length == 0) { return; }
 
@@ -214,7 +241,10 @@ class BarChart extends Component {
             console.log("Mouse Out on Diff Element");
             var newDatum = currentDatum;
             newDatum.pop(d);
-            this.setState({ mouseover: false, currentDatum: newDatum });
+
+            this.setState({ mouseover: false });
+            updateCurrentDatum(newDatum);
+
             select(this.node)
                 .selectAll('rect.bc-bar')
                     .filter(function(_d, i) {
