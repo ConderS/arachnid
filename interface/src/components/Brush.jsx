@@ -22,11 +22,13 @@ export class Brush extends Component {
     }
 
     createBrush() {
-        const { data } = this.props;
+        const { data, size } = this.props;
 
         const node = this.node;
-    
-        const scale = scaleLinear().domain([0, data.length]).range([0, this.props.size[0]]);
+        
+        const axisPadding = 50;
+        const scale = scaleLinear().domain([0, data.length]).range([axisPadding, size[0] + axisPadding]);
+
 
         const dayBrush = brushX()
                             .extent([[0, 0], this.props.size])

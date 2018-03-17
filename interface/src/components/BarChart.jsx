@@ -75,93 +75,12 @@ export class BarChart extends Component {
         const barWidth = size[0] / data.length;
         this.setState({ barWidth });
 
-        const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
+        const axisPadding = 50;
+
+        const yScale = scaleLinear().domain([0, dataMax]).range([size[1], 0]);
         const xScale = scaleLinear().domain([0, data.length]).range([0, size[0]]);
 
         
-        var xAxis = axisBottom().scale(xScale);
-        var yAxis = axisLeft().scale(yScale);
-        var padding = 10
-
-        //========AXIS=======//
-        
-        //---X AXIS----//
-        console.log("AXIS");
-
-        select(node)
-            .selectAll('#BC-xAxis')
-            .data([1])
-            .enter()
-                .append('g')
-                .attr('class', 'axis')
-                .attr('id', 'BC-xAxis');
-
-        select(node)
-            .selectAll('#BC-xAxis')
-                .attr("transform", "translate(40, " + (size[0]/2 + 55) +")")
-                .call(xAxis);
-
-
-        //---Y AXIS----//
-        select(node)
-            .selectAll('#BC-yAxis')
-            .data([1])
-            .enter()
-                .append('g')
-                .attr('class', 'axis')
-                .attr('id', 'BC-yAxis');
-
-        select(node)
-            .selectAll('#BC-yAxis')
-                .attr("transform", "translate("+(padding+30)+",-20)")
-                .call(yAxis);
-     
-
-        //-----Axis Labels-----//
-        var dragText = drag()
-                            .on('start', this.handleDragTextStart)
-                            .on('drag', this.handleDraggingText)
-                            .on('end', this.handleDragTextStop)
-        
-
-        //--X Axis Label---//
-        select(node)
-            .selectAll('#bc-xLabel')
-            .data([1])
-            .enter()
-                .append('text')
-                .attr("class", "draggable")
-                .attr("id", "bc-xLabel");
-
-        
-        select(node)
-            .selectAll('#bc-xLabel')
-                .attr("y", 0 + size[0] - 160)
-                .attr("x",0)
-                .attr("dx", "15em")
-                .text("BusinessId")
-                .call(dragText);
-    
-        //---Y Axis Label--//
-        
-        select(node)
-            .selectAll('#bc-yLabel')
-            .data([1])
-            .enter()
-                .append('text')
-                .attr('id', 'bc-yLabel')
-                .attr("transform", "rotate(-90)");
-
-
-        select(node)
-            .selectAll('#bc-yLabel')
-                .attr("y", 0)
-                .attr("x",0 - (size[1] / 2))
-                .attr("dy", "1em")
-                .attr("class", "draggable")
-                .text("Review Count")
-                .call(dragText);
-
 
         //=========BARS=========//
         
@@ -189,8 +108,8 @@ export class BarChart extends Component {
         select(node)
             .selectAll('rect.bc-bar')
             .data(data)
-                .attr('x', (d, i) => i * (barWidth))
-                .attr('y', d => (size[1] + spaceOffset) - yScale(mean(d.review_count)))
+                .attr('x', (d, i) => i * (barWidth) + axisPadding)
+                .attr('y', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -205,28 +124,115 @@ export class BarChart extends Component {
         //=========LINE========//
         // Creating hypothetical line that indicates boundary for Bar to be dragged across for deletion
         
+        // select(node)
+        //     .selectAll('line.boundary')
+        //     .data([1])
+        //     .enter()
+        //     .append('line')
+        //         .attr('class', 'boundary');
+
+        // select(node)
+        //     .selectAll('line.boundary')
+        //     .data([1])
+        //     .exit()
+        //         .remove();
+
+        // select(node)
+        //     .selectAll('line.boundary')
+        //         .style('stroke', 'gray')
+        //         .style('stroke-width', 2)
+        //         .attr('x1', size[0])
+        //         .attr('x2', size[0])
+        //         .attr('y1', size[1] + spaceOffset)
+        //         .attr('y2', 0);
+
+
+
+        //========AXIS=======//
+        
+        var xAxis = axisBottom().scale(xScale);
+        var yAxis = axisLeft().scale(yScale);
+
+        //---X AXIS----//
         select(node)
-            .selectAll('line.boundary')
+            .selectAll('#BC-xAxis')
             .data([1])
             .enter()
-            .append('line')
-                .attr('class', 'boundary');
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'BC-xAxis');
 
         select(node)
-            .selectAll('line.boundary')
+            .selectAll('#BC-xAxis')
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1] + spaceOffset - axisPadding) +")")
+                .raise()
+                .call(xAxis);
+
+
+        //---Y AXIS----//
+        select(node)
+            .selectAll('#BC-yAxis')
             .data([1])
-            .exit()
-                .remove();
+            .enter()
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'BC-yAxis');
 
         select(node)
-            .selectAll('line.boundary')
-                .style('stroke', 'gray')
-                .style('stroke-width', 2)
-                .attr('x1', size[0])
-                .attr('x2', size[0])
-                .attr('y1', size[1] + spaceOffset)
-                .attr('y2', 0);
+            .selectAll('#BC-yAxis')
+                .attr("transform", "rotate(90)")
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/2 + axisPadding + 8.5) + ")")
+                .call(yAxis);
+     
 
+        //-----Axis Labels-----//
+        var dragTextY = drag()
+                            .on('start', this.handleDragTextStart)
+                            .on('drag', this.handleDraggingTextY)
+                            .on('end', this.handleDragTextStop)
+
+        var dragTextX = drag()
+                            .on('start', this.handleDragTextStart)
+                            .on('drag', this.handleDraggingTextX)
+                            .on('end', this.handleDragTextStop)
+
+        //--X Axis Label---//
+        select(node)
+            .selectAll('#bc-xLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr("class", "draggable")
+                .attr("id", "bc-xLabel");
+
+        
+        select(node)
+            .selectAll('#bc-xLabel')
+                .attr("y", size[1] + spaceOffset)
+                .attr("x", size[0] / 2)
+                .text("BusinessId")
+                .raise()
+                .call(dragTextX);
+    
+        //---Y Axis Label--//
+        
+        select(node)
+            .selectAll('#bc-yLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr('id', 'bc-yLabel')
+                .attr("transform", "rotate(-90)");
+
+
+        select(node)
+            .selectAll('#bc-yLabel')
+                .attr("y", 10)
+                .attr("x", size[1]/2)
+                .attr("class", "draggable")
+                .text("Review Count")
+                .raise()
+                .call(dragTextY);                   
     }
 
     //====Axis Label Event Handling====//
@@ -235,13 +241,20 @@ export class BarChart extends Component {
         select(this).raise().classed("active", true);
     }
 
-    handleDraggingText(d){
-        console.log(currentEvent)
+    handleDraggingTextY(d){
+        select(this)
+        .lower()
+        .attr('y', currentEvent.x)
+        .attr('x', -currentEvent.y);
+    }
+
+    handleDraggingTextX(d){
         select(this)
         .lower()
         .attr('x', currentEvent.x)
         .attr('y', currentEvent.y);
     }
+
     handleDragTextStop(d){
         select(this).classed("active", false);
     }
@@ -292,7 +305,7 @@ export class BarChart extends Component {
             .attr('y', d.y = currentEvent.y)
             .classed('bc-active-bar', true);
 
-        if (bar.attr('x') > size[0] || bar.attr('y') < spaceOffset) {
+        if (bar.attr('x') > size[0] || bar.attr('y') < spaceOffset - 50 || bar.attr('x') < 50) {
             bar.style('fill', 'gray');
         } else {
             bar.style('fill', 'red');
@@ -316,7 +329,7 @@ export class BarChart extends Component {
             dedupChartData('business_id', currentDatum);
             deduped = true;
 
-        } else if (endPositionX > size[0] || endPositionY < spaceOffset) {
+        } else if (endPositionX > size[0] || endPositionY < spaceOffset - 50 || endPositionX < 50) {
             console.log("Deleting...");
             deleteChartData('business_id', currentDatum);
 

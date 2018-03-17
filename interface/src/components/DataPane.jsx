@@ -75,8 +75,7 @@ export class DataPane extends Component {
       
       const { size, chartData, updateCurrentDatum, currentDatum, update } = this.props;
       const { brushExtent } = this.state;
-    
-      console.log(brushExtent);
+      
       const filteredData = chartData.slice(brushExtent[0], brushExtent[1]+1);
 
 
