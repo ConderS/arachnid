@@ -26,3 +26,9 @@
 .bc-active-bar {
     color: red;
 }
+
+.draggable{
+    text-anchor: start;
+    cursor: pointer;
+    text-anchor: middle;
+}
