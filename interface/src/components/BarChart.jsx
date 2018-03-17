@@ -32,13 +32,12 @@ export class BarChart extends Component {
         }
 
         this.createBarChart = this.createBarChart.bind(this);
-        this.handleDown = this.handleDown.bind(this);
+        this.handleBarDown = this.handleBarDown.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleDragEnd = this.handleDragEnd.bind(this);
+        this.handleDragging = this.handleDragging.bind(this);
         this.handleDragStart = this.handleDragStart.bind(this);
-        this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
-        // this.onBrush = this.onBrush.bind(this);
     }
 
     componentWillMount() {
@@ -198,8 +197,8 @@ export class BarChart extends Component {
                 .style('stroke', 'black')
                 .on('mouseover', this.handleMouseOver)
                 .on('mouseout', this.handleMouseOut)
-                .on('mouseup', this.handleUp)
-                .on('mousedown', this.handleDown)
+                .on('mouseup', this.handleBarUp)
+                .on('mousedown', this.handleBarDown)
                 .call(dragBar);
 
 
@@ -230,9 +229,12 @@ export class BarChart extends Component {
 
     }
 
+    //====Axis Label Event Handling====//
+    
     handleDragTextStart(d){
         select(this).raise().classed("active", true);
     }
+
     handleDraggingText(d){
         console.log(currentEvent)
         select(this)
@@ -245,48 +247,12 @@ export class BarChart extends Component {
     }
 
 
-    handleDragStart(d) {
-        const { updateCurrentDatum } = this.props;
-        updateCurrentDatum([d]);
-    }
-    handleDragging(d) {
-        var bar = select(this);
-
-        bar.lower();
-        //Update position of bar by adding drag distance to each coordinate
-        bar.attr('x', d.x = currentEvent.x)
-            .attr('y', d.y = currentEvent.y)
-            .classed('bc-active-bar', true);
-    }
-
-    triggerDragBoundary(d) {
-        // const { originalX, totalBarSpace } = this.state;
-
-        // const upperLimit = originalX + totalBarSpace;
-        // const lowerLimit = originalX - totalBarSpace;
-
-       
-        // if (d.x > upperLimit) {
-        //     console.log("LIMIT")
-        //     select(this.node)
-        //         .selectAll('rect.bc-bar')
-        //             .filter(function(_d, i) {
-        //                 const overlapBarSpace = i * totalBarSpace;
-        //                 return (d.business_id !== _d.business_id) && (overlapBarSpace >= (upperLimit - 10) && overlapBarSpace <= (upperLimit + 10));
-        //             })
-        //             .style('fill', 'red');
-
-        // } else if (d.x)
-
-    }
-
-
-    handleDown(d, i) {
+    handleBarDown(d, index) {
 
         var selectedRect = select(this.node) 
             .selectAll('rect.bc-bar')
                 .filter(function(_d, i) {
-                    return (d.business_id === _d.business_id);
+                    return (index === i);
                 })._groups[0][0];
 
         select(selectedRect).style('fill', 'red');
@@ -300,43 +266,71 @@ export class BarChart extends Component {
             originalY });
     }
 
-    handleUp(d) {
+    //=====Bar Event Handling====//
+
+    handleBarUp(d) {
         console.log('up');
         var bar = select(this);
 
         bar.style('fill', 'blue');
     }
 
+    handleDragStart(d) {
+        const { updateCurrentDatum } = this.props;
+        updateCurrentDatum([d]);
+    }
+
+    handleDragging(d) {
+        const { selectedRect, spaceOffset } = this.state;
+        const { size } = this.props;
+
+        var bar = select(selectedRect);
+
+        bar.lower();
+        //Update position of bar by adding drag distance to each coordinate
+        bar.attr('x', d.x = currentEvent.x)
+            .attr('y', d.y = currentEvent.y)
+            .classed('bc-active-bar', true);
+
+        if (bar.attr('x') > size[0] || bar.attr('y') < spaceOffset) {
+            bar.style('fill', 'gray');
+        } else {
+            bar.style('fill', 'red');
+        }
+
+    }    
+
     handleDragEnd(d) {
-        const { mouseover, originalX, originalY, selectedRect } = this.state;
-        const { updateCurrentDatum, currentDatum, updateChartData } = this.props;
+        const { mouseover, originalX, originalY, selectedRect, spaceOffset } = this.state;
+        const { updateCurrentDatum, currentDatum, dedupChartData, deleteChartData, size } = this.props;
 
         var deduped = false;
 
+        var bar = select(selectedRect);
+
+        const endPositionX = bar.attr('x');
+        const endPositionY = bar.attr('y');
+
         if (mouseover && currentDatum.length > 1) {
-            console.log("DEDUP");
-        
-            var arrayIDs = [];
-            currentDatum.map(datum => {
-                arrayIDs.push({id: datum.business_id, count: datum.review_count});
-            });
-
-            updateChartData('business_id', arrayIDs);
-
+            console.log("Deduping...");
+            dedupChartData('business_id', currentDatum);
             deduped = true;
+
+        } else if (endPositionX > size[0] || endPositionY < spaceOffset) {
+            console.log("Deleting...");
+            deleteChartData('business_id', currentDatum);
+
         } else {
             var t = transition().duration(100);
 
-            select(selectedRect)
-                .transition(t)
+            bar.transition(t)
                 .attr('x', originalX)
                 .attr('y', originalY);
         }
 
         updateCurrentDatum([]);
 
-        select(selectedRect)
-            .style('fill', 'blue');
+        bar.style('fill', 'blue');
 
     }
 

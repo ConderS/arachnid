@@ -22,7 +22,8 @@ export class DataPane extends Component {
         
         this._updateDimensions = this._updateDimensions.bind(this);
         this.onBrush = this.onBrush.bind(this);
-        this.updateChartData = this.updateChartData.bind(this);
+        this.dedupChartData = this.dedupChartData.bind(this);
+        this.deleteChartData = this.deleteChartData.bind(this);
     }
 
     _updateDimensions() {
@@ -56,10 +57,17 @@ export class DataPane extends Component {
         this.props.driveChartUpdate();
     }
 
-    updateChartData(key, dedupArray) {
+    dedupChartData(key, dedupArray) {
         const { updateData, chartData } = this.props;
 
         const newData = ProcessYelpData(chartData, key, dedupArray);
+        updateData(newData);
+    }
+
+    deleteChartData(key, deleteArray) {
+        const { updateData, chartData } = this.props;
+
+        const newData = ProcessYelpData(chartData, key, deleteArray, true);
         updateData(newData);
     }
 
@@ -83,7 +91,8 @@ export class DataPane extends Component {
                 {/* <ScatterPlot {...this.props} /> */}
                 <BarChart 
                     data={filteredData} 
-                    updateChartData={this.updateChartData} 
+                    dedupChartData={this.dedupChartData}
+                    deleteChartData={this.deleteChartData} 
                     currentDatum={currentDatum}
                     updateCurrentDatum={updateCurrentDatum} 
                     size={size}
