@@ -6,6 +6,7 @@ import { updateData, updateDimensions, updateCurrentDatum } from '../actions/ind
 import DataPane from '../components/DataPane';
 
 export class HomeContainer extends Component {
+    
     render() {
         return (
             <div>

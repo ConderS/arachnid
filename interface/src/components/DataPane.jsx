@@ -20,11 +20,31 @@ export class DataPane extends Component {
         // this.shiftClickHandler = this.shiftClickHandler.bind(this);
         // this.hideOrShowDedupButton = this.hideOrShowDedupButton.bind(this);
         // this.handleDedupButton = this.handleDedupButton.bind(this);
+        this._updateDimensions = this._updateDimensions.bind(this);
+    }
+
+    _updateDimensions() {
+
+        console.log("Updating dimensions...");
+
+        const { updateDimensions } = this.props;
+        const screenWidth = window.innerWidth / 2;
+        const screenHeight = (window.innerHeight - 100) / 2;
+
+        updateDimensions(screenWidth, screenHeight);
+    }
+
+    componentWillMount() {
+        this._updateDimensions();
     }
 
     componentDidMount() {
+        window.addEventListener("resize", this._updateDimensions);
     }
-
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this._updateDimensions);
+    }
     componentDidUpdate() {
 
     }

@@ -23,11 +23,10 @@ class BarChart extends Component {
             barWidth: 0,
             originalX: 0,
             originalY: 0,
+            spaceOffset: 300,
             updateDimensions: false,
             selectedRect: null
         }
-
-        this._updateDimensions = this._updateDimensions.bind(this);
 
         this.createBarChart = this.createBarChart.bind(this);
         this.handleDown = this.handleDown.bind(this);
@@ -38,27 +37,15 @@ class BarChart extends Component {
         this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
     }
 
-    _updateDimensions() {
-
-        console.log("Updating dimensions...");
-
-        const { updateDimensions } = this.props;
-        const screenWidth = window.innerWidth / 2;
-        const screenHeight = (window.innerHeight - 120) / 2;
-
-        updateDimensions(screenWidth, screenHeight);
-    }
     componentWillMount() {
-        this._updateDimensions();
+
     }
 
     componentDidMount() {
         this.createBarChart();
-        window.addEventListener("resize", this._updateDimensions);
     }
 
     componentWillUnmount() {
-        window.removeEventListener("resize", this._updateDimensions);
     }
 
     componentDidUpdate() {
@@ -77,10 +64,12 @@ class BarChart extends Component {
 
     createBarChart() {
         const { chartData, size } = this.props;
+        const { spaceOffset } = this.state;
 
         const node = this.node;
         const dataMax = max(chartData.map(d => mean(d.review_count)));
-        const barWidth = (size[0] - 20) / chartData.length + 10;
+        const barWidth = size[0] / chartData.length;
+ 
         const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
 
         // const totalBarSpace = barWidth + 20; 
@@ -108,19 +97,19 @@ class BarChart extends Component {
             .data(chartData)
             .enter()
             .append('rect')
-                .attr('class', 'bc-bar')
+                .attr('class', 'bc-bar');
         
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
             .exit()
-                .remove()
+                .remove();
 
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
                 .attr('x', (d, i) => i * (barWidth))
-                .attr('y', d => (size[1] + 300) - yScale(mean(d.review_count)))
+                .attr('y', d => (size[1] + spaceOffset) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -130,6 +119,29 @@ class BarChart extends Component {
                 .on('mouseup', this.handleUp)
                 .on('mousedown', this.handleDown)
                 .call(dragAction);
+
+        //Creating hypothetical line that indicates field for deletion
+        select(node)
+            .selectAll('line.boundary')
+            .data([1])
+            .enter()
+            .append('line')
+                .attr('class', 'boundary');
+
+        select(node)
+            .selectAll('line.boundary')
+            .data([1])
+            .exit()
+                .remove();
+
+        select(node)
+            .selectAll('line.boundary')
+                .style('stroke', 'gray')
+                .style('stroke-width', 2)
+                .attr('x1', size[0])
+                .attr('x2', size[0])
+                .attr('y1', size[1] + spaceOffset)
+                .attr('y2', 0);
 
     }
 
@@ -280,8 +292,9 @@ class BarChart extends Component {
 
     render() {
         const { size } = this.props;
+        const { spaceOffset } = this.state;
 
-        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0]} height={size[1] + 300}> </svg>
+        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
     }
 }
 
