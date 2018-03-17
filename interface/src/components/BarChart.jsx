@@ -139,8 +139,8 @@ class BarChart extends Component {
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
-                .attr('x', (d, i) => i * (barWidth) + 40)
-                .attr('y', d => (size[1] + spaceOffset) - yScale(mean(d.review_count)) - padding - 20)
+                .attr('x', (d, i) => i * (barWidth))
+                .attr('y', d => (size[1] + spaceOffset) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -151,7 +151,7 @@ class BarChart extends Component {
                 .on('mousedown', this.handleDown)
                 .call(dragBars);
 
-        //Creating hypothetical line that indicates field for deletion
+        //Creating hypothetical line that indicates boundary for Bar to be dragged to for deletion
         select(node)
             .selectAll('line.boundary')
             .data([1])
