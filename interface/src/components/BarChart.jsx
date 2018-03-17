@@ -68,55 +68,124 @@ class BarChart extends Component {
 
         const node = this.node;
         const dataMax = max(chartData.map(d => mean(d.review_count)));
+
         const barWidth = size[0] / chartData.length;
- 
-        const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
-
-        // const totalBarSpace = barWidth + 20; 
-
         this.setState({ barWidth });
 
-        // Need to fix this axis stuff
+        const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
         const xScale = scaleLinear().domain([0, chartData.length]).range([0, size[0]]);
 
+        
         var xAxis = axisBottom().scale(xScale);
         var yAxis = axisLeft().scale(yScale);
         var padding = 10
-        select(node).append('svg').append('g').attr('id', 'BC-xAxis').attr('class', 'axis')
-        .attr("transform", "translate(40, " + (size[0]/2 + 55) +")")
-        .call(xAxis);
 
-        select(node).append('svg').append('g').attr('id', 'BC-yAxis').attr('class', 'axis')
-        .attr("transform", "translate("+(padding+30)+",-20)")
-        .call(yAxis);
+        //========AXIS=======//
+        
+        //---X AXIS----//
+        console.log("AXIS");
+
+        select(node)
+            .selectAll('#BC-xAxis')
+            .data([1])
+            .enter()
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'BC-xAxis');
+
+        select(node)
+            .selectAll('#BC-xAxis')
+            .data([1])
+            .exit()
+                .remove();
+
+        select(node)
+            .selectAll('#BC-xAxis')
+                .attr("transform", "translate(40, " + (size[0]/2 + 55) +")")
+                .call(xAxis);
+
+
+        //---Y AXIS----//
+        select(node)
+            .selectAll('#BC-yAxis')
+            .data([1])
+            .enter()
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'BC-yAxis');
+    
+        select(node)
+            .selectAll('#BC-yAxis')
+            .data([1])
+            .exit()
+                .remove();
+
+        select(node)
+            .selectAll('#BC-yAxis')
+                .attr("transform", "translate("+(padding+30)+",-20)")
+                .call(yAxis);
      
+
+        //-----Axis Labels-----//
         var dragText = drag()
                             .on('start', this.handleDragTextStart)
                             .on('drag', this.handleDraggingText)
                             .on('end', this.handleDragTextStop)
         
-        select(node).append('svg')
-        .append('text')
-        .attr("y", 0 + size[0] - 160)
-        .attr("x",0)
-        .attr("dx", "15em")
-        .attr("class", "draggable")
-        .text("BusinessId")
-        .call(dragText);
 
-        select(node).append('svg')
-        .append('text')
-        .attr("transform", "rotate(-90)")
-        .attr("y", 0)
-        .attr("x",0 - (size[1] / 2))
-        .attr("dy", "1em")
-        .attr("class", "draggable")
-        .text("Review Count")
-        .call(dragText);
+        //--X Axis Label---//
+        select(node)
+            .selectAll('#bc-xLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr("class", "draggable")
+                .attr("id", "bc-xLabel");
 
+        select(node)
+            .selectAll('#bc-xLabel')
+            .data([1])
+            .exit()
+                .remove()
+        
+        select(node)
+            .selectAll('#bc-xLabel')
+                .attr("y", 0 + size[0] - 160)
+                .attr("x",0)
+                .attr("dx", "15em")
+                .text("BusinessId")
+                .call(dragText);
+    
+        //---Y Axis Label--//
+        
+        select(node)
+            .selectAll('#bc-yLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr('id', 'bc-yLabel');
+
+        select(node)
+            .selectAll('#bc-yLabel')
+            .data([1])
+            .exit()
+                .remove();
+
+        select(node)
+            .selectAll('#bc-yLabel')
+                .attr("transform", "rotate(-90)")
+                .attr("y", 0)
+                .attr("x",0 - (size[1] / 2))
+                .attr("dy", "1em")
+                .attr("class", "draggable")
+                .text("Review Count")
+                .call(dragText);
+
+
+        //=========BARS=========//
         
         // Bar Dragging
-        var dragBars = drag()
+        var dragBar = drag()
                             .on('start', this.handleDragStart)
                             .on('drag', this.handleDragging)
                             .on('end', this.handleDragEnd)
@@ -149,9 +218,12 @@ class BarChart extends Component {
                 .on('mouseout', this.handleMouseOut)
                 .on('mouseup', this.handleUp)
                 .on('mousedown', this.handleDown)
-                .call(dragBars);
+                .call(dragBar);
 
-        //Creating hypothetical line that indicates boundary for Bar to be dragged to for deletion
+
+        //=========LINE========//
+        // Creating hypothetical line that indicates boundary for Bar to be dragged across for deletion
+        
         select(node)
             .selectAll('line.boundary')
             .data([1])
@@ -176,10 +248,6 @@ class BarChart extends Component {
 
     }
 
-    handleDragStart(d) {
-        const { updateCurrentDatum } = this.props;
-        updateCurrentDatum([d]);
-    }
     handleDragTextStart(d){
         select(this).raise().classed("active", true);
     }
@@ -195,11 +263,10 @@ class BarChart extends Component {
     }
 
 
-    // handleDraggingContainer(d) {
-    //     handleDragging(d);
-
-    // }
-    
+    handleDragStart(d) {
+        const { updateCurrentDatum } = this.props;
+        updateCurrentDatum([d]);
+    }
     handleDragging(d) {
         var bar = select(this);
 
