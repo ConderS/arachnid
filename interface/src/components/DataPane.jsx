@@ -47,6 +47,8 @@ export class DataPane extends Component {
 
     render() {        
 
+        // COMMENT OUT the component that you don't want to work with. React uses {/* <code> */} for commenting
+        
       return (
             <div>
                 <div className="variablesMenu">

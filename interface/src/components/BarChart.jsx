@@ -49,7 +49,7 @@ class BarChart extends Component {
     }
 
     componentDidUpdate() {
-        console.log("UPDATING VIZ...");
+        console.log("Updating viz...");
         this.createBarChart();
     }
 
