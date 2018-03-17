@@ -4,7 +4,7 @@ import { max, sum, mean } from 'd3-array';
 import { select, selectAll, event as currentEvent } from 'd3-selection';
 import { legendColor } from 'd3-svg-legend';
 import { transition } from 'd3-transition';
-import { axisBottom, axisRight} from 'd3-axis';
+import { axisBottom, axisRight, axisLeft} from 'd3-axis';
 import { drag } from 'd3-drag';
 
 import { ProcessYelpData } from '../utils/processData';
@@ -66,24 +66,53 @@ class BarChart extends Component {
         const totalBarSpace = barWidth + 20; 
 
         this.setState({ totalBarSpace });
-
+        console.log("chartData", chartData.length);
         // Need to fix this axis stuff
-        const xScale = scaleLinear().domain([0, chartData.length]);
+        const xScale = scaleLinear().domain([0, chartData.length]).range([0, size[0]]);
 
         var xAxis = axisBottom().scale(xScale);
-        var yAxis = axisRight().scale(yScale);
+        var yAxis = axisLeft().scale(yScale);
+        var padding = 10
+        select(node).append('svg').append('g').attr('id', 'BC-xAxis').attr('class', 'axis')
+        .attr("transform", "translate(40, " + (size[0]/2 + 55) +")")
+        .call(xAxis);
 
-        select(node).append('svg').append('g').attr('id', 'BC-xAxis').attr('transform', 'translate(0, ' + size[1] + ')').call(xAxis);
-
-        select(node).append('svg').append('g').attr('id', 'BC-yAxis').call(yAxis);
+        select(node).append('svg').append('g').attr('id', 'BC-yAxis').attr('class', 'axis')
+        .attr("transform", "translate("+(padding+30)+",-20)")
+        .call(yAxis);
         //
+        var dragText = drag()
+                            .on('start', this.handleDragTextStart)
+                            .on('drag', this.handleDraggingText)
+                            .on('end', this.handleDragTextStop)
         
+        select(node).append('svg')
+        .append('text')
+        .attr("y", 0 + size[0] - 160)
+        .attr("x",0)
+        .attr("dx", "15em")
+        .attr("class", "draggable")
+        .text("BusinessId")
+        .call(dragText);
+
+        select(node).append('svg')
+        .append('text')
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0)
+        .attr("x",0 - (size[1] / 2))
+        .attr("dy", "1em")
+        .attr("class", "draggable")
+        .text("Review Count")
+        .call(dragText);
+
         var dragAction = drag()
                             .on('start', this.handleDragStart)
                             .on('drag', this.handleDragging)
                             .on('drag.track', this.triggerDragBoundary)
                             .on('end', this.handleDragEnd)
-
+        
+        
+        
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
@@ -100,8 +129,8 @@ class BarChart extends Component {
         select(node)
             .selectAll('rect.bc-bar')
             .data(chartData)
-                .attr('x', (d, i) => i * (totalBarSpace))
-                .attr('y', d => size[1] - yScale(mean(d.review_count)))
+                .attr('x', (d, i) => i * (totalBarSpace) + 40)
+                .attr('y', d => size[1] - yScale(mean(d.review_count)) - padding - 20)
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -117,6 +146,20 @@ class BarChart extends Component {
     handleDragStart(d) {
         this.setState({ currentDatum: [d], originalX: d.x, originalY: d.y });
     }
+    handleDragTextStart(d){
+        select(this).raise().classed("active", true);
+    }
+    handleDraggingText(d){
+        console.log(currentEvent)
+        select(this)
+        .lower()
+        .attr('x', currentEvent.x)
+        .attr('y', currentEvent.y);
+    }
+    handleDragTextStop(d){
+        select(this).classed("active", false);
+    }
+
 
     // handleDraggingContainer(d) {
     //     handleDragging(d);

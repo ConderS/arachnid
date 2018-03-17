@@ -27,3 +27,9 @@
     position: relatve;
     color: red;
 }
+
+.draggable{
+    text-anchor: start;
+    cursor: pointer;
+    text-anchor: middle;
+}
