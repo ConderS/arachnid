@@ -209,7 +209,7 @@ export class BarChart extends Component {
         select(node)
             .selectAll('#bc-xLabel')
                 .attr("y", size[1] + spaceOffset)
-                .attr("x", size[0] / 2)
+                .attr("x", size[0] / 2 + axisPadding)
                 .text("BusinessId")
                 .raise()
                 .call(dragTextX);
@@ -227,8 +227,8 @@ export class BarChart extends Component {
 
         select(node)
             .selectAll('#bc-yLabel')
-                .attr("y", 10)
-                .attr("x", size[1]/2)
+                .attr("y", axisPadding / 2)
+                .attr("x", -1 * (size[1] + axisPadding + 8.5))
                 .attr("class", "draggable")
                 .text("Review Count")
                 .raise()
@@ -238,19 +238,19 @@ export class BarChart extends Component {
     //====Axis Label Event Handling====//
     
     handleDragTextStart(d){
-        select(this).raise().classed("active", true);
+        select(this).raise();
     }
 
     handleDraggingTextY(d){
         select(this)
-        .lower()
+        .raise()
         .attr('y', currentEvent.x)
         .attr('x', -currentEvent.y);
     }
 
     handleDraggingTextX(d){
         select(this)
-        .lower()
+        .raise()
         .attr('x', currentEvent.x)
         .attr('y', currentEvent.y);
     }
