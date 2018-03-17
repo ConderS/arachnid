@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { scaleLinear } from 'd3-scale';
 import { max, sum, mean } from 'd3-array';
 import { select, selectAll, event as currentEvent } from 'd3-selection';
@@ -7,12 +8,14 @@ import { transition } from 'd3-transition';
 import { axisBottom, axisRight, axisLeft} from 'd3-axis';
 import { drag } from 'd3-drag';
 
+import Brush from './Brush';
 import { ProcessYelpData } from '../utils/processData';
+
 // import * as d3 from 'd3';
 
 import '../styles/components/barchart.css';
 
-class BarChart extends Component {
+export class BarChart extends Component {
     constructor(props) {
         super(props);
 
@@ -25,7 +28,8 @@ class BarChart extends Component {
             originalY: 0,
             spaceOffset: 300,
             updateDimensions: false,
-            selectedRect: null
+            selectedRect: null,
+            brushExtent: []
         }
 
         this.createBarChart = this.createBarChart.bind(this);
@@ -35,6 +39,7 @@ class BarChart extends Component {
         this.handleDragEnd = this.handleDragEnd.bind(this);
         this.handleDragStart = this.handleDragStart.bind(this);
         this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
+        this.onBrush = this.onBrush.bind(this);
     }
 
     componentWillMount() {
@@ -95,12 +100,6 @@ class BarChart extends Component {
 
         select(node)
             .selectAll('#BC-xAxis')
-            .data([1])
-            .exit()
-                .remove();
-
-        select(node)
-            .selectAll('#BC-xAxis')
                 .attr("transform", "translate(40, " + (size[0]/2 + 55) +")")
                 .call(xAxis);
 
@@ -113,12 +112,6 @@ class BarChart extends Component {
                 .append('g')
                 .attr('class', 'axis')
                 .attr('id', 'BC-yAxis');
-    
-        select(node)
-            .selectAll('#BC-yAxis')
-            .data([1])
-            .exit()
-                .remove();
 
         select(node)
             .selectAll('#BC-yAxis')
@@ -142,11 +135,6 @@ class BarChart extends Component {
                 .attr("class", "draggable")
                 .attr("id", "bc-xLabel");
 
-        select(node)
-            .selectAll('#bc-xLabel')
-            .data([1])
-            .exit()
-                .remove()
         
         select(node)
             .selectAll('#bc-xLabel')
@@ -163,17 +151,12 @@ class BarChart extends Component {
             .data([1])
             .enter()
                 .append('text')
-                .attr('id', 'bc-yLabel');
+                .attr('id', 'bc-yLabel')
+                .attr("transform", "rotate(-90)");
+
 
         select(node)
             .selectAll('#bc-yLabel')
-            .data([1])
-            .exit()
-                .remove();
-
-        select(node)
-            .selectAll('#bc-yLabel')
-                .attr("transform", "rotate(-90)")
                 .attr("y", 0)
                 .attr("x",0 - (size[1] / 2))
                 .attr("dy", "1em")
@@ -402,11 +385,20 @@ class BarChart extends Component {
         }
     }
 
+    onBrush(d) {
+        this.setState({ brushExtent: d });
+    }
+
     render() {
         const { size } = this.props;
         const { spaceOffset } = this.state;
 
-        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
+        return (
+            <div>
+                <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
+                <Brush changeBrush={this.onBrush} size={[size[0], 50]} />
+            </div>
+            );
     }
 }
 
