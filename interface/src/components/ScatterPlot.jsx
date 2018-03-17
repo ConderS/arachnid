@@ -41,15 +41,15 @@ export class ScatterPlot extends Component {
 
     someEventHandler() {
 
-        /* Props is a global state.
+        /* Props is a global state. Just do what I do below at any time to extract the functions/properties out of the state.
         
-         updateCurrentDatum = a function that stores an ARRAY of selected data, or in this case, yelp records. When called, does not reset the viz. 
+         updateCurrentDatum = a FUNCTION that stores an ARRAY of selected data, or in this case, yelp records. When called, does not reset the viz. 
         
-         currentDatum = the current array of selected data/yelp records
+         currentDatum = a PROPERTY: the current array of selected data/yelp records
 
          currentDatum will be empty if you haven't updated it with "updateCurrentDatum" previously.
 
-         updateData = updates the data of the viz. Will RESET the viz with the new data
+         updateData = a FUNCTION that takes in the new data and updates the data of the viz. Will RESET the viz with the new data
         */
        
         const { updateData, updateCurrentDatum, currentDatum } = this.props;
