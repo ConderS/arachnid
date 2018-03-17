@@ -20,13 +20,17 @@ class BarChart extends Component {
             currentDatum: [],
             mouseover: false,
             dragging: false,
-            totalBarSpace: 0,
-            updateDimensions: false
+            barWidth: 0,
+            originalX: 0,
+            originalY: 0,
+            updateDimensions: false,
+            selectedRect: null
         }
 
         this._updateDimensions = this._updateDimensions.bind(this);
 
         this.createBarChart = this.createBarChart.bind(this);
+        this.handleDown = this.handleDown.bind(this);
         this.handleMouseOut = this.handleMouseOut.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleDragEnd = this.handleDragEnd.bind(this);
@@ -81,7 +85,7 @@ class BarChart extends Component {
 
         // const totalBarSpace = barWidth + 20; 
 
-        // this.setState({ totalBarSpace });
+        this.setState({ barWidth });
 
         // Need to fix this axis stuff
         const xScale = scaleLinear().domain([0, chartData.length]);
@@ -116,7 +120,7 @@ class BarChart extends Component {
             .selectAll('rect.bc-bar')
             .data(chartData)
                 .attr('x', (d, i) => i * (barWidth))
-                .attr('y', d => (size[1] + 100) - yScale(mean(d.review_count)))
+                .attr('y', d => (size[1] + 300) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
@@ -171,10 +175,23 @@ class BarChart extends Component {
     }
 
 
-    handleDown(d) {
-        var bar = select(this);
+    handleDown(d, i) {
 
-        bar.style('fill', 'red');
+        var selectedRect = select(this.node) 
+            .selectAll('rect.bc-bar')
+                .filter(function(_d, i) {
+                    return (d.business_id === _d.business_id);
+                })._groups[0][0];
+
+        select(selectedRect).style('fill', 'red');
+
+        const originalX = select(selectedRect).attr('x');
+        const originalY = select(selectedRect).attr('y');
+
+        this.setState({ 
+            selectedRect,
+            originalX, 
+            originalY });
     }
 
     handleUp(d) {
@@ -184,12 +201,13 @@ class BarChart extends Component {
         bar.style('fill', 'blue');
     }
 
-
     handleDragEnd(d) {
-        const { mouseover } = this.state;
+        const { mouseover, originalX, originalY, selectedRect } = this.state;
         const { updateCurrentDatum, currentDatum } = this.props;
 
-        if (mouseover && currentDatum.length >= 1) {
+        var deduped = false;
+
+        if (mouseover && currentDatum.length > 1) {
             console.log("DEDUP");
         
             var arrayIDs = [];
@@ -198,17 +216,23 @@ class BarChart extends Component {
             });
             const newData = ProcessYelpData(this.props.chartData, 'business_id', arrayIDs);
             this.props.updateData(newData);
+            deduped = true;
+        } else {
+            var t = transition().duration(100);
+
+            select(selectedRect)
+                .transition(t)
+                .attr('x', originalX)
+                .attr('y', originalY);
         }
 
         updateCurrentDatum([]);
 
-        select(this.node)
-                .selectAll('rect.bc-bar')
-                    .filter(function(_d, i) {
-                        return (d.business_id === _d.business_id);
-                    })
-                    .style('fill', 'blue');
+        select(selectedRect)
+            .style('fill', 'blue');
+
     }
+
 
     handleMouseOver(d) {
         const { updateCurrentDatum, currentDatum } = this.props;
@@ -257,7 +281,7 @@ class BarChart extends Component {
     render() {
         const { size } = this.props;
 
-        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0]} height={size[1]}> </svg>
+        return <svg className="bc-barChart" ref={node => this.node = node} width={size[0]} height={size[1] + 300}> </svg>
     }
 }
 
