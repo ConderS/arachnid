@@ -19,3 +19,9 @@ export function updateCurrentDatum(datum) {
         datum
     }
 }
+
+export function driveChartUpdate() {
+    return {
+        type: "DRIVE_CHART_UPDATE"
+    }
+}

@@ -22,13 +22,15 @@ export class Brush extends Component {
     }
 
     createBrush() {
-        const node = this.node;
+        const { data } = this.props;
 
-        const scale = scaleLinear().domain([0, 30]).range([0, this.props.size[0]]);
+        const node = this.node;
+    
+        const scale = scaleLinear().domain([0, data.length]).range([0, this.props.size[0]]);
 
         const dayBrush = brushX()
                             .extent([[0, 0], this.props.size])
-                            .on("brush", this.brushed);
+                            .on("brush", brushed);
         
         const dayAxis = axisBottom().scale(scale);
 
@@ -59,7 +61,7 @@ export class Brush extends Component {
         
         //More convenient to define function within
         function brushed() {
-            const selectedExtent = currentEvent.selection.map(d => scale.invert(d));
+            const selectedExtent = currentEvent.selection.map(d => parseInt(scale.invert(d)));
 
             brushFn(selectedExtent);
         }

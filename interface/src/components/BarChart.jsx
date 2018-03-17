@@ -8,7 +8,7 @@ import { transition } from 'd3-transition';
 import { axisBottom, axisRight, axisLeft} from 'd3-axis';
 import { drag } from 'd3-drag';
 
-import Brush from './Brush';
+// import Brush from './Brush';
 import { ProcessYelpData } from '../utils/processData';
 
 // import * as d3 from 'd3';
@@ -28,8 +28,7 @@ export class BarChart extends Component {
             originalY: 0,
             spaceOffset: 300,
             updateDimensions: false,
-            selectedRect: null,
-            brushExtent: []
+            selectedRect: null
         }
 
         this.createBarChart = this.createBarChart.bind(this);
@@ -39,7 +38,7 @@ export class BarChart extends Component {
         this.handleDragEnd = this.handleDragEnd.bind(this);
         this.handleDragStart = this.handleDragStart.bind(this);
         this.triggerDragBoundary = this.triggerDragBoundary.bind(this);
-        this.onBrush = this.onBrush.bind(this);
+        // this.onBrush = this.onBrush.bind(this);
     }
 
     componentWillMount() {
@@ -68,17 +67,17 @@ export class BarChart extends Component {
     }
 
     createBarChart() {
-        const { chartData, size } = this.props;
+        const { data, size } = this.props;
         const { spaceOffset } = this.state;
 
         const node = this.node;
-        const dataMax = max(chartData.map(d => mean(d.review_count)));
+        const dataMax = max(data.map(d => mean(d.review_count)));
 
-        const barWidth = size[0] / chartData.length;
+        const barWidth = size[0] / data.length;
         this.setState({ barWidth });
 
         const yScale = scaleLinear().domain([0, dataMax]).range([0, size[1]]);
-        const xScale = scaleLinear().domain([0, chartData.length]).range([0, size[0]]);
+        const xScale = scaleLinear().domain([0, data.length]).range([0, size[0]]);
 
         
         var xAxis = axisBottom().scale(xScale);
@@ -177,20 +176,20 @@ export class BarChart extends Component {
         
         select(node)
             .selectAll('rect.bc-bar')
-            .data(chartData)
+            .data(data)
             .enter()
             .append('rect')
                 .attr('class', 'bc-bar');
         
         select(node)
             .selectAll('rect.bc-bar')
-            .data(chartData)
+            .data(data)
             .exit()
                 .remove();
 
         select(node)
             .selectAll('rect.bc-bar')
-            .data(chartData)
+            .data(data)
                 .attr('x', (d, i) => i * (barWidth))
                 .attr('y', d => (size[1] + spaceOffset) - yScale(mean(d.review_count)))
                 .attr('height', d => yScale(mean(d.review_count)))
@@ -385,10 +384,6 @@ export class BarChart extends Component {
         }
     }
 
-    onBrush(d) {
-        this.setState({ brushExtent: d });
-    }
-
     render() {
         const { size } = this.props;
         const { spaceOffset } = this.state;
@@ -396,7 +391,6 @@ export class BarChart extends Component {
         return (
             <div>
                 <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
-                <Brush changeBrush={this.onBrush} size={[size[0], 50]} />
             </div>
             );
     }

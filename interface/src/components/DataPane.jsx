@@ -5,6 +5,7 @@ import '../styles/components/datapane.css';
 import { ProcessData } from '../utils/processData';
 
 import BarChart from './BarChart';
+import Brush from './Brush';
 import ScatterPlot from './ScatterPlot';
 
 export class DataPane extends Component {
@@ -13,10 +14,12 @@ export class DataPane extends Component {
 
         this.state = {
           datum: [],
-          allowDedup: false
+          allowDedup: false,
+          brushExtent: [0, this.props.chartData.length]
         };
         
         this._updateDimensions = this._updateDimensions.bind(this);
+        this.onBrush = this.onBrush.bind(this);
     }
 
     _updateDimensions() {
@@ -45,17 +48,31 @@ export class DataPane extends Component {
 
     }
 
+    onBrush(d) {
+        this.setState({ brushExtent: d });
+        this.props.driveChartUpdate();
+    }
+
     render() {        
+      
+      const { size, chartData } = this.props;
+      const { brushExtent } = this.state;
+    
+      console.log(brushExtent);
+      const filteredData = chartData.slice(brushExtent[0], brushExtent[1]+1);
+
 
         // COMMENT OUT the component that you don't want to work with. React uses {/* <code> */} for commenting
-        
+
       return (
+
             <div>
                 <div className="variablesMenu">
                   <h1 className="variablesMenuHeader">Attributes</h1>
                 </div>
                 {/* <ScatterPlot {...this.props} /> */}
-                <BarChart {...this.props} />
+                <BarChart data={filteredData} {...this.props} />
+                <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
             </div>
         )
     }

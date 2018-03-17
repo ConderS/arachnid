@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 
-import { updateData, updateDimensions, updateCurrentDatum } from '../actions/index';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate } from '../actions/index';
 import DataPane from '../components/DataPane';
 
 export class HomeContainer extends Component {
@@ -20,7 +20,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({ 
         updateData,
         updateDimensions,
-        updateCurrentDatum
+        updateCurrentDatum,
+        driveChartUpdate
     }, dispatch);
 }
 
