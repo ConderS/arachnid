@@ -54,8 +54,8 @@ export class DataPane extends Component {
                 <div className="variablesMenu">
                   <h1 className="variablesMenuHeader">Attributes</h1>
                 </div>
-                <ScatterPlot {...this.props} />
-                {/* <BarChart {...this.props} /> */}
+                {/* <ScatterPlot {...this.props} /> */}
+                <BarChart {...this.props} />
             </div>
         )
     }
