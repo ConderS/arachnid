@@ -309,7 +309,7 @@ export class BarChart extends Component {
 
     handleDragEnd(d) {
         const { mouseover, originalX, originalY, selectedRect } = this.state;
-        const { updateCurrentDatum, currentDatum } = this.props;
+        const { updateCurrentDatum, currentDatum, updateChartData } = this.props;
 
         var deduped = false;
 
@@ -320,8 +320,9 @@ export class BarChart extends Component {
             currentDatum.map(datum => {
                 arrayIDs.push({id: datum.business_id, count: datum.review_count});
             });
-            const newData = ProcessYelpData(this.props.chartData, 'business_id', arrayIDs);
-            this.props.updateData(newData);
+
+            updateChartData('business_id', arrayIDs);
+
             deduped = true;
         } else {
             var t = transition().duration(100);

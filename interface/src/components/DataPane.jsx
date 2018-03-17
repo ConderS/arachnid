@@ -8,6 +8,8 @@ import BarChart from './BarChart';
 import Brush from './Brush';
 import ScatterPlot from './ScatterPlot';
 
+import { ProcessYelpData } from '../utils/processData';
+
 export class DataPane extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +22,7 @@ export class DataPane extends Component {
         
         this._updateDimensions = this._updateDimensions.bind(this);
         this.onBrush = this.onBrush.bind(this);
+        this.updateChartData = this.updateChartData.bind(this);
     }
 
     _updateDimensions() {
@@ -53,9 +56,16 @@ export class DataPane extends Component {
         this.props.driveChartUpdate();
     }
 
+    updateChartData(key, dedupArray) {
+        const { updateData, chartData } = this.props;
+
+        const newData = ProcessYelpData(chartData, key, dedupArray);
+        updateData(newData);
+    }
+
     render() {        
       
-      const { size, chartData } = this.props;
+      const { size, chartData, updateCurrentDatum, currentDatum, update } = this.props;
       const { brushExtent } = this.state;
     
       console.log(brushExtent);
@@ -71,7 +81,14 @@ export class DataPane extends Component {
                   <h1 className="variablesMenuHeader">Attributes</h1>
                 </div>
                 {/* <ScatterPlot {...this.props} /> */}
-                <BarChart data={filteredData} {...this.props} />
+                <BarChart 
+                    data={filteredData} 
+                    updateChartData={this.updateChartData} 
+                    currentDatum={currentDatum}
+                    updateCurrentDatum={updateCurrentDatum} 
+                    size={size}
+                    update={update} />
+
                 <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
             </div>
         )
