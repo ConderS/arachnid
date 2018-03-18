@@ -1,0 +1,37 @@
+/* Make sure to append class names in each component with 'bc'
+    All stylesheets still apply GLOBALLY to the whole app, so this is our way of modularizing it */
+
+.sc-something {
+
+}
+
+.sc-something-else {
+
+}
+
+.sc-dot {
+
+}
+
+.sc-scatterChart {
+    margin-top: 100px; 
+}
+
+.circle {
+    /*pointer-events: all;*/
+    position: relative;
+}
+
+.sc-active-dot {
+    color: red;
+}
+
+.draggable{
+    text-anchor: start;
+    cursor: pointer;
+    text-anchor: middle;
+}
+
+.hover-line {
+	stroke: #6E7B8B;
+}
