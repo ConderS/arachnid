@@ -180,8 +180,7 @@ export class BarChart extends Component {
 
         select(node)
             .selectAll('#BC-yAxis')
-                .attr("transform", "rotate(90)")
-                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/2 + axisPadding + 8.5) + ")")
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 ) + ")")
                 .call(yAxis);
      
 
@@ -228,7 +227,7 @@ export class BarChart extends Component {
         select(node)
             .selectAll('#bc-yLabel')
                 .attr("y", axisPadding / 2)
-                .attr("x", -1 * (size[1] + axisPadding + 8.5))
+                .attr("x", -1 * (size[1] + spaceOffset + axisPadding)/2)
                 .attr("class", "draggable")
                 .text("Review Count")
                 .raise()
