@@ -26,7 +26,7 @@ export class BarChart extends Component {
             barWidth: 0,
             originalX: 0,
             originalY: 0,
-            spaceOffset: 300,
+            spaceOffset: 150,
             updateDimensions: false,
             selectedRect: null
         }
