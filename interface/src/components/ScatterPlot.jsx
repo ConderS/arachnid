@@ -1,5 +1,16 @@
 import React, { Component } from 'react';
 
+import { scaleLinear } from 'd3-scale';
+import { max, sum, mean } from 'd3-array';
+import { select, selectAll, event as currentEvent } from 'd3-selection';
+import { legendColor } from 'd3-svg-legend';
+import { transition } from 'd3-transition';
+import { axisBottom, axisRight, axisLeft} from 'd3-axis';
+import { drag } from 'd3-drag';
+
+// import Brush from './Brush';
+import { ProcessYelpData } from '../utils/processData';
+
 import '../styles/components/scatterplot.css';
 
 export class ScatterPlot extends Component {
@@ -7,13 +18,15 @@ export class ScatterPlot extends Component {
         super(props);
         
         this.state = {
-            spaceOffset: 300
+            currentDatum: [],
+            spaceOffset: 150
         }
 
         //Binding your functions sets the "this" context to that of the class, not the function itself (so you can call "this.state" and "this._OTHER_FUNCTION")
         // Whenever you create a new function in the component and you want it to be able to refer to outside functions and the state/props, you bind it like so here.
         this.createScatterPlot = this.createScatterPlot.bind(this);
         this.someEventHandler = this.someEventHandler.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
     }
     
     componentDidMount() {
@@ -29,15 +42,186 @@ export class ScatterPlot extends Component {
         if (nextProps.update !== this.props.update) {
             return true;
         }
+        return false;
     }
 
     createScatterPlot() {
         const { chartData, size } = this.props;
+        const { spaceOffset } = this.state;
         const node = this.node;
+        const dataMax = max(chartData.map(d => mean(d.review_count)));
+
+        const axisPadding = 50;
+
+        const yScale = scaleLinear().domain([0, dataMax]).range([size[1], 0]);
+        const xScale = scaleLinear().domain([0, chartData.length]).range([0, size[0]]);
+
+        //========AXIS=======//
         
-        // WRITE HERE
-        // The rest of the D3 code goes here, just select(node) to select the svg
+        var xAxis = axisBottom().scale(xScale);
+        var yAxis = axisLeft().scale(yScale);
+
+        //---X AXIS----//
+        select(node)
+            .selectAll('#SC-xAxis')
+            .data([1])
+            .enter()
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'SC-xAxis');
+
+        select(node)
+            .selectAll('#SC-xAxis')
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1] + spaceOffset - axisPadding) +")")
+                .raise()
+                .call(xAxis);
+
+
+        //---Y AXIS----//
+        select(node)
+            .selectAll('#SC-yAxis')
+            .data([1])
+            .enter()
+                .append('g')
+                .attr('class', 'axis')
+                .attr('id', 'SC-yAxis');
+
+        select(node)
+            .selectAll('#SC-yAxis')
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 + 7 ) + ")")
+                .call(yAxis);
+        
+        //-----Axis Labels-----//
+        var dragTextY = drag()
+                            .on('start', this.handleDragTextStart)
+                            .on('drag', this.handleDraggingTextY)
+                            .on('end', this.handleDragTextStop)
+
+        var dragTextX = drag()
+                            .on('start', this.handleDragTextStart)
+                            .on('drag', this.handleDraggingTextX)
+                            .on('end', this.handleDragTextStop)
+
+        //--X Axis Label---//
+        select(node)
+            .selectAll('#sc-xLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr("class", "draggable")
+                .attr("id", "sc-xLabel");
+
+        
+        select(node)
+            .selectAll('#sc-xLabel')
+                .attr("y", size[1] + spaceOffset)
+                .attr("x", size[0] / 2 + axisPadding)
+                .text("BusinessId")
+                .raise()
+                .call(dragTextX);
+    
+        //---Y Axis Label--//
+        
+        select(node)
+            .selectAll('#sc-yLabel')
+            .data([1])
+            .enter()
+                .append('text')
+                .attr('id', 'sc-yLabel')
+                .attr("transform", "rotate(-90)");
+
+
+        select(node)
+            .selectAll('#sc-yLabel')
+                .attr("y", axisPadding / 2)
+                .attr("x", -1 * (size[1] + spaceOffset + axisPadding)/2)
+                .attr("class", "draggable")
+                .text("Review Count")
+                .raise()
+                .call(dragTextY);
+        
+        // --- SCATTER --- // 
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+            .enter()
+            .append('circle')
+                .attr('class', 'sc-dot');
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+            .exit()
+                .remove();
+        
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+                .attr('cx', (d, i) => xScale(i) + axisPadding)
+                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
+                .attr("r", 2)
+                .style('fill', (d, i) => 'blue')
+                .on('mouseover', this.handleMouseOver)
+                .on('mouseout', this.handleMouseOut);
+
+        // --- HOVER --- //
+
+        select(node)
+            .selectAll('.tick')
+            .on('click', function(value, index){
+                if(this.parentElement.id == "SC-xAxis"){
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", xScale(value) + axisPadding).attr("x2", xScale(value) + axisPadding)
+                            .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                }
+                else if(this.parentElement.id == "SC-yAxis"){
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                            .attr("y1", yScale(value) + 2*axisPadding - 5).attr("y2", yScale(value) + 2*axisPadding - 5);
+                }
+                console.log(yScale(value))
+                console.log(size[1]-axisPadding-yScale(value))
+                console.dir(this);
+                console.dir([value, index]);
+            });
     }
+
+    handleDragTextStart(d){
+        select(this).raise();
+    }
+
+    handleDraggingTextY(d){
+        select(this)
+        .raise()
+        .attr('y', currentEvent.x)
+        .attr('x', -currentEvent.y);
+    }
+
+    handleDraggingTextX(d){
+        select(this)
+        .raise()
+        .attr('x', currentEvent.x)
+        .attr('y', currentEvent.y);
+    }
+
+    handleDragTextStop(d){
+        select(this).classed("active", false);
+    }
+    
+    handleMouseOver(d){
+}
+    
+    handleMouseOut(d){
+
+    }
+
 
     someEventHandler() {
 
@@ -60,7 +244,7 @@ export class ScatterPlot extends Component {
         const { size } = this.props;
         const { spaceOffset } = this.state;
 
-        return <svg className="sp" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
+        return <svg className="sc-ScatterChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
     }
 }
 

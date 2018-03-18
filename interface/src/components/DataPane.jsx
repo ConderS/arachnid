@@ -87,17 +87,18 @@ export class DataPane extends Component {
                 <div className="variablesMenu">
                   <h1 className="variablesMenuHeader">Attributes</h1>
                 </div>
-                {/* <ScatterPlot {...this.props} /> */}
-                <BarChart 
+                
+                <ScatterPlot {...this.props} />
+                {/*<BarChart 
                     data={filteredData} 
                     dedupChartData={this.dedupChartData}
                     deleteChartData={this.deleteChartData} 
                     currentDatum={currentDatum}
                     updateCurrentDatum={updateCurrentDatum} 
                     size={size}
-                    update={update} />
+                    update={update} />*/}
 
-                <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
+                {/*<Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/> */}
             </div>
         )
     }
