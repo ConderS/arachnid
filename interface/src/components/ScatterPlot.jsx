@@ -56,6 +56,30 @@ export class ScatterPlot extends Component {
         const yScale = scaleLinear().domain([0, dataMax]).range([size[1], 0]);
         const xScale = scaleLinear().domain([0, chartData.length]).range([0, size[0]]);
 
+        // --- SCATTER --- // 
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+            .enter()
+            .append('circle')
+                .attr('class', 'sc-dot');
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+            .exit()
+                .remove();
+        
+        select(node)
+            .selectAll("circle.sc-dot")
+            .data(chartData)
+                .attr('cx', (d, i) => xScale(i) + axisPadding)
+                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
+                .attr("r", 2)
+                .style('fill', (d, i) => 'blue')
+                .on('mouseover', this.handleMouseOver)
+                .on('mouseout', this.handleMouseOut);
+
+
         //========AXIS=======//
         
         var xAxis = axisBottom().scale(xScale);
@@ -140,30 +164,8 @@ export class ScatterPlot extends Component {
                 .raise()
                 .call(dragTextY);
         
-        // --- SCATTER --- // 
-        select(node)
-            .selectAll("circle.sc-dot")
-            .data(chartData)
-            .enter()
-            .append('circle')
-                .attr('class', 'sc-dot');
-        select(node)
-            .selectAll("circle.sc-dot")
-            .data(chartData)
-            .exit()
-                .remove();
-        
-        select(node)
-            .selectAll("circle.sc-dot")
-            .data(chartData)
-                .attr('cx', (d, i) => xScale(i) + axisPadding)
-                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
-                .attr("r", 2)
-                .style('fill', (d, i) => 'blue')
-                .on('mouseover', this.handleMouseOver)
-                .on('mouseout', this.handleMouseOut);
 
-        // --- HOVER --- //
+        // --- AXIS INTERACTIONS --- //
 
         select(node)
             .selectAll('.tick')
