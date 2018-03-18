@@ -180,7 +180,7 @@ export class BarChart extends Component {
 
         select(node)
             .selectAll('#BC-yAxis')
-                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 ) + ")")
+                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 + 7 ) + ")")
                 .call(yAxis);
      
 
