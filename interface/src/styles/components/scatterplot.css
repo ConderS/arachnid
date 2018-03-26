@@ -35,3 +35,7 @@
 .hover-line {
 	stroke: #6E7B8B;
 }
+.SC-xAxis{
+	pointer-events: all;
+	cursor: pointer;
+}

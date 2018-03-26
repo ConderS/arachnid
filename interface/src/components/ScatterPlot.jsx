@@ -166,11 +166,39 @@ export class ScatterPlot extends Component {
         
 
         // --- AXIS INTERACTIONS --- //
+        select(node)
+            .selectAll('.axis')
+            .on('click', function(value,index){
+                console.log(this);
+                console.log(currentEvent);
+                if(this.id === "SC-xAxis"){
+                    console.log(this);
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
+                            .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                }
+                else if(this.id === "SC-yAxis"){
+                    console.log(this);
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                            .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
+                }
+            });
 
         select(node)
             .selectAll('.tick')
             .on('click', function(value, index){
-                if(this.parentElement.id == "SC-xAxis"){
+                console.log(this);
+                console.log(xScale(value)+axisPadding);
+                if(this.parentElement.id === "SC-xAxis"){
                     select(node)
                             .append('g')
                             .attr("class", "hover-line")
@@ -179,7 +207,7 @@ export class ScatterPlot extends Component {
                             .attr("x1", xScale(value) + axisPadding).attr("x2", xScale(value) + axisPadding)
                             .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
                 }
-                else if(this.parentElement.id == "SC-yAxis"){
+                else if(this.parentElement.id === "SC-yAxis"){
                     select(node)
                             .append('g')
                             .attr("class", "hover-line")
@@ -188,10 +216,6 @@ export class ScatterPlot extends Component {
                             .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
                             .attr("y1", yScale(value) + 2*axisPadding - 5).attr("y2", yScale(value) + 2*axisPadding - 5);
                 }
-                console.log(yScale(value))
-                console.log(size[1]-axisPadding-yScale(value))
-                console.dir(this);
-                console.dir([value, index]);
             });
     }
 
