@@ -98,7 +98,7 @@ export class DataPane extends Component {
                     size={size}
                     update={update} />*/}
 
-                {/*<Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/> */}
+                {/*<Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>*/}
             </div>
         )
     }
