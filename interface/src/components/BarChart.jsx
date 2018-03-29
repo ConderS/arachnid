@@ -28,7 +28,8 @@ export class BarChart extends Component {
             originalY: 0,
             spaceOffset: 150,
             updateDimensions: false,
-            selectedRect: null
+            selectedRect: null,
+            newData: null
         }
 
         this.createBarChart = this.createBarChart.bind(this);
@@ -259,6 +260,8 @@ export class BarChart extends Component {
     }
 
 
+    //=====Bar Event Handling====//
+
     handleBarDown(d, index) {
 
         var selectedRect = select(this.node) 
@@ -275,10 +278,9 @@ export class BarChart extends Component {
         this.setState({ 
             selectedRect,
             originalX, 
-            originalY });
+            originalY 
+        });
     }
-
-    //=====Bar Event Handling====//
 
     handleBarUp(d) {
         console.log('up');
@@ -293,8 +295,8 @@ export class BarChart extends Component {
     }
 
     handleDragging(d) {
-        const { selectedRect, spaceOffset } = this.state;
-        const { size } = this.props;
+        const { selectedRect, spaceOffset, mouseover, newData } = this.state;
+        const { size, updateCurrentDatum, currentDatum } = this.props;
 
         var bar = select(selectedRect);
 
@@ -309,7 +311,16 @@ export class BarChart extends Component {
         } else {
             bar.style('fill', 'red');
         }
+        
+        // var newDatum = currentDatum;      
+        
+        // if (mouseover && !newDatum.includes(newData))  {
+        //     newDatum.push(d);
+        // } else if (!mouseover && newDatum.includes(newData)) {
+        //     newDatum.pop(d); 
+        // }
 
+        // updateCurrentDatum(newDatum);
     }    
 
     handleDragEnd(d) {
@@ -354,11 +365,16 @@ export class BarChart extends Component {
 
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Hovering Different Element", d);
-            var newDatum = currentDatum;
+                
+            //React needs to see an entirely new object being created in order for it to be considered a "new" update worthy of re-rendering other components for
+            var newDatum = [];
+            currentDatum.map(datum => {
+                newDatum.push(datum);
+            });
             newDatum.push(d);
+            updateCurrentDatum(newDatum);
 
             this.setState({ mouseover: true });
-            console.log(updateCurrentDatum(newDatum));
             
             select(this.node)
                 .selectAll('rect.bc-bar')
@@ -376,11 +392,16 @@ export class BarChart extends Component {
 
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Mouse Out on Diff Element");
-            var newDatum = currentDatum;
+            
+            var newDatum = [];
+            currentDatum.map(datum => {
+                newDatum.push(datum);
+            });
             newDatum.pop(d);
+            updateCurrentDatum(newDatum);
 
             this.setState({ mouseover: false });
-            updateCurrentDatum(newDatum);
+
 
             select(this.node)
                 .selectAll('rect.bc-bar')

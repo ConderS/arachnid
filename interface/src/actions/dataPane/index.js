@@ -25,3 +25,10 @@ export function driveChartUpdate() {
         type: "DRIVE_CHART_UPDATE"
     }
 }
+
+export function testUpdate(datum) {
+    return {
+        type: "TEST_UPDATE",
+        datum
+    }
+}

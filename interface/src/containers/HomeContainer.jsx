@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 
-import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate } from '../actions/index';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, testUpdate } from '../actions/index';
 import DataPane from '../components/DataPane';
 import Menu from '../components/Menu';
 
@@ -27,20 +27,22 @@ function mapDispatchToProps(dispatch) {
         updateData,
         updateDimensions,
         updateCurrentDatum,
-        driveChartUpdate
+        driveChartUpdate,
+        testUpdate
     }, dispatch);
 }
 
 
 function mapStateToProps({ dataPane }) {
 
-    const { chartData, size, currentDatum, update } = dataPane;
+    const { chartData, size, currentDatum, update, test } = dataPane;
 
     return {
         chartData,
         size,
         currentDatum,
-        update
+        update,
+        test
     };
 }
 

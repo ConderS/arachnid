@@ -1,8 +1,9 @@
-import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate } from './dataPane';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, testUpdate } from './dataPane';
 
 export {
     updateData,
     updateDimensions,
     updateCurrentDatum,
-    driveChartUpdate
+    driveChartUpdate,
+    testUpdate
 };

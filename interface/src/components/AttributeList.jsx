@@ -9,9 +9,9 @@ export class AttributeList extends Component {
     }
     
     renderCurrentDatum() {
-        const { currentDatum } = this.props;
+        var { currentDatum } = this.props;
         
-        console.log("CURD: ", currentDatum);
+        console.log("CURD: ", currentDatum, this.props.test);
         return currentDatum.map((datum, index) => {
             const stringDatum = JSON.stringify(datum);
             return (
