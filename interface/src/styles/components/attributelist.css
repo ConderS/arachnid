@@ -1,0 +1,12 @@
+#al-container {
+    width: 10%;
+    float: left;
+    text-align: center;
+    margin-top: 5em;
+    margin-left: 3em;
+}
+
+.al-header {
+    margin-bottom: 20px;
+    font-size: 20px;
+}

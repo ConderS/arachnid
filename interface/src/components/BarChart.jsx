@@ -61,7 +61,7 @@ export class BarChart extends Component {
         if (nextProps.update !== this.props.update) {
             return true; 
         }
-
+        
         return false;
     }
 
@@ -358,8 +358,8 @@ export class BarChart extends Component {
             newDatum.push(d);
 
             this.setState({ mouseover: true });
-            updateCurrentDatum(newDatum);
-
+            console.log(updateCurrentDatum(newDatum));
+            
             select(this.node)
                 .selectAll('rect.bc-bar')
                     .filter(function(_d, i) {

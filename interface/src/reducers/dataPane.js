@@ -18,9 +18,10 @@ export default function(state = initialState, action) {
         case "UPDATE_DIMENSIONS":
             return Object.assign({}, state, { size: [action.width, action.height], update: count+1 });
         case "UPDATE_CURRENT_DATUM":
+            console.log("Update datum called: ", action.datum);
             return Object.assign({}, state, { currentDatum: action.datum });
         case "DRIVE_CHART_UPDATE":
-            return Object.assign({}, state, {update: count + 1});
+            return Object.assign({}, state, { update: count + 1 });
         default:
             return state;
     }

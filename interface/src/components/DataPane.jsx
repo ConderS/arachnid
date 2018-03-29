@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import * as vega from 'vega';
 import '../styles/components/datapane.css';
 import { ProcessData } from '../utils/processData';
 
@@ -48,9 +46,6 @@ export class DataPane extends Component {
     componentWillUnmount() {
         window.removeEventListener("resize", this._updateDimensions);
     }
-    componentDidUpdate() {
-
-    }
 
     onBrush(d) {
         this.setState({ brushExtent: d });
@@ -83,22 +78,15 @@ export class DataPane extends Component {
 
       return (
 
-            <div>
-                <div className="variablesMenu">
-                  <h1 className="variablesMenuHeader">Attributes</h1>
-                </div>
-                
-                <ScatterPlot {...this.props} />
-                {/*<BarChart 
+            <div>                
+                {/* <ScatterPlot {...this.props} /> */}
+                <BarChart 
                     data={filteredData} 
                     dedupChartData={this.dedupChartData}
                     deleteChartData={this.deleteChartData} 
-                    currentDatum={currentDatum}
-                    updateCurrentDatum={updateCurrentDatum} 
-                    size={size}
-                    update={update} />*/}
+                    {...this.props} />
 
-                {/*<Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>*/}
+                <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
             </div>
         )
     }
