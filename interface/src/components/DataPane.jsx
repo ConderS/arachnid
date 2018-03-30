@@ -6,7 +6,7 @@ import BarChart from './BarChart';
 import Brush from './Brush';
 import ScatterPlot from './ScatterPlot';
 
-import { ProcessYelpData } from '../utils/processData';
+import { ProcessYelpData, ProcessMaxThreshold} from '../utils/processData';
 
 export class DataPane extends Component {
     constructor(props) {
@@ -22,6 +22,7 @@ export class DataPane extends Component {
         this.onBrush = this.onBrush.bind(this);
         this.dedupChartData = this.dedupChartData.bind(this);
         this.deleteChartData = this.deleteChartData.bind(this);
+        this.deleteMaxThresholdData = this.deleteMaxThresholdData.bind(this);
 
         this.renderChart = this.renderChart.bind(this);
         this.generateBar = this.generateBar.bind(this);
@@ -69,6 +70,12 @@ export class DataPane extends Component {
         const newData = ProcessYelpData(chartData, key, deleteArray, true);
         updateData(newData);
     }
+
+    deleteMaxThresholdData(key, threshold_value){
+        const { updateData, chartData } = this.props;
+        const newData = ProcessMaxThreshold(chartData, key, threshold_value);
+        updateData(newData);
+    }
     
     renderChart() {
         const { chartType } = this.props;
@@ -95,7 +102,8 @@ export class DataPane extends Component {
                 <BarChart 
                     data={filteredData} 
                     dedupChartData={this.dedupChartData}
-                    deleteChartData={this.deleteChartData} 
+                    deleteChartData={this.deleteChartData}
+                    deleteMaxThresholdData={this.deleteMaxThresholdData}
                     {...this.props} />
 
                 <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
@@ -105,7 +113,9 @@ export class DataPane extends Component {
 
     generateScatter() {
         return (
-            <ScatterPlot {...this.props} />
+            <ScatterPlot 
+            deleteMaxThresholdData={this.deleteMaxThresholdData} 
+            {...this.props} />
             );
     }
 

@@ -46,7 +46,7 @@ export class ScatterPlot extends Component {
     }
 
     createScatterPlot() {
-        const { chartData, size, xAttr, yAttr } = this.props;
+        const { chartData, size, xAttr, yAttr, deleteMaxThresholdData} = this.props;
         const { spaceOffset } = this.state;
         const node = this.node;
         const dataMax = max(chartData.map(d => mean(d[yAttr])));
@@ -180,8 +180,10 @@ export class ScatterPlot extends Component {
                             .attr('stroke', (d, i) => 'red')
                             .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
                             .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                    deleteMaxThresholdData(xAttr, currentEvent.offsetX);
                 }
                 else if(this.id === "SC-yAxis"){
+                    var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
                     console.log(this);
                     select(node)
                             .append('g')
@@ -190,33 +192,35 @@ export class ScatterPlot extends Component {
                             .attr('stroke', (d, i) => 'red')
                             .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
                             .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
+                    deleteMaxThresholdData(yAttr, testThresholdValue);
                 }
             });
 
-        select(node)
-            .selectAll('.tick')
-            .on('click', function(value, index){
-                console.log(this);
-                console.log(xScale(value) + axisPadding);
-                if(this.parentElement.id === "SC-xAxis"){
-                    select(node)
-                            .append('g')
-                            .attr("class", "hover-line")
-                            .append("line")
-                            .attr('stroke', (d, i) => 'red')
-                            .attr("x1", xScale(value) + axisPadding).attr("x2", xScale(value) + axisPadding)
-                            .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
-                }
-                else if(this.parentElement.id === "SC-yAxis"){
-                    select(node)
-                            .append('g')
-                            .attr("class", "hover-line")
-                            .append("line")
-                            .attr('stroke', (d, i) => 'red')
-                            .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
-                            .attr("y1", yScale(value) + 2*axisPadding - 5).attr("y2", yScale(value) + 2*axisPadding - 5);
-                }
-            });
+        // select(node)
+        //     .selectAll('.tick')
+        //     .on('click', function(value, index){
+        //         console.log(xScale(value) + axisPadding);
+        //         if(this.parentElement.id === "SC-xAxis"){
+        //             select(node)
+        //                     .append('g')
+        //                     .attr("class", "hover-line")
+        //                     .append("line")
+        //                     .attr('stroke', (d, i) => 'red')
+        //                     .attr("x1", xScale(value) + axisPadding).attr("x2", xScale(value) + axisPadding)
+        //                     .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+        //                     deleteMaxThresholdData(xAttr, this.childNodes[1].innerHTML);
+        //         }
+        //         else if(this.parentElement.id === "SC-yAxis"){
+        //             select(node)
+        //                     .append('g')
+        //                     .attr("class", "hover-line")
+        //                     .append("line")
+        //                     .attr('stroke', (d, i) => 'red')
+        //                     .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+        //                     .attr("y1", yScale(value) + 2*axisPadding - 5).attr("y2", yScale(value) + 2*axisPadding - 5);
+        //                     deleteMaxThresholdData(yAttr, this.childNodes[1].innerHTML);
+        //         }
+        //     });
     }
 
     handleDragTextStart(d){
