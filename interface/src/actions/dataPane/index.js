@@ -1,3 +1,5 @@
+// GENERAL 
+
 export function updateData(data) {
     return {
         type: "UPDATE_DATA",
@@ -26,9 +28,9 @@ export function driveChartUpdate() {
     }
 }
 
-export function testUpdate(datum) {
+export function generateChart(chartType) {
     return {
-        type: "TEST_UPDATE",
-        datum
+        type: "GENERATE_CHART",
+        chartType
     }
 }

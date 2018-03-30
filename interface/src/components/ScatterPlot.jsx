@@ -46,10 +46,10 @@ export class ScatterPlot extends Component {
     }
 
     createScatterPlot() {
-        const { chartData, size } = this.props;
+        const { chartData, size, xAttr, yAttr } = this.props;
         const { spaceOffset } = this.state;
         const node = this.node;
-        const dataMax = max(chartData.map(d => mean(d.review_count)));
+        const dataMax = max(chartData.map(d => mean(d[yAttr])));
 
         const axisPadding = 50;
 
@@ -73,7 +73,7 @@ export class ScatterPlot extends Component {
             .selectAll("circle.sc-dot")
             .data(chartData)
                 .attr('cx', (d, i) => xScale(i) + axisPadding)
-                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
+                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d[yAttr])))
                 .attr("r", 2)
                 .style('fill', (d, i) => 'blue')
                 .on('mouseover', this.handleMouseOver)
@@ -112,7 +112,7 @@ export class ScatterPlot extends Component {
 
         select(node)
             .selectAll('#SC-yAxis')
-                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 + 7 ) + ")")
+                .attr("transform", "translate(" + axisPadding + ", " + (spaceOffset - axisPadding) + ")")
                 .call(yAxis);
         
         //-----Axis Labels-----//
@@ -140,7 +140,7 @@ export class ScatterPlot extends Component {
             .selectAll('#sc-xLabel')
                 .attr("y", size[1] + spaceOffset)
                 .attr("x", size[0] / 2 + axisPadding)
-                .text("BusinessId")
+                .text(xAttr)
                 .raise()
                 .call(dragTextX);
     
@@ -160,7 +160,7 @@ export class ScatterPlot extends Component {
                 .attr("y", axisPadding / 2)
                 .attr("x", -1 * (size[1] + spaceOffset + axisPadding)/2)
                 .attr("class", "draggable")
-                .text("Review Count")
+                .text(yAttr)
                 .raise()
                 .call(dragTextY);
         
@@ -197,7 +197,7 @@ export class ScatterPlot extends Component {
             .selectAll('.tick')
             .on('click', function(value, index){
                 console.log(this);
-                console.log(xScale(value)+axisPadding);
+                console.log(xScale(value) + axisPadding);
                 if(this.parentElement.id === "SC-xAxis"){
                     select(node)
                             .append('g')

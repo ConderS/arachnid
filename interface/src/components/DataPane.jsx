@@ -22,6 +22,10 @@ export class DataPane extends Component {
         this.onBrush = this.onBrush.bind(this);
         this.dedupChartData = this.dedupChartData.bind(this);
         this.deleteChartData = this.deleteChartData.bind(this);
+
+        this.renderChart = this.renderChart.bind(this);
+        this.generateBar = this.generateBar.bind(this);
+        this.generateScatter = this.generateScatter.bind(this);
     }
 
     _updateDimensions() {
@@ -65,21 +69,29 @@ export class DataPane extends Component {
         const newData = ProcessYelpData(chartData, key, deleteArray, true);
         updateData(newData);
     }
+    
+    renderChart() {
+        const { chartType } = this.props;
 
-    render() {        
+        switch (chartType) {
+            case "bar":
+                return this.generateBar();
+            case "scatter":
+                return this.generateScatter();
+            default:
+                return this.generateBar();
+        }
+
+    }
+
+    generateBar() {
+        const { size, chartData } = this.props;
+
+        const { brushExtent } = this.state;
       
-      const { size, chartData, updateCurrentDatum, currentDatum, update } = this.props;
-      const { brushExtent } = this.state;
-      
-      const filteredData = chartData.slice(brushExtent[0], brushExtent[1]+1);
-
-
-        // COMMENT OUT the component that you don't want to work with. React uses {/* <code> */} for commenting
-
-      return (
-
-            <div id="view">                
-                {/* <ScatterPlot {...this.props} /> */}
+        const filteredData = chartData.slice(brushExtent[0], brushExtent[1]+1);
+        return (
+            <div className="bc-Container">
                 <BarChart 
                     data={filteredData} 
                     dedupChartData={this.dedupChartData}
@@ -87,6 +99,29 @@ export class DataPane extends Component {
                     {...this.props} />
 
                 <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
+            </div>
+            );        
+    }
+
+    generateScatter() {
+        return (
+            <ScatterPlot {...this.props} />
+            );
+    }
+
+    render() {        
+        
+        const { generateChart } = this.props;
+
+        return (
+
+            <div id="view">
+
+                {/* Temporary Buttons */}
+                <button className="btn btn-primary" onClick={() =>generateChart("bar")}>Bar Chart</button>
+                <button className="btn btn-success" onClick={() => generateChart("scatter")}>Scatter Plot</button>      
+                
+                {this.renderChart()}
             </div>
         )
     }

@@ -9,6 +9,7 @@ const initialState = {
     currentDatum: [],
     xAttr: "business_id",
     yAttr: "review_count",
+    chartType: "bar",
     update: 0,
 };
 
@@ -23,6 +24,8 @@ export default function(state = initialState, action) {
             return Object.assign({}, state, { currentDatum: action.datum });
         case "DRIVE_CHART_UPDATE":
             return Object.assign({}, state, { update: count + 1 });
+        case "GENERATE_CHART":
+            return Object.assign({}, state, { chartType: action.chartType });
         default:
             return state;
     }

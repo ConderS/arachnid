@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "../styles/components/attributelist.css";
 
-export class AttributeList extends Component {
+export class SelectedList extends Component {
     constructor(props) {
         super(props);
 
@@ -36,7 +36,7 @@ export class AttributeList extends Component {
         
         return (
             <div id="al-container">
-                <h3 className="al-header">Selected Records</h3>
+                <h3 className="menu-header">Selected Records</h3>
                 <hr/>
                 {this.renderCurrentDatum()}
             </div>
@@ -44,4 +44,4 @@ export class AttributeList extends Component {
     }
 }
 
-export default AttributeList;
+export default SelectedList;

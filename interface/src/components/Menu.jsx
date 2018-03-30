@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-//Since this is a sub-container, stylings are in index.css
+import '../styles/components/menu.css';
 
 import Specification from './Specification';
-import AttributeList from './AttributeList';
+import SelectedList from './SelectedList';
+import VariablesList from './VariablesList';
 
 export class Menu extends Component {
     constructor(props) {
@@ -12,9 +13,9 @@ export class Menu extends Component {
     render() {
         return (
             <div className="menu-container">
-                <AttributeList {...this.props} />
+                <SelectedList {...this.props} />
                 <Specification {...this.props} />
-
+                <VariablesList {...this.props} />
             </div>
 
             );

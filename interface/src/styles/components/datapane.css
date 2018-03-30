@@ -1,7 +1,7 @@
 #view {
     margin-top: 15px;
     margin-left: 20px;
-    width: 65%;
+    width: 65%;    
     float: left;
 }
 
@@ -22,4 +22,9 @@
 
 .data-btn {
     margin-top: 7em;
+}
+
+.btn {
+    max-width: 50%;
+
 }

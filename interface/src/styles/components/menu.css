@@ -1,0 +1,15 @@
+.menu-container {
+    height: 80%;
+    width: 30%;
+    
+    min-width: 308px;
+    float: right;
+    margin-top: 15px;
+}
+
+.menu-header {
+    margin-top: 10px;
+    margin-bottom: 22px;
+    font-size: 12px;
+    font-weight: bold;
+}

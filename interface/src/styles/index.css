@@ -5,6 +5,7 @@ div {
 
 html {
     height: 100%;
+    overflow: hidden;
 }
 body {
     min-height: 100%;
@@ -33,13 +34,6 @@ app-root {
     margin: 10px;
     border-radius: 2px;
     box-shadow: rgba(0, 0, 0, 0.8) 1px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
-}
-
-.menu-container {
-    height: 80%;
-    width: 30%;
-    float: left;
-    margin-top: 15px;
 }
 
 /* Hovering buttons look (Quizlet) */

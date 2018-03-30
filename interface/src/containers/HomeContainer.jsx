@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 
-import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate } from '../actions/index';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, generateChart } from '../actions/index';
 import DataPane from '../components/DataPane';
 import Menu from '../components/Menu';
 
@@ -15,8 +15,8 @@ export class HomeContainer extends Component {
     render() {
         return (
             <div>
-                <Menu {...this.props} />
                 <DataPane {...this.props} />
+                <Menu {...this.props} />
             </div>
             );
     }
@@ -27,14 +27,15 @@ function mapDispatchToProps(dispatch) {
         updateData,
         updateDimensions,
         updateCurrentDatum,
-        driveChartUpdate
+        driveChartUpdate,
+        generateChart
     }, dispatch);
 }
 
 
 function mapStateToProps({ dataPane }) {
 
-    const { chartData, size, currentDatum, xAttr, yAttr, update } = dataPane;
+    const { chartData, size, currentDatum, xAttr, yAttr, update, chartType } = dataPane;
 
     return {
         chartData,
@@ -42,7 +43,8 @@ function mapStateToProps({ dataPane }) {
         currentDatum,
         xAttr,
         yAttr,
-        update
+        update,
+        chartType
     };
 }
 
