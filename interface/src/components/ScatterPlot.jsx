@@ -66,7 +66,7 @@ export class ScatterPlot extends Component {
             .enter()
             .append('circle')
                 .attr('class', 'sc-dot');
-                
+
         select(node)
             .selectAll("circle.sc-dot")
             .data(chartData)
@@ -177,30 +177,54 @@ export class ScatterPlot extends Component {
                 console.log(currentEvent);
                 if(this.id === "SC-xAxis"){
                     console.log(this);
-                    select(node)
-                            .append('g')
-                            .attr("class", "hover-line")
-                            .append("line")
-                            .attr('stroke', (d, i) => 'red')
-                            .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
-                            .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
-                    deleteMaxThresholdData(xAttr, currentEvent.offsetX);
+                    // select(node)
+                    //         .append('g')
+                    //         .attr("class", "hover-line")
+                    //         .append("line")
+                    //         .attr('stroke', (d, i) => 'red')
+                    //         .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
+                    //         .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                    deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "SC-yAxis"){
                     // var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
-                    console.log(this);
+
+                    // select(node)
+                    //         .append('g')
+                    //         .attr("class", "hover-line")
+                    //         .append("line")
+                    //         .attr('stroke', (d, i) => 'red')
+                    //         .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                    //         .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
+                    deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
+
+                    console.log(yScale.invert(mouse(this)[1]));
+                }            
+            })
+            .on('mouseover', function(value, index) {
+                if (this.id === "SC-xAxis") {
                     select(node)
-                            .append('g')
-                            .attr("class", "hover-line")
-                            .append("line")
-                            .attr('stroke', (d, i) => 'red')
-                            .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
-                            .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
-                    console.log(currentEvent.offsetY, currentEvent.offsetY);
-                    deleteMaxThresholdData(yAttr, currentEvent.offsetY);
+                        .append('g')
+                        .attr("class", "hover-line")
+                        .append("line")
+                        .attr('stroke', (d, i) => 'red')
+                        .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
+                        .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                } else if (this.id === "SC-yAxis") {
+                    select(node)
+                        .append('g')
+                        .attr("class", "hover-line")
+                        .append("line")
+                        .attr('stroke', (d, i) => 'red')
+                        .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                        .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
                 }
-                console.log("MOUSE: ", currentEvent.offsetY, size[1] + spaceOffset - mouse(node)[1], yScale.invert(size[1] + spaceOffset - mouse(node)[1]));
+            })
+            .on('mouseout', function(value, index) {
+                selectAll('.hover-line')
+                    .remove();
             });
+
 
         // select(node)
         //     .selectAll('.tick')

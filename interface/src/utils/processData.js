@@ -51,17 +51,19 @@ export function ProcessMaxThreshold(chartData, attr, threshold_value){
   // console.log("id:", id);
   // console.log("Threshold:", threshold_value);
   console.log("Threshold value: ", threshold_value);
-
-  for(var key in chartData){
+  
+  for(var key = 0; key < chartData.length; key++){
     if(attr === "business_id"){
-      if(key < threshold_value){
+      if(key > threshold_value){
         newChartData.splice(key, 1);
+        key--;
       }
     }
     else {
       if(parseInt(chartData[key][attr]) > threshold_value) {
         console.log("Value: ", chartData[key][attr])
         newChartData.splice(key, 1);
+        key--;
       } else {
         console.log("Accept: ", chartData[key][attr])
       }
