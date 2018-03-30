@@ -8,5 +8,6 @@ In the `interface` directory:
 
 ## Key Files
 
-- `src/components/DataPane.js` is where vega loads the visualization and handles all the interactions
-- `src/examples/cars.json` - for now just change the data in this file and then change the corresponding parts of the specification to select the appropriate variable names
+- `src/components/DataPane.jsx` is the container for all visualizations
+    -  `BarChart.jsx` & `ScatterPlot.jsx` handle the respective charts
+- `src/examples/yelp.json` contains local data
