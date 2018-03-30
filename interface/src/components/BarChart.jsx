@@ -67,7 +67,7 @@ export class BarChart extends Component {
     }
 
     createBarChart() {
-        const { data, size, xAttr, yAttr } = this.props;
+        const { data, size, xAttr, yAttr, deleteMaxThresholdData} = this.props;
         const { spaceOffset } = this.state;
 
         const node = this.node;
@@ -232,7 +232,37 @@ export class BarChart extends Component {
                 .attr("class", "draggable")
                 .text(yAttr)
                 .raise()
-                .call(dragTextY);                   
+                .call(dragTextY);
+
+        select(node)
+            .selectAll('.axis')
+            .on('click', function(value,index){
+                console.log(this);
+                console.log(currentEvent);
+                if(this.id === "BC-xAxis"){
+                    console.log(this);
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
+                            .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
+                    deleteMaxThresholdData(xAttr, currentEvent.offsetX);
+                }
+                else if(this.id === "BC-yAxis"){
+                    var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
+                    console.log(this);
+                    select(node)
+                            .append('g')
+                            .attr("class", "hover-line")
+                            .append("line")
+                            .attr('stroke', (d, i) => 'red')
+                            .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                            .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
+                    deleteMaxThresholdData(yAttr, testThresholdValue);
+                }
+            });              
     }
 
     //====Axis Label Event Handling====//
