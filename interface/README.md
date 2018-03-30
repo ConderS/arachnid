@@ -8,5 +8,6 @@ In the `interface` directory:
 
 ## Key Files
 
-- `src/components/DataPane.js` is the container for all visualizations
+- `src/components/DataPane.jsx` is the container for all visualizations
+    -  `BarChart.jsx` & `ScatterPlot.jsx` handle the respective charts
 - `src/examples/yelp.json` contains local data
