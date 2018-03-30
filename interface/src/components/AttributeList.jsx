@@ -37,6 +37,7 @@ export class AttributeList extends Component {
         return (
             <div id="al-container">
                 <h3 className="al-header">Selected Records</h3>
+                <hr/>
                 {this.renderCurrentDatum()}
             </div>
             );

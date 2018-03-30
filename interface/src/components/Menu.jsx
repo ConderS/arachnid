@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+//Since this is a sub-container, stylings are in index.css
 
 import Specification from './Specification';
 import AttributeList from './AttributeList';
@@ -10,7 +11,12 @@ export class Menu extends Component {
 
     render() {
         return (
-            <AttributeList {...this.props} />
+            <div className="menu-container">
+                <AttributeList {...this.props} />
+                <Specification {...this.props} />
+
+            </div>
+
             );
     }
 
