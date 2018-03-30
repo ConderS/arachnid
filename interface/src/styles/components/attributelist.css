@@ -2,11 +2,14 @@
     width: 15%;
     float: left;
     text-align: center;
-    margin-top: 5em;
+    margin-top: 15px;
     max-width: 150px;
 }
 
-
+#al-container {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
 
 .al-header {
     margin-bottom: 20px;

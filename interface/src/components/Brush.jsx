@@ -72,7 +72,7 @@ export class Brush extends Component {
 
     render() {
         return (
-            <svg ref={node => this.node = node} width={this.props.size[0]} height={50}></svg>
+            <svg className="bc-brush" ref={node => this.node = node} width={this.props.size[0]} height={50}></svg>
             );
     }
 }

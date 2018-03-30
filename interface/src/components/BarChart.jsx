@@ -420,9 +420,8 @@ export class BarChart extends Component {
         const { spaceOffset } = this.state;
 
         return (
-            <div>
-                <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset} height={size[1] + spaceOffset}> </svg>
-            </div>
+                <svg className="bc-barChart" ref={node => this.node = node} width={size[0] + spaceOffset + 200} height={size[1] + spaceOffset}> 
+                </svg>
             );
     }
 }

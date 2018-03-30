@@ -78,7 +78,7 @@ export class DataPane extends Component {
 
       return (
 
-            <div>                
+            <div id="view">                
                 {/* <ScatterPlot {...this.props} /> */}
                 <BarChart 
                     data={filteredData} 
