@@ -61,11 +61,8 @@ export function ProcessMaxThreshold(chartData, attr, threshold_value){
     }
     else {
       if(parseInt(chartData[key][attr]) > threshold_value) {
-        console.log("Value: ", chartData[key][attr])
         newChartData.splice(key, 1);
         key--;
-      } else {
-        console.log("Accept: ", chartData[key][attr])
       }
     }
   }
