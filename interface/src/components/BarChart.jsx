@@ -67,11 +67,11 @@ export class BarChart extends Component {
     }
 
     createBarChart() {
-        const { data, size } = this.props;
+        const { data, size, xAttr, yAttr } = this.props;
         const { spaceOffset } = this.state;
 
         const node = this.node;
-        const dataMax = max(data.map(d => mean(d.review_count)));
+        const dataMax = max(data.map(d => mean(d[yAttr])));
 
         const barWidth = size[0] / data.length;
         this.setState({ barWidth });
@@ -110,8 +110,8 @@ export class BarChart extends Component {
             .selectAll('rect.bc-bar')
             .data(data)
                 .attr('x', (d, i) => i * (barWidth) + axisPadding)
-                .attr('y', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d.review_count)))
-                .attr('height', d => yScale(mean(d.review_count)))
+                .attr('y', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d[yAttr])))
+                .attr('height', d => yScale(mean(d[yAttr])))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
                 .style('stroke', 'black')
@@ -151,8 +151,8 @@ export class BarChart extends Component {
 
         //========AXIS=======//
         
-        var xAxis = axisBottom().scale(xScale);
-        var yAxis = axisLeft().scale(yScale);
+        var xAxis = axisBottom(xScale);
+        var yAxis = axisLeft(yScale);
 
         //---X AXIS----//
         select(node)
@@ -181,7 +181,7 @@ export class BarChart extends Component {
 
         select(node)
             .selectAll('#BC-yAxis')
-                .attr("transform", "translate(" + axisPadding + ", " + (size[1]/4 + 7 ) + ")")
+                .attr("transform", "translate(" + axisPadding + ", " + (spaceOffset - axisPadding) + ")")
                 .call(yAxis);
      
 
@@ -210,7 +210,7 @@ export class BarChart extends Component {
             .selectAll('#bc-xLabel')
                 .attr("y", size[1] + spaceOffset)
                 .attr("x", size[0] / 2 + axisPadding)
-                .text("BusinessId")
+                .text(xAttr)
                 .raise()
                 .call(dragTextX);
     
@@ -230,7 +230,7 @@ export class BarChart extends Component {
                 .attr("y", axisPadding / 2)
                 .attr("x", -1 * (size[1] + spaceOffset + axisPadding)/2)
                 .attr("class", "draggable")
-                .text("Review Count")
+                .text(yAttr)
                 .raise()
                 .call(dragTextY);                   
     }
@@ -291,7 +291,9 @@ export class BarChart extends Component {
 
     handleDragStart(d) {
         const { updateCurrentDatum } = this.props;
-        updateCurrentDatum([d]);
+        var datum = d;
+        datum.dragged = true;
+        updateCurrentDatum([datum]);
     }
 
     handleDragging(d) {
@@ -354,7 +356,6 @@ export class BarChart extends Component {
         updateCurrentDatum([]);
 
         bar.style('fill', 'blue');
-
     }
 
 
@@ -371,7 +372,9 @@ export class BarChart extends Component {
             currentDatum.map(datum => {
                 newDatum.push(datum);
             });
-            newDatum.push(d);
+            var datum = d;
+            datum.dragged = false;
+            newDatum.push(datum);
             updateCurrentDatum(newDatum);
 
             this.setState({ mouseover: true });

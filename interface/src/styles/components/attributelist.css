@@ -1,12 +1,32 @@
 #al-container {
-    width: 10%;
+    width: 15%;
     float: left;
     text-align: center;
     margin-top: 5em;
-    margin-left: 3em;
+    max-width: 150px;
 }
+
+
 
 .al-header {
     margin-bottom: 20px;
     font-size: 20px;
+}
+
+.al-list-item {
+    list-style: none;
+}
+
+.al-list-item label {
+    list-style: none;
+    font-weight: bold;
+    color: red;
+}
+
+.al-info {
+    font-size: 10px;
+}
+
+.al-dragged-onto label {
+    color: green;
 }

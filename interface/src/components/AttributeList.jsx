@@ -9,13 +9,25 @@ export class AttributeList extends Component {
     }
     
     renderCurrentDatum() {
-        var { currentDatum } = this.props;
+        var { currentDatum, xAttr, yAttr } = this.props;
         
-        console.log("CURD: ", currentDatum, this.props.test);
         return currentDatum.map((datum, index) => {
-            const stringDatum = JSON.stringify(datum);
+            
+            const xVal = datum[xAttr];
+            const yVal = datum[yAttr];
+
+            const datumString = JSON.stringify(datum);
+            
+            const draggedClass = datum.dragged ? "al-dragged" : "al-dragged-onto";
+
+            const classNameTxt = `al-list-item ${draggedClass}`;
+
             return (
-                <li key={index}>{stringDatum}</li>
+                <li key={index} className={classNameTxt}>
+                    <p className="al-info"><label>{xAttr}:</label> {xVal}</p>
+                    <p className="al-info"><label>{yAttr}:</label> {yVal}</p>
+                    <hr/>
+                </li>
                 );
         })
     }
