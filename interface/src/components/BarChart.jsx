@@ -71,7 +71,7 @@ export class BarChart extends Component {
         const { spaceOffset } = this.state;
 
         const node = this.node;
-        const dataMax = max(data.map(d => parseInt(d[yAttr])));
+        const dataMax = max(data.map(d => parseFloat(d[yAttr])));
 
         const barWidth = size[0] / data.length;
         this.setState({ barWidth });
@@ -110,8 +110,8 @@ export class BarChart extends Component {
             .selectAll('rect.bc-bar')
             .data(data)
                 .attr('x', (d, i) => i * (barWidth) + axisPadding)
-                .attr('y', d => (yScale(parseInt(d[yAttr])) + spaceOffset - axisPadding))
-                .attr('height', d => (size[1] - yScale(parseInt(d[yAttr]))))
+                .attr('y', d => (yScale(parseFloat(d[yAttr])) + spaceOffset - axisPadding))
+                .attr('height', d => (size[1] - yScale(parseFloat(d[yAttr]))))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
                 .style('stroke', 'black')
@@ -241,24 +241,10 @@ export class BarChart extends Component {
                 console.log(currentEvent);
                 if(this.id === "BC-xAxis"){
                     console.log(this);
-                    // select(node)
-                    //         .append('g')
-                    //         .attr("class", "hover-line")
-                    //         .append("line")
-                    //         .attr('stroke', (d, i) => 'red')
-                    //         .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
-                    //         .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
                     deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "BC-yAxis"){
                     console.log(this);
-                    // select(node)
-                    //         .append('g')
-                    //         .attr("class", "hover-line")
-                    //         .append("line")
-                    //         .attr('stroke', (d, i) => 'red')
-                    //         .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
-                    //         .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
                     deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
                 }
             })
@@ -353,8 +339,8 @@ export class BarChart extends Component {
         const { size, updateCurrentDatum, currentDatum } = this.props;
 
         var bar = select(selectedRect);
-
-        // bar.lower();
+        
+        bar.lower();
         //Update position of bar by adding drag distance to each coordinate
         bar.attr('x', d.x = currentEvent.x)
             .attr('y', d.y = currentEvent.y)
