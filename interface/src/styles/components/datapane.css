@@ -28,3 +28,7 @@
     max-width: 50%;
 
 }
+
+.axis {
+    cursor: pointer;
+}

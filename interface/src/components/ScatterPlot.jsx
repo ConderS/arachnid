@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { scaleLinear } from 'd3-scale';
 import { max, sum, mean } from 'd3-array';
-import { select, selectAll, event as currentEvent } from 'd3-selection';
+import { select, selectAll, event as currentEvent, mouse } from 'd3-selection';
 import { legendColor } from 'd3-svg-legend';
 import { transition } from 'd3-transition';
 import { axisBottom, axisRight, axisLeft} from 'd3-axis';
@@ -27,6 +27,7 @@ export class ScatterPlot extends Component {
         this.createScatterPlot = this.createScatterPlot.bind(this);
         this.someEventHandler = this.someEventHandler.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
     }
     
     componentDidMount() {
@@ -46,10 +47,12 @@ export class ScatterPlot extends Component {
     }
 
     createScatterPlot() {
-        const { chartData, size, xAttr, yAttr, deleteMaxThresholdData} = this.props;
+        const { chartData, size, xAttr, yAttr, deleteMaxThresholdData } = this.props;
         const { spaceOffset } = this.state;
         const node = this.node;
-        const dataMax = max(chartData.map(d => mean(d[yAttr])));
+        const dataMax = max(chartData.map(d => parseInt(d[yAttr])));
+        
+        console.log(chartData.map(d => parseInt(d[yAttr])));
 
         const axisPadding = 50;
 
@@ -63,17 +66,18 @@ export class ScatterPlot extends Component {
             .enter()
             .append('circle')
                 .attr('class', 'sc-dot');
+                
         select(node)
             .selectAll("circle.sc-dot")
             .data(chartData)
             .exit()
                 .remove();
-        
+
         select(node)
             .selectAll("circle.sc-dot")
             .data(chartData)
                 .attr('cx', (d, i) => xScale(i) + axisPadding)
-                .attr('cy', d => (size[1] + spaceOffset - axisPadding) - yScale(mean(d[yAttr])))
+                .attr('cy', d => (yScale(parseInt(d[yAttr])) + spaceOffset - axisPadding))
                 .attr("r", 2)
                 .style('fill', (d, i) => 'blue')
                 .on('mouseover', this.handleMouseOver)
@@ -82,8 +86,8 @@ export class ScatterPlot extends Component {
 
         //========AXIS=======//
         
-        var xAxis = axisBottom().scale(xScale);
-        var yAxis = axisLeft().scale(yScale);
+        var xAxis = axisBottom(xScale);
+        var yAxis = axisLeft(yScale);
 
         //---X AXIS----//
         select(node)
@@ -157,7 +161,7 @@ export class ScatterPlot extends Component {
 
         select(node)
             .selectAll('#sc-yLabel')
-                .attr("y", axisPadding / 2)
+                .attr("y", axisPadding / 2 - 10)
                 .attr("x", -1 * (size[1] + spaceOffset + axisPadding)/2)
                 .attr("class", "draggable")
                 .text(yAttr)
@@ -183,17 +187,19 @@ export class ScatterPlot extends Component {
                     deleteMaxThresholdData(xAttr, currentEvent.offsetX);
                 }
                 else if(this.id === "SC-yAxis"){
-                    var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
+                    // var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
                     console.log(this);
                     select(node)
                             .append('g')
                             .attr("class", "hover-line")
                             .append("line")
                             .attr('stroke', (d, i) => 'red')
-                            .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                            .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
                             .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
-                    deleteMaxThresholdData(yAttr, testThresholdValue);
+                    console.log(currentEvent.offsetY, currentEvent.offsetY);
+                    deleteMaxThresholdData(yAttr, currentEvent.offsetY);
                 }
+                console.log("MOUSE: ", currentEvent.offsetY, size[1] + spaceOffset - mouse(node)[1], yScale.invert(size[1] + spaceOffset - mouse(node)[1]));
             });
 
         // select(node)
@@ -246,10 +252,14 @@ export class ScatterPlot extends Component {
     }
     
     handleMouseOver(d){
-}
+        const { updateCurrentDatum } = this.props;
+        
+        updateCurrentDatum([d]);
+    }
     
     handleMouseOut(d){
-
+        const { updateCurrentDatum } = this.props;
+        updateCurrentDatum([]);
     }
 
 

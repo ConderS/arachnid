@@ -44,24 +44,29 @@ export function ProcessYelpData(chartData, id, dataArr, deleteData = false){
   return newChartData;
 }
 
-export function ProcessMaxThreshold(chartData, id, threshold_value){
+export function ProcessMaxThreshold(chartData, attr, threshold_value){
   console.log("Processing...");
   
   var newChartData = chartData;
   // console.log("id:", id);
   // console.log("Threshold:", threshold_value);
+  console.log("Threshold value: ", threshold_value);
+
   for(var key in chartData){
-    if(id === "business_id"){
+    if(attr === "business_id"){
       if(key < threshold_value){
         newChartData.splice(key, 1);
       }
     }
-    else{
-      if(chartData[key][id] < threshold_value){
-        console.log("Value", chartData[key][id])
+    else {
+      if(parseInt(chartData[key][attr]) > threshold_value) {
+        console.log("Value: ", chartData[key][attr])
         newChartData.splice(key, 1);
+      } else {
+        console.log("Accept: ", chartData[key][attr])
       }
     }
   }
+
   return newChartData;
 }
