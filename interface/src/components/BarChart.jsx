@@ -71,7 +71,7 @@ export class BarChart extends Component {
         const { spaceOffset } = this.state;
 
         const node = this.node;
-        const dataMax = max(data.map(d => parseInt(d[yAttr])));
+        const dataMax = max(data.map(d => parseFloat(d[yAttr])));
 
         const barWidth = size[0] / data.length;
         this.setState({ barWidth });
@@ -110,8 +110,8 @@ export class BarChart extends Component {
             .selectAll('rect.bc-bar')
             .data(data)
                 .attr('x', (d, i) => i * (barWidth) + axisPadding)
-                .attr('y', d => (yScale(parseInt(d[yAttr])) + spaceOffset - axisPadding))
-                .attr('height', d => (size[1] - yScale(parseInt(d[yAttr]))))
+                .attr('y', d => (yScale(parseFloat(d[yAttr])) + spaceOffset - axisPadding))
+                .attr('height', d => (size[1] - yScale(parseFloat(d[yAttr]))))
                 .attr('width', barWidth)
                 .style('fill', (d, i) => 'blue')
                 .style('stroke', 'black')
@@ -339,8 +339,8 @@ export class BarChart extends Component {
         const { size, updateCurrentDatum, currentDatum } = this.props;
 
         var bar = select(selectedRect);
-
-        // bar.lower();
+        
+        bar.lower();
         //Update position of bar by adding drag distance to each coordinate
         bar.attr('x', d.x = currentEvent.x)
             .attr('y', d.y = currentEvent.y)

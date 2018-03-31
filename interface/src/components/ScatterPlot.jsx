@@ -50,7 +50,7 @@ export class ScatterPlot extends Component {
         const { chartData, size, xAttr, yAttr, deleteMaxThresholdData } = this.props;
         const { spaceOffset } = this.state;
         const node = this.node;
-        const dataMax = max(chartData.map(d => parseInt(d[yAttr])));
+        const dataMax = max(chartData.map(d => parseFloat(d[yAttr])));
         
         console.log(chartData.map(d => parseInt(d[yAttr])));
 
@@ -77,7 +77,7 @@ export class ScatterPlot extends Component {
             .selectAll("circle.sc-dot")
             .data(chartData)
                 .attr('cx', (d, i) => xScale(i) + axisPadding)
-                .attr('cy', d => (yScale(parseInt(d[yAttr])) + spaceOffset - axisPadding))
+                .attr('cy', d => (yScale(parseFloat(d[yAttr])) + spaceOffset - axisPadding))
                 .attr("r", 2)
                 .style('fill', (d, i) => 'blue')
                 .on('mouseover', this.handleMouseOver)
@@ -182,7 +182,6 @@ export class ScatterPlot extends Component {
                 else if(this.id === "SC-yAxis"){
                     console.log(this);
                     deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
-                    // console.log(yScale.invert(mouse(this)[1]));
                 }            
             })
             .on('mouseover', function(value, index) {
