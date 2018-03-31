@@ -7,12 +7,7 @@ import { legendColor } from 'd3-svg-legend';
 import { transition } from 'd3-transition';
 import { axisBottom, axisRight, axisLeft} from 'd3-axis';
 import { drag } from 'd3-drag';
-
-// import Brush from './Brush';
 import { ProcessYelpData } from '../utils/processData';
-
-// import * as d3 from 'd3';
-
 import '../styles/components/barchart.css';
 
 export class BarChart extends Component {
@@ -81,11 +76,7 @@ export class BarChart extends Component {
         const yScale = scaleLinear().domain([0, dataMax]).range([size[1], 0]);
         const xScale = scaleLinear().domain([0, data.length]).range([0, size[0]]);
 
-        
-
         //=========BARS=========//
-        
-        // Bar Dragging
         var dragBar = drag()
                             .on('start', this.handleDragStart)
                             .on('drag', this.handleDragging)
@@ -400,8 +391,6 @@ export class BarChart extends Component {
     handleMouseOver(d) {
         const { updateCurrentDatum, currentDatum } = this.props;
 
-        // if (currentDatum.length == 0) { return; }
-
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Hovering Different Element", d);
                 
@@ -428,8 +417,6 @@ export class BarChart extends Component {
 
     handleMouseOut(d) {
         const { updateCurrentDatum, currentDatum } = this.props;
-
-        // if (currentDatum.length == 0) { return; }
 
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Mouse Out on Diff Element");

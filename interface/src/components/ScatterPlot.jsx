@@ -7,8 +7,6 @@ import { legendColor } from 'd3-svg-legend';
 import { transition } from 'd3-transition';
 import { axisBottom, axisRight, axisLeft} from 'd3-axis';
 import { drag } from 'd3-drag';
-
-// import Brush from './Brush';
 import { ProcessYelpData } from '../utils/processData';
 
 import '../styles/components/scatterplot.css';
@@ -22,8 +20,6 @@ export class ScatterPlot extends Component {
             spaceOffset: 150
         }
 
-        // Binding your functions sets the "this" context to that of the class, not the function itself (so you can call "this.state" and "this._OTHER_FUNCTION")
-        // Whenever you create a new function in the component and you want it to be able to refer to outside functions and the state/props, you bind it like so here.
         this.createScatterPlot = this.createScatterPlot.bind(this);
         this.someEventHandler = this.someEventHandler.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
@@ -199,7 +195,7 @@ export class ScatterPlot extends Component {
                         .attr("class", "hover-line")
                         .append("line")
                         .attr('stroke', (d, i) => 'red')
-                        .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
+                        .attr("x1", axisPadding).attr("x2", size[0] + axisPadding)
                         .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
                 }
             })
@@ -240,11 +236,6 @@ export class ScatterPlot extends Component {
     handleMouseOut(d){
         const { updateCurrentDatum } = this.props;
         updateCurrentDatum([]);
-    }
-
-
-    someEventHandler() {   
-        const { updateData, updateCurrentDatum, currentDatum } = this.props;
     }
 
     render() {
