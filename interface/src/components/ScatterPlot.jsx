@@ -22,7 +22,7 @@ export class ScatterPlot extends Component {
             spaceOffset: 150
         }
 
-        //Binding your functions sets the "this" context to that of the class, not the function itself (so you can call "this.state" and "this._OTHER_FUNCTION")
+        // Binding your functions sets the "this" context to that of the class, not the function itself (so you can call "this.state" and "this._OTHER_FUNCTION")
         // Whenever you create a new function in the component and you want it to be able to refer to outside functions and the state/props, you bind it like so here.
         this.createScatterPlot = this.createScatterPlot.bind(this);
         this.someEventHandler = this.someEventHandler.bind(this);
@@ -177,25 +177,10 @@ export class ScatterPlot extends Component {
                 console.log(currentEvent);
                 if(this.id === "SC-xAxis"){
                     console.log(this);
-                    // select(node)
-                    //         .append('g')
-                    //         .attr("class", "hover-line")
-                    //         .append("line")
-                    //         .attr('stroke', (d, i) => 'red')
-                    //         .attr("x1", currentEvent.offsetX).attr("x2", currentEvent.offsetX)
-                    //         .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
                     deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "SC-yAxis"){
-                    // var testThresholdValue = 7; // for testing purposes only -- generalize once working. 
-
-                    // select(node)
-                    //         .append('g')
-                    //         .attr("class", "hover-line")
-                    //         .append("line")
-                    //         .attr('stroke', (d, i) => 'red')
-                    //         .attr("x1", axisPadding).attr("x2", size[0] + axisPadding) // vertical line so same value on each
-                    //         .attr("y1", currentEvent.offsetY).attr("y2", currentEvent.offsetY);
+                    console.log(this);
                     deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
                 }            
             })
@@ -222,33 +207,6 @@ export class ScatterPlot extends Component {
                 selectAll('.hover-line')
                     .remove();
             });
-
-
-        // select(node)
-        //     .selectAll('.tick')
-        //     .on('click', function(value, index){
-        //         console.log(xScale(value) + axisPadding);
-        //         if(this.parentElement.id === "SC-xAxis"){
-        //             select(node)
-        //                     .append('g')
-        //                     .attr("class", "hover-line")
-        //                     .append("line")
-        //                     .attr('stroke', (d, i) => 'red')
-        //                     .attr("x1", xScale(value) + axisPadding).attr("x2", xScale(value) + axisPadding)
-        //                     .attr("y1", 0).attr("y2", size[1] + spaceOffset - axisPadding);
-        //                     deleteMaxThresholdData(xAttr, this.childNodes[1].innerHTML);
-        //         }
-        //         else if(this.parentElement.id === "SC-yAxis"){
-        //             select(node)
-        //                     .append('g')
-        //                     .attr("class", "hover-line")
-        //                     .append("line")
-        //                     .attr('stroke', (d, i) => 'red')
-        //                     .attr("x1", 50).attr("x2", size[0] + axisPadding) // vertical line so same value on each
-        //                     .attr("y1", yScale(value) + 2*axisPadding - 5).attr("y2", yScale(value) + 2*axisPadding - 5);
-        //                     deleteMaxThresholdData(yAttr, this.childNodes[1].innerHTML);
-        //         }
-        //     });
     }
 
     handleDragTextStart(d){
@@ -285,21 +243,8 @@ export class ScatterPlot extends Component {
     }
 
 
-    someEventHandler() {
-
-        /* Props is a global state. Just do what I do below at any time to extract the functions/properties out of the state.
-        
-         updateCurrentDatum = a FUNCTION that stores an ARRAY of selected data, or in this case, yelp records. When called, does not reset the viz. 
-        
-         currentDatum = a PROPERTY: the current array of selected data/yelp records
-
-         currentDatum will be empty if you haven't updated it with "updateCurrentDatum" previously.
-
-         updateData = a FUNCTION that takes in the new data and updates the data of the viz. Will RESET the viz with the new data
-        */
-       
+    someEventHandler() {   
         const { updateData, updateCurrentDatum, currentDatum } = this.props;
-
     }
 
     render() {
