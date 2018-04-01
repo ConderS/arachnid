@@ -238,6 +238,11 @@ export class ScatterPlot extends Component {
         updateCurrentDatum([]);
     }
 
+
+    someEventHandler() {   
+        const { updateData, updateCurrentDatum, currentDatum } = this.props;
+    }
+
     render() {
         const { size } = this.props;
         const { spaceOffset } = this.state;
