@@ -1,6 +1,5 @@
 export function ProcessData(JSONString, field, categories){
   console.log("PROCESSING...");
-  // var JSONObject = JSON.parse(JSONString);
   var JSONObject = JSONString;
   var len = categories.length;
   for(var key in JSONObject){
@@ -15,12 +14,11 @@ export function ProcessData(JSONString, field, categories){
       }
     }
   }
-  // return JSON.stringify(JSONObject);
   return JSONObject;
 }
 
 export function ProcessYelpData(chartData, id, dataArr, deleteData = false){
-  console.log("Processing...");
+  console.log("PROCESSING...");
   
   var newChartData = chartData;
 
@@ -45,11 +43,9 @@ export function ProcessYelpData(chartData, id, dataArr, deleteData = false){
 }
 
 export function ProcessMaxThreshold(chartData, attr, threshold_value){
-  console.log("Processing...");
+  console.log("PROCESSING...");
   
   var newChartData = chartData;
-  // console.log("id:", id);
-  // console.log("Threshold:", threshold_value);
   console.log("Threshold value: ", threshold_value);
   
   for(var key = 0; key < chartData.length; key++){
