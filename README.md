@@ -2,9 +2,26 @@
 
 ## Setting Up
 
-In the `interface` directory:
+Install Front-End:
+- `cd js`
 - `npm install` to install dependencies
-- `npm start` to start local server
+
+Install Engine
+`cd engine`
+`pip install -r requirements.txt`
+
+Install Server:
+- Stay in root directory
+- `pip install -r requirements.txt`
+
+Run Front-End:
+- `cd js`
+- `npm start`
+
+Run Server:
+- Stay in root
+- `python server.py`
+
 
 ## Key Files
 

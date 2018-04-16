@@ -1,0 +1,516 @@
+WARNING:root:Logs saved in SSM4I4WK4K.log
+DEBUG:root:Starting the search algorithm with the following config: (11, 2) {'pattern': {'operations': [<class 'alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'gamma': 5}, 'dependency': {'operations': [<class 'alphaclean.ops.Swap'>], 'similarity': {'a': 'jaccard'}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 3, 'gamma': 5}}
+DEBUG:root:Enforcing dependency constraint=<alphaclean.constraints.Constraint object at 0x112188350>
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 9
+DEBUG:root:Predicate Sampler has 9
+DEBUG:root:Library generator created 127 operations
+DEBUG:root:Search Branch=0 df = swap(df,'a','Albany',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['San Francisco']))) took 0.002077
+DEBUG:root:Promoted Search Branch=0 df = swap(df,'a','Albany',('a', set(['San Francisco'])))
+DEBUG:root:Search Branch=1 df = swap(df,'a','New Yorks',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('a', set(['San Francisco']))) took 0.001957
+DEBUG:root:Promoted Search Branch=1 df = swap(df,'a','New Yorks',('a', set(['San Francisco'])))
+DEBUG:root:Search Branch=2 df = swap(df,'a','San Jose',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['San Francisco']))) took 0.00176
+DEBUG:root:Promoted Search Branch=2 df = swap(df,'a','San Jose',('a', set(['San Francisco'])))
+DEBUG:root:Search Branch=3 df = swap(df,'a','New York',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['San Francisco']))) took 0.001813
+DEBUG:root:Search Branch=4 df = swap(df,'a','Berkeley City',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['San Francisco']))) took 0.001773
+DEBUG:root:Search Branch=5 df = swap(df,'a','San Mateo',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('a', set(['San Francisco']))) took 0.001767
+DEBUG:root:Search Branch=6 df = swap(df,'a','Albany',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['New Yorks']))) took 0.001284
+DEBUG:root:Promoted Search Branch=6 df = swap(df,'a','Albany',('a', set(['New Yorks'])))
+DEBUG:root:Search Branch=7 df = swap(df,'a','San Jose',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['New Yorks']))) took 0.001122
+DEBUG:root:Search Branch=8 df = swap(df,'a','New York',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['New Yorks']))) took 0.001114
+DEBUG:root:Promoted Search Branch=8 df = swap(df,'a','New York',('a', set(['New Yorks'])))
+DEBUG:root:Search Branch=9 df = swap(df,'a','Berkeley City',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['New Yorks']))) took 0.00125
+DEBUG:root:Search Branch=10 df = swap(df,'a','San Francisco',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['New Yorks']))) took 0.001149
+DEBUG:root:Search Branch=11 df = swap(df,'a','San Mateo',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('a', set(['New Yorks']))) took 0.001114
+DEBUG:root:Search Branch=12 df = swap(df,'a','Albany',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['San Mateo']))) took 0.001446
+DEBUG:root:Search Branch=13 df = swap(df,'a','New Yorks',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('a', set(['San Mateo']))) took 0.001448
+DEBUG:root:Search Branch=14 df = swap(df,'a','San Jose',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['San Mateo']))) took 0.001432
+DEBUG:root:Search Branch=15 df = swap(df,'a','New York',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['San Mateo']))) took 0.001426
+DEBUG:root:Search Branch=16 df = swap(df,'a','Berkeley City',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['San Mateo']))) took 0.001468
+DEBUG:root:Search Branch=17 df = swap(df,'a','San Francisco',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['San Mateo']))) took 0.001603
+DEBUG:root:Search Branch=18 df = swap(df,'a','Albany',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['New York']))) took 0.001441
+DEBUG:root:Search Branch=19 df = swap(df,'a','New Yorks',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('a', set(['New York']))) took 0.001612
+DEBUG:root:Search Branch=20 df = swap(df,'a','San Jose',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['New York']))) took 0.00145
+DEBUG:root:Search Branch=21 df = swap(df,'a','Berkeley City',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['New York']))) took 0.001555
+DEBUG:root:Search Branch=22 df = swap(df,'a','San Francisco',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['New York']))) took 0.001467
+DEBUG:root:Search Branch=23 df = swap(df,'a','San Mateo',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('a', set(['New York']))) took 0.001437
+DEBUG:root:Search Branch=24 df = swap(df,'a','Albany',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SMO']))) took 0.001135
+DEBUG:root:Search Branch=25 df = swap(df,'a','New Yorks',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SMO']))) took 0.00112
+DEBUG:root:Search Branch=26 df = swap(df,'a','San Jose',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SMO']))) took 0.001238
+DEBUG:root:Search Branch=27 df = swap(df,'a','New York',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SMO']))) took 0.00115
+DEBUG:root:Search Branch=28 df = swap(df,'a','Berkeley City',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SMO']))) took 0.001361
+DEBUG:root:Search Branch=29 df = swap(df,'a','San Francisco',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SMO']))) took 0.00115
+DEBUG:root:Search Branch=30 df = swap(df,'a','San Mateo',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SMO']))) took 0.001156
+DEBUG:root:Search Branch=31 df = swap(df,'a','Albany',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['NY']))) took 0.001746
+DEBUG:root:Search Branch=32 df = swap(df,'a','New Yorks',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['NY']))) took 0.001752
+DEBUG:root:Search Branch=33 df = swap(df,'a','San Jose',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['NY']))) took 0.001749
+DEBUG:root:Search Branch=34 df = swap(df,'a','New York',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['NY']))) took 0.001733
+DEBUG:root:Search Branch=35 df = swap(df,'a','Berkeley City',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['NY']))) took 0.00174
+DEBUG:root:Search Branch=36 df = swap(df,'a','San Francisco',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['NY']))) took 0.001757
+DEBUG:root:Search Branch=37 df = swap(df,'a','San Mateo',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['NY']))) took 0.001741
+DEBUG:root:Search Branch=38 df = swap(df,'a','Albany',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SF']))) took 0.001472
+DEBUG:root:Search Branch=39 df = swap(df,'a','New Yorks',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SF']))) took 0.001619
+DEBUG:root:Search Branch=40 df = swap(df,'a','San Jose',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SF']))) took 0.001443
+DEBUG:root:Search Branch=41 df = swap(df,'a','New York',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SF']))) took 0.001579
+DEBUG:root:Search Branch=42 df = swap(df,'a','Berkeley City',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SF']))) took 0.001444
+DEBUG:root:Search Branch=43 df = swap(df,'a','San Francisco',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SF']))) took 0.001447
+DEBUG:root:Search Branch=44 df = swap(df,'a','San Mateo',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SF']))) took 0.002761
+DEBUG:root:Search Branch=45 df = swap(df,'a','Albany',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SM']))) took 0.001109
+DEBUG:root:Search Branch=46 df = swap(df,'a','New Yorks',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SM']))) took 0.001241
+DEBUG:root:Search Branch=47 df = swap(df,'a','San Jose',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SM']))) took 0.001849
+DEBUG:root:Search Branch=48 df = swap(df,'a','New York',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SM']))) took 0.001136
+DEBUG:root:Search Branch=49 df = swap(df,'a','Berkeley City',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SM']))) took 0.001116
+DEBUG:root:Search Branch=50 df = swap(df,'a','San Francisco',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SM']))) took 0.001353
+DEBUG:root:Search Branch=51 df = swap(df,'a','San Mateo',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SM']))) took 0.001134
+DEBUG:root:Search Branch=52 df = swap(df,'a','Albany',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SFO']))) took 0.001127
+DEBUG:root:Search Branch=53 df = swap(df,'a','New Yorks',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SFO']))) took 0.001129
+DEBUG:root:Search Branch=54 df = swap(df,'a','San Jose',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SFO']))) took 0.00198
+DEBUG:root:Search Branch=55 df = swap(df,'a','New York',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SFO']))) took 0.001168
+DEBUG:root:Search Branch=56 df = swap(df,'a','Berkeley City',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SFO']))) took 0.001204
+DEBUG:root:Search Branch=57 df = swap(df,'a','San Francisco',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SFO']))) took 0.001124
+DEBUG:root:Search Branch=58 df = swap(df,'a','San Mateo',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SFO']))) took 0.001241
+DEBUG:root:Search Branch=59 df = swap(df,'b','AB',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['San Francisco']))) took 0.001904
+DEBUG:root:Search Branch=60 df = swap(df,'b','NY',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['San Francisco']))) took 0.001766
+DEBUG:root:Search Branch=61 df = swap(df,'b','Bk',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['San Francisco']))) took 0.001976
+DEBUG:root:Search Branch=62 df = swap(df,'b','SMO',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['San Francisco']))) took 0.001744
+DEBUG:root:Search Branch=63 df = swap(df,'b','SFO',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('a', set(['San Francisco']))) took 0.00176
+DEBUG:root:Search Branch=64 df = swap(df,'b','SM',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['San Francisco']))) took 0.001778
+DEBUG:root:Search Branch=65 df = swap(df,'b','SJ',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['San Francisco']))) took 0.001898
+DEBUG:root:Search Branch=66 df = swap(df,'b','SF',('a', set(['San Francisco'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['San Francisco']))) took 0.002043
+DEBUG:root:Promoted Search Branch=66 df = swap(df,'b','SF',('a', set(['San Francisco'])))
+DEBUG:root:Search Branch=67 df = swap(df,'b','AB',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['New Yorks']))) took 0.001143
+DEBUG:root:Search Branch=68 df = swap(df,'b','NY',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['New Yorks']))) took 0.001115
+DEBUG:root:Search Branch=69 df = swap(df,'b','Bk',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['New Yorks']))) took 0.001121
+DEBUG:root:Search Branch=70 df = swap(df,'b','SMO',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['New Yorks']))) took 0.001268
+DEBUG:root:Search Branch=71 df = swap(df,'b','SFO',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('a', set(['New Yorks']))) took 0.001252
+DEBUG:root:Search Branch=72 df = swap(df,'b','SM',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['New Yorks']))) took 0.001285
+DEBUG:root:Search Branch=73 df = swap(df,'b','SJ',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['New Yorks']))) took 0.001137
+DEBUG:root:Search Branch=74 df = swap(df,'b','SF',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['New Yorks']))) took 0.001116
+DEBUG:root:Search Branch=75 df = swap(df,'b','AB',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['San Mateo']))) took 0.001476
+DEBUG:root:Search Branch=76 df = swap(df,'b','NY',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['San Mateo']))) took 0.001552
+DEBUG:root:Search Branch=77 df = swap(df,'b','Bk',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['San Mateo']))) took 0.001421
+DEBUG:root:Search Branch=78 df = swap(df,'b','SMO',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['San Mateo']))) took 0.001446
+DEBUG:root:Search Branch=79 df = swap(df,'b','SFO',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('a', set(['San Mateo']))) took 0.001426
+DEBUG:root:Search Branch=80 df = swap(df,'b','SM',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['San Mateo']))) took 0.001584
+DEBUG:root:Search Branch=81 df = swap(df,'b','SJ',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['San Mateo']))) took 0.001433
+DEBUG:root:Search Branch=82 df = swap(df,'b','SF',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['San Mateo']))) took 0.001431
+DEBUG:root:Search Branch=83 df = swap(df,'b','AB',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['New York']))) took 0.001588
+DEBUG:root:Search Branch=84 df = swap(df,'b','NY',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['New York']))) took 0.001524
+DEBUG:root:Search Branch=85 df = swap(df,'b','Bk',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['New York']))) took 0.001548
+DEBUG:root:Search Branch=86 df = swap(df,'b','SMO',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['New York']))) took 0.002527
+DEBUG:root:Search Branch=87 df = swap(df,'b','SFO',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('a', set(['New York']))) took 0.001447
+DEBUG:root:Search Branch=88 df = swap(df,'b','SM',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['New York']))) took 0.001653
+DEBUG:root:Search Branch=89 df = swap(df,'b','SJ',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['New York']))) took 0.001557
+DEBUG:root:Search Branch=90 df = swap(df,'b','SF',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['New York']))) took 0.001739
+DEBUG:root:Search Branch=91 df = swap(df,'b','AB',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SMO']))) took 0.001134
+DEBUG:root:Search Branch=92 df = swap(df,'b','NY',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SMO']))) took 0.001128
+DEBUG:root:Search Branch=93 df = swap(df,'b','Bk',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SMO']))) took 0.001126
+DEBUG:root:Search Branch=94 df = swap(df,'b','SFO',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('b', set(['SMO']))) took 0.001336
+DEBUG:root:Search Branch=95 df = swap(df,'b','SM',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['SMO']))) took 0.001934
+DEBUG:root:Search Branch=96 df = swap(df,'b','SJ',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SMO']))) took 0.001124
+DEBUG:root:Search Branch=97 df = swap(df,'b','SF',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SMO']))) took 0.001122
+DEBUG:root:Search Branch=98 df = swap(df,'b','AB',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['NY']))) took 0.001749
+DEBUG:root:Search Branch=99 df = swap(df,'b','Bk',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['NY']))) took 0.001998
+DEBUG:root:Search Branch=100 df = swap(df,'b','SMO',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['NY']))) took 0.00197
+DEBUG:root:Search Branch=101 df = swap(df,'b','SFO',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('b', set(['NY']))) took 0.001744
+DEBUG:root:Search Branch=102 df = swap(df,'b','SM',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['NY']))) took 0.001745
+DEBUG:root:Search Branch=103 df = swap(df,'b','SJ',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['NY']))) took 0.001741
+DEBUG:root:Search Branch=104 df = swap(df,'b','SF',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['NY']))) took 0.001755
+DEBUG:root:Search Branch=105 df = swap(df,'b','AB',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SF']))) took 0.001721
+DEBUG:root:Search Branch=106 df = swap(df,'b','NY',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SF']))) took 0.001433
+DEBUG:root:Search Branch=107 df = swap(df,'b','Bk',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SF']))) took 0.001449
+DEBUG:root:Search Branch=108 df = swap(df,'b','SMO',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['SF']))) took 0.001562
+DEBUG:root:Search Branch=109 df = swap(df,'b','SFO',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('b', set(['SF']))) took 0.001454
+DEBUG:root:Search Branch=110 df = swap(df,'b','SM',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['SF']))) took 0.001497
+DEBUG:root:Search Branch=111 df = swap(df,'b','SJ',('b', set(['SF'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SF']))) took 0.00144
+DEBUG:root:Search Branch=112 df = swap(df,'b','AB',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SM']))) took 0.00112
+DEBUG:root:Search Branch=113 df = swap(df,'b','NY',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SM']))) took 0.001117
+DEBUG:root:Search Branch=114 df = swap(df,'b','Bk',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SM']))) took 0.001146
+DEBUG:root:Search Branch=115 df = swap(df,'b','SMO',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['SM']))) took 0.001143
+DEBUG:root:Search Branch=116 df = swap(df,'b','SFO',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SFO',('b', set(['SM']))) took 0.001298
+DEBUG:root:Search Branch=117 df = swap(df,'b','SJ',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SM']))) took 0.001123
+DEBUG:root:Search Branch=118 df = swap(df,'b','SF',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SM']))) took 0.001221
+DEBUG:root:Search Branch=119 df = swap(df,'b','AB',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SFO']))) took 0.001134
+DEBUG:root:Search Branch=120 df = swap(df,'b','NY',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SFO']))) took 0.001131
+DEBUG:root:Search Branch=121 df = swap(df,'b','Bk',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SFO']))) took 0.001141
+DEBUG:root:Search Branch=122 df = swap(df,'b','SMO',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['SFO']))) took 0.001209
+DEBUG:root:Search Branch=123 df = swap(df,'b','SM',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['SFO']))) took 0.001129
+DEBUG:root:Search Branch=124 df = swap(df,'b','SJ',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SFO']))) took 0.003429
+DEBUG:root:Search Branch=125 df = swap(df,'b','SF',('b', set(['SFO'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SFO']))) took 0.002814
+DEBUG:root:Search Branch=126 
+DEBUG:root:Running  took 0.000104
+DEBUG:root:Search Depth=0 took 5.297494
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 6
+DEBUG:root:Predicate Sampler has 6
+DEBUG:root:Library generator created 79 operations
+DEBUG:root:Search Branch=0 df = swap(df,'a','Albany',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['New Yorks']))) took 0.00119
+DEBUG:root:Search Branch=1 df = swap(df,'a','San Jose',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['New Yorks']))) took 0.00117
+DEBUG:root:Search Branch=2 df = swap(df,'a','New York',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['New Yorks']))) took 0.001149
+DEBUG:root:Promoted Search Branch=2 df = swap(df,'a','New York',('a', set(['New Yorks'])))
+DEBUG:root:Search Branch=3 df = swap(df,'a','Berkeley City',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['New Yorks']))) took 0.00113
+DEBUG:root:Search Branch=4 df = swap(df,'a','San Francisco',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['New Yorks']))) took 0.001302
+DEBUG:root:Search Branch=5 df = swap(df,'a','San Mateo',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('a', set(['New Yorks']))) took 0.00113
+DEBUG:root:Search Branch=6 df = swap(df,'a','Albany',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['San Mateo']))) took 0.001433
+DEBUG:root:Search Branch=7 df = swap(df,'a','New Yorks',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('a', set(['San Mateo']))) took 0.001509
+DEBUG:root:Search Branch=8 df = swap(df,'a','San Jose',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['San Mateo']))) took 0.001448
+DEBUG:root:Search Branch=9 df = swap(df,'a','New York',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['San Mateo']))) took 0.001438
+DEBUG:root:Search Branch=10 df = swap(df,'a','Berkeley City',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['San Mateo']))) took 0.001816
+DEBUG:root:Search Branch=11 df = swap(df,'a','San Francisco',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['San Mateo']))) took 0.001503
+DEBUG:root:Search Branch=12 df = swap(df,'a','Albany',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['New York']))) took 0.001446
+DEBUG:root:Search Branch=13 df = swap(df,'a','New Yorks',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('a', set(['New York']))) took 0.001477
+DEBUG:root:Search Branch=14 df = swap(df,'a','San Jose',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['New York']))) took 0.00325
+DEBUG:root:Search Branch=15 df = swap(df,'a','Berkeley City',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['New York']))) took 0.002008
+DEBUG:root:Search Branch=16 df = swap(df,'a','San Francisco',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['New York']))) took 0.002539
+DEBUG:root:Search Branch=17 df = swap(df,'a','San Mateo',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('a', set(['New York']))) took 0.001462
+DEBUG:root:Search Branch=18 df = swap(df,'a','Albany',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SMO']))) took 0.001759
+DEBUG:root:Search Branch=19 df = swap(df,'a','New Yorks',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SMO']))) took 0.001131
+DEBUG:root:Search Branch=20 df = swap(df,'a','San Jose',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SMO']))) took 0.001182
+DEBUG:root:Search Branch=21 df = swap(df,'a','New York',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SMO']))) took 0.001389
+DEBUG:root:Search Branch=22 df = swap(df,'a','Berkeley City',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SMO']))) took 0.001244
+DEBUG:root:Search Branch=23 df = swap(df,'a','San Francisco',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SMO']))) took 0.001134
+DEBUG:root:Search Branch=24 df = swap(df,'a','San Mateo',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SMO']))) took 0.001403
+DEBUG:root:Search Branch=25 df = swap(df,'a','Albany',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['NY']))) took 0.002001
+DEBUG:root:Search Branch=26 df = swap(df,'a','New Yorks',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['NY']))) took 0.002103
+DEBUG:root:Search Branch=27 df = swap(df,'a','San Jose',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['NY']))) took 0.001747
+DEBUG:root:Search Branch=28 df = swap(df,'a','New York',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['NY']))) took 0.001907
+DEBUG:root:Search Branch=29 df = swap(df,'a','Berkeley City',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['NY']))) took 0.00189
+DEBUG:root:Search Branch=30 df = swap(df,'a','San Francisco',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['NY']))) took 0.001732
+DEBUG:root:Search Branch=31 df = swap(df,'a','San Mateo',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['NY']))) took 0.001745
+DEBUG:root:Search Branch=32 df = swap(df,'a','Albany',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SM']))) took 0.00142
+DEBUG:root:Search Branch=33 df = swap(df,'a','New Yorks',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','New Yorks',('b', set(['SM']))) took 0.001133
+DEBUG:root:Search Branch=34 df = swap(df,'a','San Jose',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SM']))) took 0.001102
+DEBUG:root:Search Branch=35 df = swap(df,'a','New York',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SM']))) took 0.00111
+DEBUG:root:Search Branch=36 df = swap(df,'a','Berkeley City',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SM']))) took 0.001112
+DEBUG:root:Search Branch=37 df = swap(df,'a','San Francisco',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SM']))) took 0.001625
+DEBUG:root:Search Branch=38 df = swap(df,'a','San Mateo',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SM']))) took 0.001595
+DEBUG:root:Search Branch=39 df = swap(df,'b','AB',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['New Yorks']))) took 0.001654
+DEBUG:root:Search Branch=40 df = swap(df,'b','SJ',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['New Yorks']))) took 0.001149
+DEBUG:root:Search Branch=41 df = swap(df,'b','Bk',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['New Yorks']))) took 0.001943
+DEBUG:root:Search Branch=42 df = swap(df,'b','SMO',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['New Yorks']))) took 0.001223
+DEBUG:root:Search Branch=43 df = swap(df,'b','NY',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['New Yorks']))) took 0.001459
+DEBUG:root:Search Branch=44 df = swap(df,'b','SM',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['New Yorks']))) took 0.001131
+DEBUG:root:Search Branch=45 df = swap(df,'b','SF',('a', set(['New Yorks'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['New Yorks']))) took 0.001148
+DEBUG:root:Search Branch=46 df = swap(df,'b','AB',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['San Mateo']))) took 0.001444
+DEBUG:root:Search Branch=47 df = swap(df,'b','SJ',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['San Mateo']))) took 0.001432
+DEBUG:root:Search Branch=48 df = swap(df,'b','Bk',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['San Mateo']))) took 0.001802
+DEBUG:root:Search Branch=49 df = swap(df,'b','SMO',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['San Mateo']))) took 0.001417
+DEBUG:root:Search Branch=50 df = swap(df,'b','NY',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['San Mateo']))) took 0.001437
+DEBUG:root:Search Branch=51 df = swap(df,'b','SM',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['San Mateo']))) took 0.001701
+DEBUG:root:Search Branch=52 df = swap(df,'b','SF',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['San Mateo']))) took 0.001546
+DEBUG:root:Search Branch=53 df = swap(df,'b','AB',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['New York']))) took 0.001438
+DEBUG:root:Search Branch=54 df = swap(df,'b','SJ',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['New York']))) took 0.001727
+DEBUG:root:Search Branch=55 df = swap(df,'b','Bk',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['New York']))) took 0.001565
+DEBUG:root:Search Branch=56 df = swap(df,'b','SMO',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['New York']))) took 0.001943
+DEBUG:root:Search Branch=57 df = swap(df,'b','NY',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['New York']))) took 0.001479
+DEBUG:root:Search Branch=58 df = swap(df,'b','SM',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['New York']))) took 0.001447
+DEBUG:root:Search Branch=59 df = swap(df,'b','SF',('a', set(['New York'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['New York']))) took 0.001434
+DEBUG:root:Search Branch=60 df = swap(df,'b','AB',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SMO']))) took 0.001107
+DEBUG:root:Search Branch=61 df = swap(df,'b','SJ',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SMO']))) took 0.001121
+DEBUG:root:Search Branch=62 df = swap(df,'b','Bk',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SMO']))) took 0.001104
+DEBUG:root:Search Branch=63 df = swap(df,'b','NY',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SMO']))) took 0.001124
+DEBUG:root:Search Branch=64 df = swap(df,'b','SM',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['SMO']))) took 0.00112
+DEBUG:root:Search Branch=65 df = swap(df,'b','SF',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SMO']))) took 0.001425
+DEBUG:root:Search Branch=66 df = swap(df,'b','AB',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['NY']))) took 0.001747
+DEBUG:root:Search Branch=67 df = swap(df,'b','SJ',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['NY']))) took 0.001812
+DEBUG:root:Search Branch=68 df = swap(df,'b','Bk',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['NY']))) took 0.001741
+DEBUG:root:Search Branch=69 df = swap(df,'b','SMO',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['NY']))) took 0.001759
+DEBUG:root:Search Branch=70 df = swap(df,'b','SM',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['NY']))) took 0.001732
+DEBUG:root:Search Branch=71 df = swap(df,'b','SF',('b', set(['NY'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['NY']))) took 0.001691
+DEBUG:root:Search Branch=72 df = swap(df,'b','AB',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SM']))) took 0.001148
+DEBUG:root:Search Branch=73 df = swap(df,'b','SJ',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SM']))) took 0.001148
+DEBUG:root:Search Branch=74 df = swap(df,'b','Bk',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SM']))) took 0.001275
+DEBUG:root:Search Branch=75 df = swap(df,'b','SMO',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['SM']))) took 0.001299
+DEBUG:root:Search Branch=76 df = swap(df,'b','NY',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SM']))) took 0.001465
+DEBUG:root:Search Branch=77 df = swap(df,'b','SF',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SM']))) took 0.001146
+DEBUG:root:Search Branch=78 
+DEBUG:root:Running  took 0.000102
+DEBUG:root:Search Depth=1 took 3.58524
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 3
+DEBUG:root:Predicate Sampler has 3
+DEBUG:root:Library generator created 37 operations
+DEBUG:root:Search Branch=0 df = swap(df,'a','Albany',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('a', set(['San Mateo']))) took 0.001618
+DEBUG:root:Search Branch=1 df = swap(df,'a','San Jose',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('a', set(['San Mateo']))) took 0.00173
+DEBUG:root:Search Branch=2 df = swap(df,'a','New York',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','New York',('a', set(['San Mateo']))) took 0.001489
+DEBUG:root:Search Branch=3 df = swap(df,'a','Berkeley City',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('a', set(['San Mateo']))) took 0.001527
+DEBUG:root:Search Branch=4 df = swap(df,'a','San Francisco',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('a', set(['San Mateo']))) took 0.00148
+DEBUG:root:Search Branch=5 df = swap(df,'a','Albany',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SMO']))) took 0.001154
+DEBUG:root:Search Branch=6 df = swap(df,'a','San Jose',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SMO']))) took 0.001189
+DEBUG:root:Search Branch=7 df = swap(df,'a','New York',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SMO']))) took 0.001186
+DEBUG:root:Search Branch=8 df = swap(df,'a','Berkeley City',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SMO']))) took 0.001367
+DEBUG:root:Search Branch=9 df = swap(df,'a','San Francisco',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SMO']))) took 0.001122
+DEBUG:root:Search Branch=10 df = swap(df,'a','San Mateo',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SMO']))) took 0.001131
+DEBUG:root:Search Branch=11 df = swap(df,'a','Albany',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Albany',('b', set(['SM']))) took 0.001066
+DEBUG:root:Search Branch=12 df = swap(df,'a','San Jose',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Jose',('b', set(['SM']))) took 0.001111
+DEBUG:root:Search Branch=13 df = swap(df,'a','New York',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','New York',('b', set(['SM']))) took 0.001079
+DEBUG:root:Search Branch=14 df = swap(df,'a','Berkeley City',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','Berkeley City',('b', set(['SM']))) took 0.001115
+DEBUG:root:Search Branch=15 df = swap(df,'a','San Francisco',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Francisco',('b', set(['SM']))) took 0.001116
+DEBUG:root:Search Branch=16 df = swap(df,'a','San Mateo',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'a','San Mateo',('b', set(['SM']))) took 0.001117
+DEBUG:root:Search Branch=17 df = swap(df,'b','AB',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','AB',('a', set(['San Mateo']))) took 0.00143
+DEBUG:root:Search Branch=18 df = swap(df,'b','SJ',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('a', set(['San Mateo']))) took 0.001425
+DEBUG:root:Search Branch=19 df = swap(df,'b','Bk',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('a', set(['San Mateo']))) took 0.002248
+DEBUG:root:Search Branch=20 df = swap(df,'b','SMO',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('a', set(['San Mateo']))) took 0.001461
+DEBUG:root:Promoted Search Branch=20 df = swap(df,'b','SMO',('a', set(['San Mateo'])))
+DEBUG:root:Search Branch=21 df = swap(df,'b','NY',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','NY',('a', set(['San Mateo']))) took 0.001555
+DEBUG:root:Search Branch=22 df = swap(df,'b','SM',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SM',('a', set(['San Mateo']))) took 0.001435
+DEBUG:root:Search Branch=23 df = swap(df,'b','SF',('a', set(['San Mateo'])))
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['San Mateo']))) took 0.002393
+DEBUG:root:Search Branch=24 df = swap(df,'b','AB',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SMO']))) took 0.001345
+DEBUG:root:Search Branch=25 df = swap(df,'b','SJ',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SMO']))) took 0.001419
+DEBUG:root:Search Branch=26 df = swap(df,'b','Bk',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SMO']))) took 0.001378
+DEBUG:root:Search Branch=27 df = swap(df,'b','NY',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SMO']))) took 0.001612
+DEBUG:root:Search Branch=28 df = swap(df,'b','SM',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SM',('b', set(['SMO']))) took 0.001154
+DEBUG:root:Search Branch=29 df = swap(df,'b','SF',('b', set(['SMO'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SMO']))) took 0.001167
+DEBUG:root:Search Branch=30 df = swap(df,'b','AB',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','AB',('b', set(['SM']))) took 0.00132
+DEBUG:root:Search Branch=31 df = swap(df,'b','SJ',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SJ',('b', set(['SM']))) took 0.00112
+DEBUG:root:Search Branch=32 df = swap(df,'b','Bk',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','Bk',('b', set(['SM']))) took 0.001163
+DEBUG:root:Search Branch=33 df = swap(df,'b','SMO',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SMO',('b', set(['SM']))) took 0.001252
+DEBUG:root:Search Branch=34 df = swap(df,'b','NY',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','NY',('b', set(['SM']))) took 0.00111
+DEBUG:root:Search Branch=35 df = swap(df,'b','SF',('b', set(['SM'])))
+DEBUG:root:Running df = swap(df,'b','SF',('b', set(['SM']))) took 0.001119
+DEBUG:root:Search Branch=36 
+DEBUG:root:Running  took 9.8e-05
+DEBUG:root:Search Depth=2 took 1.759375
+DEBUG:root:Search  took 10.642704
+DEBUG:root:Running df = swap(df,'b','SF',('a', set(['San Francisco'])))
+df = swap(df,'a','New York',('a', set(['New Yorks'])))
+df = swap(df,'b','SMO',('a', set(['San Mateo']))) took 0.00168

@@ -1,0 +1,34 @@
+#view {
+    margin-top: 15px;
+    margin-left: 20px;
+    width: 65%;    
+    float: left;
+}
+
+.variablesMenu {
+    width: 30%;
+    float: left;
+    text-align: center;
+    margin-top: 5em;
+}
+
+.variablesMenuHeader {
+    margin-bottom: 20px;
+}
+
+.datum-text {
+    
+}
+
+.data-btn {
+    margin-top: 7em;
+}
+
+.btn {
+    max-width: 50%;
+
+}
+
+.axis {
+    cursor: pointer;
+}
