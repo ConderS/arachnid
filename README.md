@@ -6,11 +6,6 @@ Install Front-End:
 - `cd js`
 - `npm install` to install dependencies
 
-Install Engine
-`cd engine`
-
-`pip install -r requirements.txt`
-
 Install Server:
 - In root directory
 - `pip install -r requirements.txt`
@@ -23,6 +18,10 @@ Run Server:
 - In root directory
 - `python server.py`
 
+If you happen to want to run the engine itself:
+- Create separate virtualenv
+- `cd engine`
+- `pip install -r requirements.txt`
 
 ## Key Files
 
