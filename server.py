@@ -24,17 +24,28 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def index():
     return render_template('index.html')
 
+
 @app.route('/api/yelp-threshold', methods=['POST'])
 def yelp_threshold():
     body = request.data
-    df = pd.read_json(body)
+    print("Request Data: ", request.data)
 
-    clean_data = set_max_threshold_yelp(df["chartData"], df["max_threshold"][0])
+    data = json.loads(body)
+
+    print("Loaded Json: ", data)
+
+    print("Parsed Chart Data ", data["chartData"])
+
+    print("Max Threshold: ", data["max_threshold"])
+
+    clean_data = set_max_threshold_yelp(data["chartData"], data["max_threshold"])
     return jsonify(clean_data)
+
 
 def set_max_threshold_yelp(in_data, max_threshold):
     # print(data.head(4))
     data = pd.DataFrame(in_data)
+    print("Dataframed Data: ", data)
 
     patterns = []
     patterns += [Float('stars', [1, max_threshold])]

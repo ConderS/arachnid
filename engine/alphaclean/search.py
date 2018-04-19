@@ -9,6 +9,7 @@ consistent,  whereas \gamma=  1  is  a  pure  greedy search.
 
 import numpy as np
 import datetime
+import logging
 
 from generators import *
 from heapq import *
@@ -40,7 +41,7 @@ DEFAULT_SOLVER_CONFIG['dependency'] = {
     'w2v': 'resources/GoogleNews-vectors-negative300.bin'
 }
 
-
+logging.basicConfig(filename="ArachnidDebug.log", level=logging.DEBUG)
 
 def solve(df, patterns=[], dependencies=[], partitionOn=None, config=DEFAULT_SOLVER_CONFIG):
     """The solve function takes as input a specification in terms of a list of patterns and 
@@ -57,7 +58,6 @@ def solve(df, patterns=[], dependencies=[], partitionOn=None, config=DEFAULT_SOL
     """
 
     op = NOOP()
-
     logging.debug('Starting the search algorithm with the following config: ' + str(df.shape) + " " + str(config))
 
 
@@ -124,7 +124,7 @@ def solve(df, patterns=[], dependencies=[], partitionOn=None, config=DEFAULT_SOL
     else:
        
         op1, df = patternConstraints(df, patterns, config['pattern'])
-
+        
         op2, df = dependencyConstraints(df, dependencies, config['dependency'])
 
         op = op * (op1*op2)
@@ -188,6 +188,8 @@ def dependencyConstraints(df, costFnList, config, pruningModel=None):
 
     op = NOOP()
 
+    training = None 
+
     for c in costFnList:
 
         logging.debug('Enforcing dependency constraint='+str(c))
@@ -200,8 +202,6 @@ def dependencyConstraints(df, costFnList, config, pruningModel=None):
         op = op * transform
 
     return op, df, training    
-
-
 
 
 def treeSearch(df, costFn, operations, evaluations, inflation, editCost,

@@ -19,7 +19,6 @@ Run Server:
 - `python server.py`
 
 If you happen to want to run the engine itself (in isolation from the server):
-
 - Create separate virtualenv
 - `cd engine`
 - `pip install -r requirements.txt`
