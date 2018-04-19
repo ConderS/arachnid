@@ -201,7 +201,7 @@ def dependencyConstraints(df, costFnList, config, pruningModel=None):
 
         op = op * transform
 
-    return op, df, training    
+    return op, df 
 
 
 def treeSearch(df, costFn, operations, evaluations, inflation, editCost,
