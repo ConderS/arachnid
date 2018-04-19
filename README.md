@@ -8,10 +8,11 @@ Install Front-End:
 
 Install Engine
 `cd engine`
+
 `pip install -r requirements.txt`
 
 Install Server:
-- Stay in root directory
+- In root directory
 - `pip install -r requirements.txt`
 
 Run Front-End:
@@ -19,7 +20,7 @@ Run Front-End:
 - `npm start`
 
 Run Server:
-- Stay in root
+- In root directory
 - `python server.py`
 
 
