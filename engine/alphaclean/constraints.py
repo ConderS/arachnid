@@ -185,7 +185,9 @@ class CellEdit(Constraint):
 
         for i in range(N):
             for j in range(p):
+                # print("DEBUG", str(df.iloc[i,j]))
                 target = str(df.iloc[i,j])
+
                 ref = str(self.source.iloc[i,j])
                 cname = self.source.columns.values[j]
 

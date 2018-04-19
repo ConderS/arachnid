@@ -1,4 +1,4 @@
 arachnid/
 node_modules
 .pycache
-
+*.pyc
