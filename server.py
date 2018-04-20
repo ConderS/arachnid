@@ -31,7 +31,7 @@ def index():
 def yelp_threshold():
     body = request.data
     df = json.loads(body)
-    clean_df = set_max_threshold_yelp(df["chartData"], df["max_threshold"])
+    clean_df = set_max_threshold_yelp(df["chartData"], df["attr"], df["max_threshold"])
 
     # Can't use this until figure out how to convert numpy array (with index/column information) into python array of objects with column names per record
     # 
@@ -44,22 +44,41 @@ def yelp_threshold():
     return jsonify(data)
 
 
-def df_to_chartData(df):
-  '''
-    Manually converts dataframe to the format of:
-      
-      [
-        { "column_name": <val>, "column_name": <val>, etc... },
-        {...},
-        ...
-      ]
+def set_max_threshold_yelp(in_data, attr, max_threshold):
+    data = pd.DataFrame(in_data)
+    # types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
 
-  '''
-  
-    column_names = list(clean_df)
+    # for col in types[types=='unicode'].index:
+    #   data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
+
+    patterns = []
+    patterns += [Float(attr, [1, max_threshold])]
+
+    config = DEFAULT_SOLVER_CONFIG
+    config['dependency']['operations'] = [Delete]
+    operation, output = solve(data, patterns = patterns, dependencies = [], config = config)
+
+    print(operation, output)
+    output.dropna(subset=['review_count'], how='all', inplace = True)
+
+    return output
+
+
+def df_to_chartData(df):
+    '''
+      Manually converts dataframe to the format of:
+
+        [
+          { "column_name": <val>, "column_name": <val>, etc... },
+          {...},
+          ...
+        ]
+
+    '''
+    column_names = list(df)
     data = []
     for c in column_names:
-      column_vals = clean_df[c].tolist()
+      column_vals = df[c].tolist()
 
       if (not data):
         for val in column_vals:
@@ -71,25 +90,6 @@ def df_to_chartData(df):
           data[idx][c] = val
 
     return data
-
-
-def set_max_threshold_yelp(in_data, max_threshold):
-    data = pd.DataFrame(in_data)
-    # types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
-
-    # for col in types[types=='unicode'].index:
-    #   data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
-
-    patterns = []
-    patterns += [Float('review_count', [1, max_threshold])]
-
-    config = DEFAULT_SOLVER_CONFIG
-    config['dependency']['operations'] = [Delete]
-    operation, output = solve(data, patterns = patterns, dependencies = [], config = config)
-
-    print(operation, output)
-    output.dropna(subset=['review_count'], how='all', inplace = True)
-    return output
 
 
 app.secret_key = 'a mysterious key unbeknowst to man'

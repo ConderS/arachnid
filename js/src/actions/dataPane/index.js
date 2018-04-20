@@ -36,13 +36,14 @@ export function generateChart(chartType) {
 }
 
 
-export const processYelpMaxThreshold = (chartData, threshold_value) => (dispatch, getState) => {
+export const processYelpMaxThreshold = (chartData, attr, threshold_value) => (dispatch, getState) => {
   console.log("PROCESSING (TO ENGINE)...");
 
   console.log("Threshold value: ", threshold_value);
 
   var data = {
     "chartData": chartData.slice(0, 100),
+    "attr": attr,
     "max_threshold": threshold_value
   }
 

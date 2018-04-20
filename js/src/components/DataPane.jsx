@@ -57,17 +57,17 @@ export class DataPane extends Component {
         this.props.driveChartUpdate();
     }
 
-    dedupChartData(key, dedupArray) {
+    dedupChartData(attr, dedupArray) {
         const { updateData, chartData } = this.props;
 
-        const newData = ProcessYelpData(chartData, key, dedupArray);
+        const newData = ProcessYelpData(chartData, attr, dedupArray);
         updateData(newData);
     }
 
-    deleteChartData(key, deleteArray) {
+    deleteChartData(attr, deleteArray) {
         const { updateData, chartData } = this.props;
 
-        const newData = ProcessYelpData(chartData, key, deleteArray, true);
+        const newData = ProcessYelpData(chartData, attr, deleteArray, true);
         updateData(newData);
     }
 
@@ -77,9 +77,9 @@ export class DataPane extends Component {
     //     updateData(newData);
     // }
 
-    deleteMaxThresholdData(key, threshold_value){
-        const { updateData, chartData, processYelpMaxThreshold } = this.props;
-        processYelpMaxThreshold(chartData, threshold_value);
+    deleteMaxThresholdData(attr, threshold_value){
+        const { chartData, processYelpMaxThreshold } = this.props;
+        processYelpMaxThreshold(chartData, attr, threshold_value);
     }
 
     
