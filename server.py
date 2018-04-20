@@ -59,7 +59,7 @@ def set_max_threshold_yelp(in_data, attr, max_threshold):
     operation, output = solve(data, patterns = patterns, dependencies = [], config = config)
 
     print(operation, output)
-    output.dropna(subset=['review_count'], how='all', inplace = True)
+    output.dropna(subset=[attr], how='all', inplace = True)
 
     return output
 
