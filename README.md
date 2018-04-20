@@ -19,4 +19,6 @@ If you happen to want to run the engine itself (in isolation from the server):
 
 ## Key Files
 
-- `src/components/DataPane.js` is where vega loads the visualization and handles all the interactions
+- `js/src/components/DataPane.js` is the parent component for the charts and adds additional actions for handling interactions
+- `js/src/components/BarChart.js` contains all d3 logic for the BarChart compoennt
+- `js/src/components/ScatterPlot.js` contains all d3 logic for the ScatterPlot component
