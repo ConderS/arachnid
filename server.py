@@ -6,6 +6,8 @@ import json
 import environ
 import pandas as pd
 
+import numpy as np
+
 # import sys
 # currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 # parentdir = os.path.dirname(currentdir)
@@ -29,17 +31,54 @@ def index():
 def yelp_threshold():
     body = request.data
     df = json.loads(body)
-    clean_data = set_max_threshold_yelp(df["chartData"], df["max_threshold"])
-    print("CLEAN DATA: ", clean_data)
-    return clean_data.to_json()
+    clean_df = set_max_threshold_yelp(df["chartData"], df["max_threshold"])
+
+    # Can't use this until figure out how to convert numpy array (with index/column information) into python array of objects with column names per record
+    # 
+    # data = np.core.records.fromrecords(clean_df.reset_index(), names=clean_df.reset_index().columns.tolist())
+ 
+    
+    # Manually reconstructing proper data format
+    data = df_to_chartData(clean_df)
+
+    return jsonify(data)
+
+
+def df_to_chartData(df):
+  '''
+    Manually converts dataframe to the format of:
+      
+      [
+        { "column_name": <val>, "column_name": <val>, etc... },
+        {...},
+        ...
+      ]
+
+  '''
+  
+    column_names = list(clean_df)
+    data = []
+    for c in column_names:
+      column_vals = clean_df[c].tolist()
+
+      if (not data):
+        for val in column_vals:
+          data_record = {}
+          data_record[c] = val
+          data.append(data_record)
+      else:
+        for idx, val in enumerate(column_vals):
+          data[idx][c] = val
+
+    return data
 
 
 def set_max_threshold_yelp(in_data, max_threshold):
     data = pd.DataFrame(in_data)
-    types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
+    # types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
 
-    for col in types[types=='unicode'].index:
-      data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
+    # for col in types[types=='unicode'].index:
+    #   data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
 
     patterns = []
     patterns += [Float('review_count', [1, max_threshold])]

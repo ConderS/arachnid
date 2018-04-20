@@ -185,16 +185,17 @@ class CellEdit(Constraint):
 
         for i in range(N):
             for j in range(p):
-                # item = df.iloc[i,j]
-                # if isinstance(item, unicode):
-                #     item = item.encode('utf-8')
-                target = str(df.iloc[i,j])
-                # target = str(item)
+                item = df.iloc[i,j]
+                if isinstance(item, unicode):
+                    item = item.encode('utf-8')
+                # target = str(df.iloc[i,j])
+                target = str(item)
 
-                # item = self.source.iloc[i,j]
-                # if isinstance(item, unicode):
-                #     item = item.encode('utf-8')
-                ref = str(self.source.iloc[i,j])
+                item = self.source.iloc[i,j]
+                if isinstance(item, unicode):
+                    item = item.encode('utf-8')
+                # ref = str(self.source.iloc[i,j])
+                ref = str(item)
                 cname = self.source.columns.values[j]
 
                 #some short circuits so you don't have to eval
