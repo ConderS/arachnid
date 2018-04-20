@@ -28,34 +28,27 @@ def index():
 @app.route('/api/yelp-threshold', methods=['POST'])
 def yelp_threshold():
     body = request.data
-    print("Request Data: ", request.data)
-
-    data = json.loads(body)
-
-    print("Loaded Json: ", data)
-
-    print("Parsed Chart Data ", data["chartData"])
-
-    print("Max Threshold: ", data["max_threshold"])
-
-    clean_data = set_max_threshold_yelp(data["chartData"], data["max_threshold"])
-    return jsonify(clean_data)
+    df = json.loads(body)
+    clean_data = set_max_threshold_yelp(df["chartData"], df["max_threshold"])
+    return clean_data.to_json()
 
 
 def set_max_threshold_yelp(in_data, max_threshold):
-    # print(data.head(4))
     data = pd.DataFrame(in_data)
-    print("Dataframed Data: ", data)
+    types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
+
+    for col in types[types=='unicode'].index:
+      data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
 
     patterns = []
-    patterns += [Float('stars', [1, max_threshold])]
+    patterns += [Float('review_count', [1, max_threshold])]
 
     config = DEFAULT_SOLVER_CONFIG
     config['dependency']['operations'] = [Delete]
     operation, output = solve(data, patterns = patterns, dependencies = [], config = config)
 
     print(operation, output)
-    output.dropna(subset=['stars'], how='all', inplace = True)
+    output.dropna(subset=['review_count'], how='all', inplace = True)
     return output
 
 

@@ -2,4 +2,4 @@ arachnid_venv/
 engine_venv/
 node_modules
 .pycache
-
+*.pyc
