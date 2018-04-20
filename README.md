@@ -2,21 +2,15 @@
 
 ## Setting Up
 
-Install Front-End:
+Front-End:
 - `cd js`
 - `npm install` to install dependencies
+- `npm start` to run locally
 
-Install Server:
+Server:
 - In root directory
-- `pip install -r requirements.txt`
-
-Run Front-End:
-- `cd js`
-- `npm start`
-
-Run Server:
-- In root directory
-- `python server.py`
+- `pip install -r requirements.txt` to install dependencies
+- `python server.py` to run locally
 
 If you happen to want to run the engine itself (in isolation from the server):
 - Create separate virtualenv
