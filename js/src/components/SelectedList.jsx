@@ -24,8 +24,8 @@ export class SelectedList extends Component {
 
             return (
                 <li key={index} className={classNameTxt}>
-                    <p className="al-info"><label>{xAttr}:</label> {xVal}</p>
-                    <p className="al-info"><label>{yAttr}:</label> {yVal}</p>
+                    <p className="al-info"><label>{xAttr}: </label>{xVal}</p>
+                    <p className="al-info"><label>{yAttr}: </label>{yVal}</p>
                     <hr/>
                 </li>
                 );

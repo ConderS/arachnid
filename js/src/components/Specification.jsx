@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/components/specification.css';
 
-// The interactive part of the menu 
+// Gives interactive list of quality functions
 export class Specification extends Component {
     constructor(props) {
         super(props);
@@ -12,6 +12,7 @@ export class Specification extends Component {
             <div className="sp-container">
                 <h3 className="menu-header">Quality Functions</h3>
                 <hr/>
+                
             </div>
             );
     }

@@ -54,7 +54,7 @@ export class BarChart extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
 
-        if (nextProps.update !== this.props.update) {
+        if (nextProps.updateChart !== this.props.updateChart) {
             return true; 
         }
         
@@ -233,6 +233,7 @@ export class BarChart extends Component {
                 if(this.id === "BC-xAxis"){
                     console.log(this);
                     console.log("Value", xScale.invert(mouse(this)[0]))
+                    
                     deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "BC-yAxis"){

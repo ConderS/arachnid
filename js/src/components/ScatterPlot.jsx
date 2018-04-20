@@ -36,7 +36,7 @@ export class ScatterPlot extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.update !== this.props.update) {
+        if (nextProps.updateChart !== this.props.updateChart) {
             return true;
         }
         return false;

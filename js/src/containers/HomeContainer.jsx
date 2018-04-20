@@ -36,7 +36,7 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps({ dataPane }) {
 
-    const { chartData, size, currentDatum, xAttr, yAttr, update, chartType } = dataPane;
+    const { chartData, size, currentDatum, xAttr, yAttr, updateChart, chartType } = dataPane;
 
     return {
         chartData,
@@ -44,7 +44,7 @@ function mapStateToProps({ dataPane }) {
         currentDatum,
         xAttr,
         yAttr,
-        update,
+        updateChart,
         chartType
     };
 }
