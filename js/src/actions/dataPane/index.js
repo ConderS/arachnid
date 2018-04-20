@@ -58,6 +58,9 @@ export const processYelpMaxThreshold = (chartData, threshold_value) => (dispatch
   fetch(
       request)
       .then(response => response.json())
-      .then(data => dispatch(updateData(data)))
+      .then(data => {
+        console.log("Respond Data: ", data);
+        dispatch(updateData(data));
+      })
       .catch(err => console.log("ERROR: ", err));
 }

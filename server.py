@@ -30,6 +30,7 @@ def yelp_threshold():
     body = request.data
     df = json.loads(body)
     clean_data = set_max_threshold_yelp(df["chartData"], df["max_threshold"])
+    print("CLEAN DATA: ", clean_data)
     return clean_data.to_json()
 
 
