@@ -35,16 +35,29 @@ export function generateChart(chartType) {
     }
 }
 
+export function _addQF(qf) {
+  return {
+    type: "ADD_QF",
+    qf
+  }
+}
 
-export const processYelpMaxThreshold = (chartData, attr, threshold_value) => (dispatch, getState) => {
+export function error(msg) {
+  return {
+    type: "ERROR",
+    msg
+  }
+}
+// Attached to the QF 
+export const processYelpMaxThreshold = (spec) => (dispatch, getState) => {
   console.log("PROCESSING (TO ENGINE)...");
 
-  console.log("Threshold value: ", threshold_value);
+  console.log("Threshold value: ", spec.thresholdValue);
 
   var data = {
-    "chartData": chartData,
-    "attr": attr,
-    "max_threshold": threshold_value
+    "chartData": spec.chartData,
+    "attr": spec.attr,
+    "max_threshold": spec.thresholdValue
   }
 
   var request = new Request("http://localhost:8111/api/yelp-threshold", {
@@ -64,4 +77,21 @@ export const processYelpMaxThreshold = (chartData, attr, threshold_value) => (di
         dispatch(updateData(data));
       })
       .catch(err => console.log("ERROR: ", err));
+}
+
+export const addQF = (qf) => (dispatch, getState) => {
+  console.log("Adding QF...");
+
+  // In future, have different classes for each type of quality function that we can instantiate
+  switch(qf.type) {
+    case "Max_Threshold":
+      qf["compute"] = processYelpMaxThreshold
+      break;
+
+    default:
+      dispatch(error("Need to specify type of quality function"))
+      return;
+  }
+
+  dispatch(_addQF(qf))
 }

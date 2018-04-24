@@ -11,6 +11,7 @@ const initialState = {
     yAttr: "review_count",
     chartType: "bar",
     updateChart: 0,
+    QFList: []
 };
 
 export default function(state = initialState, action) {
@@ -23,9 +24,11 @@ export default function(state = initialState, action) {
         case "UPDATE_CURRENT_DATUM":
             return Object.assign({}, state, { currentDatum: action.datum });
         case "DRIVE_CHART_UPDATE":
-            return Object.assign({}, state, { updateChart: count + 1 });
+            return Object.assign({}, state, { updateChart: count+1 });
         case "GENERATE_CHART":
             return Object.assign({}, state, { chartType: action.chartType });
+        case "ADD_QF":
+            return Object.assign({}, state, { QFList: [ ...state.QFList, action.qf ] })
         default:
             return state;
     }

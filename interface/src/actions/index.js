@@ -1,4 +1,4 @@
-import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, generateChart, processYelpMaxThreshold } from './dataPane';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, generateChart, processYelpMaxThreshold, addQF } from './dataPane';
 
 export {
     updateData,
@@ -6,5 +6,6 @@ export {
     updateCurrentDatum,
     driveChartUpdate,
     generateChart,
-    processYelpMaxThreshold
+    processYelpMaxThreshold,
+    addQF
 };
