@@ -2,21 +2,15 @@
 
 ## Setting Up
 
-Install Front-End:
+Front-End:
 - `cd js`
 - `npm install` to install dependencies
+- `npm start` to run locally
 
-Install Server:
+Server:
 - In root directory
-- `pip install -r requirements.txt`
-
-Run Front-End:
-- `cd js`
-- `npm start`
-
-Run Server:
-- In root directory
-- `python server.py`
+- `pip install -r requirements.txt` to install dependencies
+- `python server.py` to run locally
 
 If you happen to want to run the engine itself (in isolation from the server):
 - Create separate virtualenv
@@ -25,4 +19,7 @@ If you happen to want to run the engine itself (in isolation from the server):
 
 ## Key Files
 
-- `src/components/DataPane.js` is where vega loads the visualization and handles all the interactions
+- `js/src/components/DataPane.js` is the parent component for the charts and adds additional actions for handling interactions
+- `js/src/components/BarChart.js` contains all d3 logic for the BarChart compoennt
+- `js/src/components/ScatterPlot.js` contains all d3 logic for the ScatterPlot component
+- `js/src/actions/dataPane/index.js` is where quality functions will be sent to the server 

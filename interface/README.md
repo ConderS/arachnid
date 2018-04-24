@@ -2,7 +2,7 @@
 
 ## Setting Up
 
-In the `interface` directory:
+In this directory:
 - `npm install` to install dependencies
 - `npm start` to start local server
 
