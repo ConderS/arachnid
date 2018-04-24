@@ -9,6 +9,7 @@ export class QF extends Component {
         this.renderMaxThreshold = this.renderMaxThreshold.bind(this);
         this.renderDedupTwo = this.renderDedupTwo.bind(this);
         this.confirmQF = this.confirmQF.bind(this);
+        this.renderDeleteOne = this.renderDeleteOne.bind(this);
     }
 
     renderQF() {
@@ -19,6 +20,10 @@ export class QF extends Component {
                 return this.renderMaxThreshold();
             case "Dedup_Two":
                 return this.renderDedupTwo();
+            case "Delete_One":
+                return this.renderDeleteOne();
+            default:
+                return (<div>Error!</div>);
         }
     }
     
@@ -57,11 +62,34 @@ export class QF extends Component {
                 <p className="qf-value qf-pursue">{ pursue[1].business_id }, { pursue[1].review_count }</p>
 
                 <label>Transformation Template: </label>
-                
+
                 <hr className="qf-line" />
                 <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
             </div>
             )
+    }
+
+    renderDeleteOne() {
+        const { handleConfirmQF } = this.props;
+        const { pursue, attribute } = this.props.body;
+        
+        console.log("pursue: ", pursue);
+        return (
+            <div className="subQFContainer">
+                <hr />
+                <p className="max-threshold-txt">Delete on:</p> 
+                <p className="qf-value qf-attribute">{ attribute }</p>
+
+                <label className="">Delete Record</label>
+
+                <p className="no-space-mb-1 dirty-txt">{ pursue[0].business_id }, { pursue[0].review_count }</p>
+
+                <label>Transformation Template: </label>
+
+                <hr className="qf-line" />
+                <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
+            </div>
+            )   
     }
 
     confirmQF() {

@@ -90,7 +90,15 @@ export const processYelpMaxThreshold = (spec) => (dispatch, getState) => {
 }
 
 export const processYelpData = (spec) => (dispatch, getState) => { 
-  const newData = ProcessYelpData(spec.chartData, spec.attr, spec.pursue);
+  
+  var newData = []
+  if (spec.type === "Delete_One") {
+    newData = ProcessYelpData(spec.chartData, spec.attr, spec.pursue, true);
+  } else {
+    newData = ProcessYelpData(spec.chartData, spec.attr, spec.pursue);
+  }
+
+
   console.log("Finished processing data");
   dispatch(updateData(newData));
   dispatch(clearQFList());

@@ -74,10 +74,15 @@ export class DataPane extends Component {
     }
 
     deleteChartData(attr, deleteArray) {
-        const { updateData, chartData } = this.props;
+        const { updateData, chartData, addQF } = this.props;
 
-        const newData = ProcessYelpData(chartData, attr, deleteArray, true);
-        updateData(newData);
+        const qf = {
+            type: "Delete_One",
+            pursue: deleteArray,
+            attribute: attr
+        }
+
+        addQF(qf);
     }
 
     // deleteMaxThresholdData(key, threshold_value){

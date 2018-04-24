@@ -20,7 +20,8 @@ export class QFList extends Component {
         const data = {
             chartData: chartData,
             pursue: qf.pursue,
-            attr: qf.attribute
+            attr: qf.attribute,
+            type: qf.type
         }
         
         switch(qf.type) {
