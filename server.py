@@ -33,6 +33,7 @@ def yelp_threshold():
     df = json.loads(body)
     clean_df = set_max_threshold_yelp(df["chartData"], df["attr"], df["max_threshold"])
 
+    print("RETURNED DF: ", len(clean_df))
     # Can't use this until figure out how to convert numpy array (with index/column information) into python array of objects with column names per record
     # 
     # data = np.core.records.fromrecords(clean_df.reset_index(), names=clean_df.reset_index().columns.tolist())

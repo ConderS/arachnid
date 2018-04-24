@@ -42,7 +42,7 @@ export const processYelpMaxThreshold = (chartData, attr, threshold_value) => (di
   console.log("Threshold value: ", threshold_value);
 
   var data = {
-    "chartData": chartData.slice(0, 100),
+    "chartData": chartData,
     "attr": attr,
     "max_threshold": threshold_value
   }
