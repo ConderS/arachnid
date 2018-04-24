@@ -3,7 +3,7 @@
 ## Setting Up
 
 Front-End:
-- `cd js`
+- `cd interface`
 - `npm install` to install dependencies
 - `npm start` to run locally
 
@@ -19,7 +19,9 @@ If you happen to want to run the engine itself (in isolation from the server):
 
 ## Key Files
 
-- `js/src/components/DataPane.js` is the parent component for the charts and adds additional actions for handling interactions
-- `js/src/components/BarChart.js` contains all d3 logic for the BarChart compoennt
-- `js/src/components/ScatterPlot.js` contains all d3 logic for the ScatterPlot component
-- `js/src/actions/dataPane/index.js` is where quality functions will be sent to the server 
+### In `interface` 
+
+- `src/components/DataPane.js` is the parent component for the charts and adds additional actions for handling interactions
+- `src/components/BarChart.js` contains all d3 logic for the BarChart compoennt
+- `src/components/ScatterPlot.js` contains all d3 logic for the ScatterPlot component
+- `src/actions/dataPane/index.js` is where quality functions will be sent to the server 
