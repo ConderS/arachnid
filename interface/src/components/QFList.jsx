@@ -48,7 +48,7 @@ export class QFList extends Component {
             return (
                 <div className="emptyQFList">
                     <hr/>
-                    <p>Awaiting Interactions...</p>
+                    <p>Awaiting Specifications....</p>
                 </div>
                 );
         }
