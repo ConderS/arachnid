@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "../styles/components/attributelist.css";
+import "../styles/components/selectedlist.css";
 
 export class SelectedList extends Component {
     constructor(props) {
@@ -24,9 +24,9 @@ export class SelectedList extends Component {
 
             return (
                 <li key={index} className={classNameTxt}>
+                    <hr/>
                     <p className="al-info"><label>{xAttr}: </label>{xVal}</p>
                     <p className="al-info"><label>{yAttr}: </label>{yVal}</p>
-                    <hr/>
                 </li>
                 );
         })
@@ -37,7 +37,6 @@ export class SelectedList extends Component {
         return (
             <div id="al-container">
                 <h3 className="menu-header">Selected Records</h3>
-                <hr/>
                 {this.renderCurrentDatum()}
             </div>
             );

@@ -22,7 +22,7 @@ export class DataPane extends Component {
         this.onBrush = this.onBrush.bind(this);
         this.dedupChartData = this.dedupChartData.bind(this);
         this.deleteChartData = this.deleteChartData.bind(this);
-        this.deleteMaxThresholdData = this.deleteMaxThresholdData.bind(this);
+        this.addMaxThresholdQF = this.addMaxThresholdQF.bind(this);
 
         this.renderChart = this.renderChart.bind(this);
         this.generateBar = this.generateBar.bind(this);
@@ -58,10 +58,19 @@ export class DataPane extends Component {
     }
 
     dedupChartData(attr, dedupArray) {
-        const { updateData, chartData } = this.props;
+        const { updateData, chartData, addQF } = this.props;
 
-        const newData = ProcessYelpData(chartData, attr, dedupArray);
-        updateData(newData);
+        const qf = {
+            type: "Dedup_Two",
+            pursue: dedupArray,
+            attribute: attr
+        }
+    
+        addQF(qf);
+        
+        //Resetting chart purely for the sake of resetting the bars after drag ends - Implement this in D3 (TODO)
+        updateData(chartData);
+        // const newData = ProcessYelpData(chartData, attr, dedupArray);
     }
 
     deleteChartData(attr, deleteArray) {
@@ -77,9 +86,16 @@ export class DataPane extends Component {
     //     updateData(newData);
     // }
 
-    deleteMaxThresholdData(attr, threshold_value){
-        const { chartData, processYelpMaxThreshold } = this.props;
-        processYelpMaxThreshold(chartData, attr, threshold_value);
+    addMaxThresholdQF(attr, thresholdValue){
+        const { chartData, addQF } = this.props;
+
+        const qf = {
+            type: "Max_Threshold",
+            pursue: thresholdValue,
+            attribute: attr
+        }
+        
+        addQF(qf);
     }
 
     
@@ -109,7 +125,7 @@ export class DataPane extends Component {
                     data={filteredData} 
                     dedupChartData={this.dedupChartData}
                     deleteChartData={this.deleteChartData}
-                    deleteMaxThresholdData={this.deleteMaxThresholdData}
+                    addMaxThresholdQF={this.addMaxThresholdQF}
                     {...this.props} />
 
                 <Brush changeBrush={this.onBrush} size={[size[0], 50]} data={chartData}/>
@@ -120,7 +136,7 @@ export class DataPane extends Component {
     generateScatter() {
         return (
             <ScatterPlot 
-            deleteMaxThresholdData={this.deleteMaxThresholdData} 
+            addMaxThresholdQF={this.addMaxThresholdQF} 
             {...this.props} />
             );
     }

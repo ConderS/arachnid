@@ -15,9 +15,9 @@
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-#al-container hr {
+/*#al-container hr {
     margin-bottom: 0;
-}
+}*/
 .al-header {
     margin-top: 10px;
     margin-bottom: 22px;

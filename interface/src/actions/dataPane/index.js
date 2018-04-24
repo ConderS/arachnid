@@ -1,4 +1,5 @@
 // GENERAL 
+import { ProcessYelpData } from '../../utils/processData';
 
 export function updateData(data) {
     return {
@@ -42,6 +43,12 @@ export function _addQF(qf) {
   }
 }
 
+export function clearQFList() {
+  return {
+    type: "CLEAR_QF_LIST"
+  }
+}
+
 export function error(msg) {
   return {
     type: "ERROR",
@@ -50,14 +57,16 @@ export function error(msg) {
 }
 // Attached to the QF 
 export const processYelpMaxThreshold = (spec) => (dispatch, getState) => {
-  console.log("PROCESSING (TO ENGINE)...");
+  console.log("Processing (sending spec to engine) ...");
 
-  console.log("Threshold value: ", spec.thresholdValue);
+  console.log("SPEC: ", spec);
+
+  console.log("Threshold value: ", spec.pursue);
 
   var data = {
     "chartData": spec.chartData,
     "attr": spec.attr,
-    "max_threshold": spec.thresholdValue
+    "max_threshold": spec.pursue
   }
 
   var request = new Request("http://localhost:8111/api/yelp-threshold", {
@@ -75,23 +84,36 @@ export const processYelpMaxThreshold = (spec) => (dispatch, getState) => {
       .then(data => {
         console.log("Respond Data: ", data);
         dispatch(updateData(data));
+        dispatch(clearQFList());
       })
       .catch(err => console.log("ERROR: ", err));
+}
+
+export const processYelpData = (spec) => (dispatch, getState) => { 
+  const newData = ProcessYelpData(spec.chartData, spec.attr, spec.pursue);
+  console.log("Finished processing data");
+  dispatch(updateData(newData));
+  dispatch(clearQFList());
 }
 
 export const addQF = (qf) => (dispatch, getState) => {
   console.log("Adding QF...");
 
   // In future, have different classes for each type of quality function that we can instantiate
-  switch(qf.type) {
-    case "Max_Threshold":
-      qf["compute"] = processYelpMaxThreshold
-      break;
-
-    default:
-      dispatch(error("Need to specify type of quality function"))
-      return;
-  }
+  // switch(qf.type) {
+  //   case "Max_Threshold":
+  //     qf["compute"] = processYelpMaxThreshold;
+  //     break;
+  //   case "Dedup_Two":
+  //     qf["compute"] = _processYelpData;
+  //     break;
+  //   case "Delete_One":
+  //     qf["compute"] = _processYelpData;
+  //     break;
+  //   default:
+  //     dispatch(error("Need to specify type of quality function"))
+  //     return;
+  // }
 
   dispatch(_addQF(qf))
 }

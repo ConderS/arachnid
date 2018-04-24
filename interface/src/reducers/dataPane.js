@@ -28,7 +28,9 @@ export default function(state = initialState, action) {
         case "GENERATE_CHART":
             return Object.assign({}, state, { chartType: action.chartType });
         case "ADD_QF":
-            return Object.assign({}, state, { QFList: [ ...state.QFList, action.qf ] })
+            return Object.assign({}, state, { QFList: [ ...state.QFList, action.qf ] });
+        case "CLEAR_QF_LIST":
+            return Object.assign({}, state, { QFList: [] });
         default:
             return state;
     }

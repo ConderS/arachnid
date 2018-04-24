@@ -1,0 +1,55 @@
+.QFContainer p, label {
+    font-size: 11px;
+}
+
+/*.subQFContainer {
+    margin-top: 20px;
+}
+*/
+
+.max-threshold-txt {
+
+}
+
+.subQFContainer label {
+  
+}
+
+
+.qf-value {
+    margin-bottom: 2em;
+}
+
+.qf-pursue {
+    color: green;
+}
+
+.dirty-txt {
+    color: red;
+}
+
+.qf-attribute {
+    color: steelblue;
+}
+
+.no-space-mb-1 {
+    margin-bottom: 10px;
+    padding: 0;
+    /*float: left;*/
+}
+
+.qf-line {
+    border-top: 1px dotted #8c8b8b;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+
+.subQFContainer button {
+    margin-bottom: 1.5em;
+    font-size: 10px;
+    width: 75%;
+}
+/*
+.subQFContainer hr {
+    margin-top: 0;
+}*/

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators  } from 'redux';
 
-import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, generateChart, processYelpMaxThreshold, addQF } from '../actions/index';
+import { updateData, updateDimensions, updateCurrentDatum, driveChartUpdate, generateChart, processYelpMaxThreshold, processYelpData, addQF, clearQFList } from '../actions/index';
 import DataPane from '../components/DataPane';
 import Menu from '../components/Menu';
 
@@ -30,7 +30,9 @@ function mapDispatchToProps(dispatch) {
         driveChartUpdate,
         generateChart,
         processYelpMaxThreshold,
-        addQF
+        addQF,
+        clearQFList,
+        processYelpData
     }, dispatch);
 }
 

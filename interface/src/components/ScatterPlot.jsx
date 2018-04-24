@@ -43,7 +43,7 @@ export class ScatterPlot extends Component {
     }
 
     createScatterPlot() {
-        const { chartData, size, xAttr, yAttr, deleteMaxThresholdData } = this.props;
+        const { chartData, size, xAttr, yAttr, addMaxThresholdQF } = this.props;
         const { spaceOffset } = this.state;
         const node = this.node;
         const dataMax = max(chartData.map(d => parseFloat(d[yAttr])));
@@ -173,11 +173,11 @@ export class ScatterPlot extends Component {
                 console.log(currentEvent);
                 if(this.id === "SC-xAxis"){
                     console.log(this);
-                    deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
+                    addMaxThresholdQF(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "SC-yAxis"){
                     console.log(this);
-                    deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
+                    addMaxThresholdQF(yAttr, yScale.invert(mouse(this)[1]));
                 }            
             })
             .on('mouseover', function(value, index) {

@@ -7,7 +7,8 @@ export class QF extends Component {
 
         this.renderQF = this.renderQF.bind(this);
         this.renderMaxThreshold = this.renderMaxThreshold.bind(this);
-        this.handleConfirmQF = this.handleConfirmQF.bind(this);
+        this.renderDedupTwo = this.renderDedupTwo.bind(this);
+        this.confirmQF = this.confirmQF.bind(this);
     }
 
     renderQF() {
@@ -16,37 +17,62 @@ export class QF extends Component {
         switch(type) {
             case "Max_Threshold":
                 return this.renderMaxThreshold();
+            case "Dedup_Two":
+                return this.renderDedupTwo();
         }
     }
     
     renderMaxThreshold() {
-        const { pursueValue, attribute } = this.props.body;
+        const { handleConfirmQF } = this.props;
+        const { pursue, attribute } = this.props.body;
 
         return (
-            <div id="maxThresholdQF" className="QFContainer">
-                <p>Max Threshold on { attribute }: </p>
-                <p>{ pursueValue }</p>
+            <div className="subQFContainer">
+                <hr />
+                <p className="max-threshold-txt">Max Threshold on:</p> 
+                <p className="qf-value qf-attribute">{ attribute }</p>
+                <p className="max-threshold-txt">Threshold Value:</p> 
+                <p className="qf-value qf-pursue">{ pursue }</p>
                 <p>Transformation Template: </p>
-                <button className="btn-info" onClick={this.handleConfirmQF}>Confirm</button>
+                <hr className="qf-line" />
+                <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
             </div>
             )
     }
 
-    handleConfirmQF() {
-        const { pursueValue, attribute, compute, chartData } = this.props.body;
+    renderDedupTwo() {
+        const { handleConfirmQF } = this.props;
+        const { pursue, attribute } = this.props.body;
         
-        const data = {
-            chartData: chartData,
-            thresholdValue: pursueValue,
-            attr: attribute
-        }
+        console.log("pursue: ", pursue);
+        return (
+            <div className="subQFContainer">
+                <hr />
+                <p className="max-threshold-txt">Dedup on:</p> 
+                <p className="qf-value qf-attribute">{ attribute }</p>
 
-        compute(data);
+                <label className="">Duplicate Record, Clean Record</label>
+
+                <p className="no-space-mb-1 dirty-txt">{ pursue[0].business_id }, { pursue[0].review_count }</p>
+                <p className="qf-value qf-pursue">{ pursue[1].business_id }, { pursue[1].review_count }</p>
+
+                <label>Transformation Template: </label>
+                
+                <hr className="qf-line" />
+                <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
+            </div>
+            )
+    }
+
+    confirmQF() {
+        this.props.handleConfirmQF(this.props.body);
     }
 
     render() {
         return (
-            {this.renderQF()}
+            <div id="maxThresholdQF" className="QFContainer">
+                {this.renderQF()}
+            </div>
             );
     }
 }

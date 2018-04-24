@@ -62,7 +62,14 @@ export class BarChart extends Component {
     }
 
     createBarChart() {
-        const { data, size, xAttr, yAttr, deleteMaxThresholdData } = this.props;
+        const { 
+            data, 
+            size, 
+            xAttr, 
+            yAttr, 
+            addMaxThresholdQF,
+            addQF } = this.props;
+
         const { spaceOffset } = this.state;
 
         const node = this.node;
@@ -233,12 +240,11 @@ export class BarChart extends Component {
                 if(this.id === "BC-xAxis"){
                     console.log(this);
                     console.log("Value", xScale.invert(mouse(this)[0]))
-                    
-                    deleteMaxThresholdData(xAttr, xScale.invert(mouse(this)[0]));
+                    addMaxThresholdQF(xAttr, xScale.invert(mouse(this)[0]));
                 }
                 else if(this.id === "BC-yAxis"){
                     console.log(this);
-                    deleteMaxThresholdData(yAttr, yScale.invert(mouse(this)[1]));
+                    addMaxThresholdQF(yAttr, yScale.invert(mouse(this)[1]));
                 }
             })
             .on('mouseover', function(value, index) {

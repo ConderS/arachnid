@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/components/specification.css';
+import '../styles/components/qflist.css';
 
 import QF from './QF';
 
@@ -9,19 +9,54 @@ export class QFList extends Component {
         super(props);
 
         this.renderQFList = this.renderQFList.bind(this);
+        this.handleConfirmQF = this.handleConfirmQF.bind(this);
+    }
+
+    handleConfirmQF(qf) {
+        console.log("Computing QF...");
+
+        const { chartData, clearQFList, processYelpData, processYelpMaxThreshold } = this.props;
+
+        const data = {
+            chartData: chartData,
+            pursue: qf.pursue,
+            attr: qf.attribute
+        }
+        
+        switch(qf.type) {
+            case "Max_Threshold":
+                processYelpMaxThreshold(data);
+                break;
+            case "Dedup_Two":
+                processYelpData(data);
+                break;
+            case "Delete_One":
+                processYelpData(data);
+                break;
+            default:
+                break;
+        };
+
+        // clearQFList();
     }
 
     renderQFList() {
         const { addQF, QFList, chartData } = this.props;
 
         if (!QFList.length) {
-            return (<div className="emptyQFList">Awaiting Interactions...</div>);
+            return (
+                <div className="emptyQFList">
+                    <hr/>
+                    <p>Awaiting Interactions...</p>
+                </div>
+                );
         }
 
         return QFList.map((qf, index) => {
             return (<QF 
+                key = { index }
                 body = { qf }
-                chartData = { chartData}
+                handleConfirmQF = { this.handleConfirmQF }
             />);
         });
 
@@ -34,9 +69,8 @@ export class QFList extends Component {
 
     render() {
         return (
-            <div className="sp-container">
+            <div className="qflist-container">
                 <h3 className="menu-header">Quality Functions</h3>
-                <hr/>
                 {this.renderQFList()}
             </div>
             );
