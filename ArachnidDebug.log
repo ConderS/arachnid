@@ -3823,3 +3823,983 @@ DEBUG:root:Running  took 0.000125
 DEBUG:root:Search Depth=9 took 0.193573
 DEBUG:root:Search  took 1.924129
 INFO:werkzeug:127.0.0.1 - - [20/Apr/2018 11:42:01] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:8111/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:46:49] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 16) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b3784d0>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.014956
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000452
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.28891
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000227
+DEBUG:root:Search Depth=1 took 0.285097
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000161
+DEBUG:root:Search Depth=2 took 0.268294
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000257
+DEBUG:root:Search Depth=3 took 0.273608
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000295
+DEBUG:root:Search Depth=4 took 0.273493
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000209
+DEBUG:root:Search Depth=5 took 0.262852
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000169
+DEBUG:root:Search Depth=6 took 0.277869
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00015
+DEBUG:root:Search Depth=7 took 0.255179
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000146
+DEBUG:root:Search Depth=8 took 0.268918
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000259
+DEBUG:root:Search Depth=9 took 0.266049
+DEBUG:root:Search  took 2.721246
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:46:51] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:57:51] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 16) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b42c810>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.01202
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000233
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.289858
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000196
+DEBUG:root:Search Depth=1 took 0.28188
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000233
+DEBUG:root:Search Depth=2 took 0.269203
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000177
+DEBUG:root:Search Depth=3 took 0.263474
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.0002
+DEBUG:root:Search Depth=4 took 0.273608
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000264
+DEBUG:root:Search Depth=5 took 0.280396
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000179
+DEBUG:root:Search Depth=6 took 0.277685
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00018
+DEBUG:root:Search Depth=7 took 0.275219
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000237
+DEBUG:root:Search Depth=8 took 0.278478
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000228
+DEBUG:root:Search Depth=9 took 0.270288
+DEBUG:root:Search  took 2.761084
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:57:54] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:00] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b642950>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.00975
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000311
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.205991
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000197
+DEBUG:root:Search Depth=1 took 0.202828
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000236
+DEBUG:root:Search Depth=2 took 0.202291
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000247
+DEBUG:root:Search Depth=3 took 0.205596
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000216
+DEBUG:root:Search Depth=4 took 0.197546
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00019
+DEBUG:root:Search Depth=5 took 0.198326
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000142
+DEBUG:root:Search Depth=6 took 0.201247
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000194
+DEBUG:root:Search Depth=7 took 0.195452
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000173
+DEBUG:root:Search Depth=8 took 0.200376
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000183
+DEBUG:root:Search Depth=9 took 0.198744
+DEBUG:root:Search  took 2.009445
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:02] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:09] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (454, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b6ad390>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.008061
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000256
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.18343
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000208
+DEBUG:root:Search Depth=1 took 0.165375
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000141
+DEBUG:root:Search Depth=2 took 0.172031
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000187
+DEBUG:root:Search Depth=3 took 0.201093
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000131
+DEBUG:root:Search Depth=4 took 0.167606
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000168
+DEBUG:root:Search Depth=5 took 0.165925
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000178
+DEBUG:root:Search Depth=6 took 0.165504
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000183
+DEBUG:root:Search Depth=7 took 0.172573
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000141
+DEBUG:root:Search Depth=8 took 0.173069
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000145
+DEBUG:root:Search Depth=9 took 0.172117
+DEBUG:root:Search  took 1.739693
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:11] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:34] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 16) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b42cd90>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.010596
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000239
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.283687
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000236
+DEBUG:root:Search Depth=1 took 0.265674
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00024
+DEBUG:root:Search Depth=2 took 0.25582
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00023
+DEBUG:root:Search Depth=3 took 0.257737
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000233
+DEBUG:root:Search Depth=4 took 0.256646
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000242
+DEBUG:root:Search Depth=5 took 0.272603
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000236
+DEBUG:root:Search Depth=6 took 0.256074
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000232
+DEBUG:root:Search Depth=7 took 0.266341
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000234
+DEBUG:root:Search Depth=8 took 0.269615
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000239
+DEBUG:root:Search Depth=9 took 0.255886
+DEBUG:root:Search  took 2.64109
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 14:59:36] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:8111/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:00:53] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 16) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10aa2d4d0>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.010831
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000257
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.294886
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000182
+DEBUG:root:Search Depth=1 took 0.28298
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000224
+DEBUG:root:Search Depth=2 took 0.280652
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000241
+DEBUG:root:Search Depth=3 took 0.280145
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000177
+DEBUG:root:Search Depth=4 took 0.272335
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000183
+DEBUG:root:Search Depth=5 took 0.281775
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000245
+DEBUG:root:Search Depth=6 took 0.290224
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000236
+DEBUG:root:Search Depth=7 took 0.274772
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000212
+DEBUG:root:Search Depth=8 took 0.271811
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000216
+DEBUG:root:Search Depth=9 took 0.274901
+DEBUG:root:Search  took 2.805509
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:00:56] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:01:15] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10aae0750>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.010182
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00033
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.211279
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000215
+DEBUG:root:Search Depth=1 took 0.199889
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000233
+DEBUG:root:Search Depth=2 took 0.204344
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000145
+DEBUG:root:Search Depth=3 took 0.192279
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000152
+DEBUG:root:Search Depth=4 took 0.204945
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000169
+DEBUG:root:Search Depth=5 took 0.198148
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000221
+DEBUG:root:Search Depth=6 took 0.200607
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000427
+DEBUG:root:Search Depth=7 took 0.204389
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000303
+DEBUG:root:Search Depth=8 took 0.204802
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000222
+DEBUG:root:Search Depth=9 took 0.203188
+DEBUG:root:Search  took 2.024929
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:01:17] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:03:52] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10acdcc50>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.01033
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000254
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.217794
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000195
+DEBUG:root:Search Depth=1 took 0.200446
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000165
+DEBUG:root:Search Depth=2 took 0.199684
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00018
+DEBUG:root:Search Depth=3 took 0.20461
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000236
+DEBUG:root:Search Depth=4 took 0.196469
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000238
+DEBUG:root:Search Depth=5 took 0.203406
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000214
+DEBUG:root:Search Depth=6 took 0.202825
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000155
+DEBUG:root:Search Depth=7 took 0.189796
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000347
+DEBUG:root:Search Depth=8 took 0.203409
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000179
+DEBUG:root:Search Depth=9 took 0.202813
+DEBUG:root:Search  took 2.022292
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:03:54] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:01] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (518, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10ad9cf50>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.010543
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000257
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.218338
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000203
+DEBUG:root:Search Depth=1 took 0.20176
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000199
+DEBUG:root:Search Depth=2 took 0.229062
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000161
+DEBUG:root:Search Depth=3 took 0.193311
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000183
+DEBUG:root:Search Depth=4 took 0.194138
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00024
+DEBUG:root:Search Depth=5 took 0.200702
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000155
+DEBUG:root:Search Depth=6 took 0.198235
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000225
+DEBUG:root:Search Depth=7 took 0.201457
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000224
+DEBUG:root:Search Depth=8 took 0.200407
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000224
+DEBUG:root:Search Depth=9 took 0.196883
+DEBUG:root:Search  took 2.035307
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:03] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:07] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (502, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10aae0cd0>
+DEBUG:root:Running df = numparse(df,'business_id') took 0.010604
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.107727
+DEBUG:root:Promoted Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000239
+DEBUG:root:Search Depth=0 took 0.655046
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.107183
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000202
+DEBUG:root:Search Depth=1 took 0.638329
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.099434
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000201
+DEBUG:root:Search Depth=2 took 0.631748
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.103225
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000205
+DEBUG:root:Search Depth=3 took 0.651327
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.102015
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000198
+DEBUG:root:Search Depth=4 took 0.645955
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.103503
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000258
+DEBUG:root:Search Depth=5 took 0.644016
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.098984
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000226
+DEBUG:root:Search Depth=6 took 0.628671
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.120114
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000228
+DEBUG:root:Search Depth=7 took 0.657213
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.106622
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.00021
+DEBUG:root:Search Depth=8 took 0.632119
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.104926
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.0002
+DEBUG:root:Search Depth=9 took 0.642077
+DEBUG:root:Search  took 6.427586
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:13] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:23] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (526, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b1115d0>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.0101
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000251
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.207634
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000245
+DEBUG:root:Search Depth=1 took 0.209583
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000217
+DEBUG:root:Search Depth=2 took 0.202043
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000181
+DEBUG:root:Search Depth=3 took 0.202377
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000226
+DEBUG:root:Search Depth=4 took 0.200473
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000227
+DEBUG:root:Search Depth=5 took 0.205451
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000222
+DEBUG:root:Search Depth=6 took 0.197309
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000264
+DEBUG:root:Search Depth=7 took 0.20098
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000226
+DEBUG:root:Search Depth=8 took 0.196569
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000321
+DEBUG:root:Search Depth=9 took 0.198902
+DEBUG:root:Search  took 2.022469
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:25] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:38] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (508, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10aac1190>
+DEBUG:root:Running df = numparse(df,'business_id') took 0.011087
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.112044
+DEBUG:root:Promoted Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000215
+DEBUG:root:Search Depth=0 took 0.693375
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.096779
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000222
+DEBUG:root:Search Depth=1 took 0.628618
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.095716
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000211
+DEBUG:root:Search Depth=2 took 0.617808
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.100197
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000207
+DEBUG:root:Search Depth=3 took 0.609976
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.102772
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000197
+DEBUG:root:Search Depth=4 took 0.622856
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.101541
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.0002
+DEBUG:root:Search Depth=5 took 0.632522
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.105847
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000186
+DEBUG:root:Search Depth=6 took 0.626289
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.094772
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000203
+DEBUG:root:Search Depth=7 took 0.615304
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.09397
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000192
+DEBUG:root:Search Depth=8 took 0.623202
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 1
+DEBUG:root:Library generator created 2 operations
+DEBUG:root:Search Branch=0 df = delete(df,'business_id',(u'business_id', set([None])))
+DEBUG:root:Running df = delete(df,'business_id',(u'business_id', set([None]))) took 0.097572
+DEBUG:root:Search Branch=1 
+DEBUG:root:Running  took 0.000241
+DEBUG:root:Search Depth=9 took 0.613791
+DEBUG:root:Search  took 6.284737
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:04:45] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:10:47] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (522, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b149210>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.011013
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00027
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.208794
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000161
+DEBUG:root:Search Depth=1 took 0.192454
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000185
+DEBUG:root:Search Depth=2 took 0.206481
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000274
+DEBUG:root:Search Depth=3 took 0.200522
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000155
+DEBUG:root:Search Depth=4 took 0.195576
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000169
+DEBUG:root:Search Depth=5 took 0.203573
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000169
+DEBUG:root:Search Depth=6 took 0.202501
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000152
+DEBUG:root:Search Depth=7 took 0.193604
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000218
+DEBUG:root:Search Depth=8 took 0.203462
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00016
+DEBUG:root:Search Depth=9 took 0.204016
+DEBUG:root:Search  took 2.012001
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:10:49] "POST /api/yelp-threshold HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:10:54] "OPTIONS /api/yelp-threshold HTTP/1.1" 200 -
+DEBUG:root:Starting the search algorithm with the following config: (446, 13) {'pattern': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}, 'dependency': {'operations': [<class 'engine.alphaclean.ops.Delete'>], 'similarity': {}, 'edit': 1, 'w2v': 'resources/GoogleNews-vectors-negative300.bin', 'depth': 10, 'model': None, 'gamma': 5}}
+DEBUG:root:Enforcing pattern constraint=<engine.alphaclean.constraint_languages.pattern.Float object at 0x10b1ecb90>
+DEBUG:root:Running df = numparse(df,'review_count') took 0.00813
+DEBUG:root:Search Depth=0
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00025
+DEBUG:root:Promoted Search Branch=0 
+DEBUG:root:Search Depth=0 took 0.183777
+DEBUG:root:Search Depth=1
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000201
+DEBUG:root:Search Depth=1 took 0.173409
+DEBUG:root:Search Depth=2
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000145
+DEBUG:root:Search Depth=2 took 0.1655
+DEBUG:root:Search Depth=3
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000234
+DEBUG:root:Search Depth=3 took 0.172007
+DEBUG:root:Search Depth=4
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000226
+DEBUG:root:Search Depth=4 took 0.173023
+DEBUG:root:Search Depth=5
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000189
+DEBUG:root:Search Depth=5 took 0.173015
+DEBUG:root:Search Depth=6
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000259
+DEBUG:root:Search Depth=6 took 0.17407
+DEBUG:root:Search Depth=7
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000145
+DEBUG:root:Search Depth=7 took 0.165649
+DEBUG:root:Search Depth=8
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.000175
+DEBUG:root:Search Depth=8 took 0.169345
+DEBUG:root:Search Depth=9
+DEBUG:root:Predicate Sampler has 0
+DEBUG:root:Library generator created 1 operations
+DEBUG:root:Search Branch=0 
+DEBUG:root:Running  took 0.00025
+DEBUG:root:Search Depth=9 took 0.174928
+DEBUG:root:Search  took 1.725804
+INFO:werkzeug:127.0.0.1 - - [24/Apr/2018 15:10:56] "POST /api/yelp-threshold HTTP/1.1" 200 -

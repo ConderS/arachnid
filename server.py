@@ -47,10 +47,6 @@ def yelp_threshold():
 
 def set_max_threshold_yelp(in_data, attr, max_threshold):
     data = pd.DataFrame(in_data)
-    # types = data.apply(lambda x: pd.lib.infer_dtype(x.values))
-
-    # for col in types[types=='unicode'].index:
-    #   data[col] = data[col].apply(lambda x: x.encode('utf-8').strip())
 
     patterns = []
     patterns += [Float(attr, [1, max_threshold])]
