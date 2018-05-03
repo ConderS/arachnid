@@ -24,7 +24,8 @@ export class BarChart extends Component {
             spaceOffset: 150,
             updateDimensions: false,
             selectedRect: null,
-            newData: null
+            newData: null,
+            dragging: false
         }
 
         this.createBarChart = this.createBarChart.bind(this);
@@ -331,6 +332,7 @@ export class BarChart extends Component {
         var datum = d;
         datum.dragged = true;
         updateCurrentDatum([datum]);
+        this.setState({ dragging: true });
     }
 
     handleDragging(d) {
@@ -393,16 +395,25 @@ export class BarChart extends Component {
         updateCurrentDatum([]);
 
         bar.style('fill', 'blue');
+
+        this.setState({ dragging: false });
     }
 
 
     handleMouseOver(d) {
         const { updateCurrentDatum, currentDatum } = this.props;
 
+        if (!currentDatum.length && !this.state.dragging) {
+            var newDatum = [d];
+            newDatum.dragged = false;
+            updateCurrentDatum(newDatum);
+            return;
+        }
+
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Hovering Different Element", d);
                 
-            //React needs to see an entirely new object being created in order for it to be considered a "new" update worthy of re-rendering other components for
+            //Create action from this "addDatum" - React needs to see an entirely new object being created in order for it to be considered a "new" update worthy of re-rendering other components for
             var newDatum = [];
             currentDatum.map(datum => {
                 newDatum.push(datum);
@@ -425,6 +436,11 @@ export class BarChart extends Component {
 
     handleMouseOut(d) {
         const { updateCurrentDatum, currentDatum } = this.props;
+        
+        if ((currentDatum.length == 1) && !this.state.dragging) {
+            updateCurrentDatum([]);
+            return;
+        }
 
         if (currentDatum.length > 0 && d.business_id !== currentDatum[0].business_id) {
             console.log("Mouse Out on Diff Element");

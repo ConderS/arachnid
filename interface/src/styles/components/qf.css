@@ -15,7 +15,6 @@
   
 }
 
-
 .qf-value {
     margin-bottom: 2em;
 }
@@ -44,10 +43,15 @@
     margin-bottom: 0.5em;
 }
 
+.subQFContainer button.dropdown-toggle {
+    margin-left: 21px;
+}
+
 .subQFContainer button {
     margin-bottom: 1.5em;
     font-size: 10px;
     width: 75%;
+
 }
 /*
 .subQFContainer hr {

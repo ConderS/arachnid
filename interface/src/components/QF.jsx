@@ -38,7 +38,21 @@ export class QF extends Component {
                 <p className="qf-value qf-attribute">{ attribute }</p>
                 <p className="max-threshold-txt">Threshold Value:</p> 
                 <p className="qf-value qf-pursue">{ pursue }</p>
+
                 <p>Transformation Template: </p>
+                <div className="btn-group">
+                  <button style={{marginLeft: 21 + 'px'}}type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dedup, Delete
+                  </button>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">Action</a>
+                    <a className="dropdown-item" href="#">Another action</a>
+                    <a className="dropdown-item" href="#">Something else here</a>
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
+
                 <hr className="qf-line" />
                 <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
             </div>
@@ -61,8 +75,19 @@ export class QF extends Component {
                 <p className="no-space-mb-1 dirty-txt">{ pursue[0].business_id }, { pursue[0].review_count }</p>
                 <p className="qf-value qf-pursue">{ pursue[1].business_id }, { pursue[1].review_count }</p>
 
-                <label>Transformation Template: </label>
-
+                <p>Transformation Template: </p>
+                <div className="btn-group">
+                  <button style={{marginLeft: 21 + 'px'}}type="button" className="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dedup, Delete
+                  </button>
+                  <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">Action</a>
+                    <a className="dropdown-item" href="#">Another action</a>
+                    <a className="dropdown-item" href="#">Something else here</a>
+                    <div className="dropdown-divider"></div>
+                    <a className="dropdown-item" href="#">Separated link</a>
+                  </div>
+                </div>
                 <hr className="qf-line" />
                 <button className="btn btn-info qf-btn" onClick={this.confirmQF}>Confirm</button>
             </div>
